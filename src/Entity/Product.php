@@ -45,6 +45,11 @@ class Product
     private $price;
 
     /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $img;
+
+    /**
      * @return mixed
      */
     public function getId()
@@ -164,24 +169,17 @@ class Product
         $this->price = $price;
     }
 
-    /**
-     * @param $min
-     * @param $max
-     * @return Product[]
-     */
-    public function findByPrice($min, $max): array
+    public function getImg(): ?string
     {
-        $entityManager = $this->getEntityManager();
-
-        $query = $entityManager->createQuery(
-            'SELECT p
-            FROM App\Entity\Product p
-            WHERE p.price > :min AND p.price < :max
-            ORDER BY p.price ASC'
-        )->setParameter('min', $min)->setParameter('max', $max);
-
-        // returns an array of Product objects
-        return $this->name->matching()
+        return $this->img;
     }
+
+    public function setImg(string $img): self
+    {
+        $this->img = $img;
+
+        return $this;
+    }
+
 
 }

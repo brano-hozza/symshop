@@ -8,6 +8,7 @@ use App\Entity\Product;
 use App\Repository\ProductRepository;
 use Doctrine\Common\Collections\Criteria;
 use Doctrine\ORM\EntityManagerInterface;
+use phpDocumentor\Reflection\Types\This;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,25 +17,31 @@ use Symfony\Component\Routing\Annotation\Route;
 class ProductController extends AbstractController
 {
 
-    private $productRepository;
-
-    public function __construct(EntityManagerInterface $entityManager)
-    {
-        $this->productRepository = $entityManager->getRepository(Product::class);
-    }
-
     /**
      * @Route("/products", name="products")
+     * @param Request $request
+     * @param ProductRepository $repository
+     * @return Response
      */
-    public function show(){
+    public function show(Request $request, ProductRepository $repository)
+    {
         $title = "Bshop";
         $announce = "Welcome to bshop";
-        return $this->render('/pages/products.html.twig',[
+        //dd($request->get('min_price'));
+        $products = $repository->getByFilter($request->get('type'), $request->get('brand'),$request->get('size'),[$request->get('min_price'),$request->get('max_price')]);
+        return $this->render('/pages/products.html.twig', [
             'title' => $title,
-            'announce' => $announce
+            'announce' => $announce,
+            'products' => $products,
+            'sizes' => $repository->getFilterOf("size"),
+            'brands' => $repository->getFilterOf("brand"),
+            'types' => $repository->getFilterOf("type"),
+            'prices' => $repository->getFilterOf("price")
         ]);
     }
-    public function create(){
+
+    public function create()
+    {
 
     }
 
@@ -42,14 +49,22 @@ class ProductController extends AbstractController
     /**
      * @Route("/products/filter", name="filter_products")
      * @param Request $request
+     * @param ProductRepository $repository
      * @return Response
      */
-    public function filter_products(Request $request){
-        $criteria = new Criteria();
-        $criteria = $criteria->where(Criteria::expr()->gte("price", $request->get("min_price")))->andWhere(Criteria::expr()->lte("price",$request->get("max_price")));
-        $products = $this->getDoctrine()
-            ->getRepository(Product::class)
-            ->findBy( $criteria, "price");
-        return new Response(json_encode($products));
+    public function filter_products(Request $request, ProductRepository $repository)
+    {
+        $title = "Bshop";
+        $announce = "Welcome to bshop";
+        $products = $repository->getByFilter($request->get('type'), $request->get('brand'),$request->get('size'),[$request->get('min_price'),$request->get('max_price')]);
+        return $this->render('/pages/products.html.twig', [
+            'title' => $title,
+            'announce' => $announce,
+            'products' => $products,
+            'sizes' => $repository->getFilterOf("size"),
+            'brands' => $repository->getFilterOf("brand"),
+            'types' => $repository->getFilterOf("type"),
+            'prices' => $repository->getFilterOf("price")
+        ]);
     }
 }

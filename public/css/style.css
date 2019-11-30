@@ -461,7 +461,6 @@ article {
 
 .products-header{
     color: white;
-    background-image: url("../img/products-background.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-position-y: -1em;
