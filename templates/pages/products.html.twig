@@ -1,0 +1,24 @@
+{% extends('base.html.twig') %}
+{% block body %}
+<article style="background-color: #ffffff;">
+    <section>
+        <h1 class="products-header">PRODUCTS</h1>
+        <form action="{{ path("filter_products") }}" style="color: #000000; background-color: #ffffff; margin-top: -19px;" method="post">
+            <div class="filters">
+                <span class="filter-opener" id="brand" onclick="openFilter(id);">Brand</span>
+                <span class="filter-opener" id="size" onclick="openFilter(id);">Size</span>
+                <span class="filter-opener" id="type" onclick="openFilter(id);">Type</span>
+                <span class="filter-opener" id="price" onclick="openFilter(id);">Price</span>
+            </div>
+
+
+            <label for="min_price">Minimal price: </label>
+            <input type="number" name="min_price" id="min_price">
+            <label for="max_price">Maximum price: </label>
+            <input type="number" name="max_price" id="max_price">
+            <input type="submit" value="Search" name="search">
+
+        </form>
+    </section>
+</article>
+{% endblock %}

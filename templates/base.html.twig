@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="{{ asset("css/style.css") }}">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700&display=swap" rel="stylesheet">
+    <title>{{ title }}</title>
+</head>
+<body>
+<div class="announcement" id="announcement">{{ announce }}</div>
+<nav>
+    <ul class="nav">
+        <li class="nav-item-left"><a href="{{ path("index") }}">{{ title }}</a></li>
+        <li class="nav-item"><a href="{{ path('index') }}">Home</a></li>
+        <li class="nav-item"><a href="{{ path('products') }}">Products</a></li>
+        <li class="nav-item"><a href="{{ path('blog') }}">Blog</a></li>
+        <li class="nav-item"><a href="{{ path('contact') }}">Contact</a></li>
+        <li class="nav-item-right"><a href="{{ path('login') }}">Log In</a></li>
+    </ul>
+
+</nav>
+{% block body %}{% endblock %}
+<footer class="page-footer">
+</footer>
+<script src="{{ asset("js/script.js") }}"></script>
+</body>
+</html>
