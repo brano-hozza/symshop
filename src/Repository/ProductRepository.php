@@ -23,9 +23,9 @@ class ProductRepository extends ServiceEntityRepository
     }
 
     public function getFilterOf($filter){
-        return $this->createQueryBuilder("p")
+        return $this->createQueryBuilder("p")->distinct("p.".$filter)
             ->select("p.".$filter)
-            ->groupBy("p.".$filter)
+            ->orderBy("p.".$filter)
             ->getQuery()
             ->getResult();
 
@@ -57,9 +57,9 @@ class ProductRepository extends ServiceEntityRepository
         }
         return $qb->where($qb_type)
             ->andWhere($qb_brand)
-           // ->andWhere($qb_size)
-           // ->andWhere($qb_price1)
-           // ->andWhere($qb_price2)
+            ->andWhere($qb_size)
+            ->andWhere($qb_price1)
+            ->andWhere($qb_price2)
             ->setMaxResults(20)
             ->getQuery()
             ->getResult();

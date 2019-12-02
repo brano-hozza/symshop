@@ -469,7 +469,6 @@ article {
     padding-top: 1em;
     padding-bottom: 1em;
     font-size: 50px;
-    background-image: url("../images/products-background.jpg");
 }
 
 .product-list{
@@ -488,10 +487,6 @@ article {
 }
 .filters span{
     margin: 1em;
-    border: 1px solid sandybrown;
-    border-radius: 25%;
-    padding: 0.5em;
-    box-shadow: gray 2px 2px;
 }
 
 .filters span:hover{
@@ -502,7 +497,6 @@ article {
     position: absolute;
     display: none;
     flex-wrap: wrap;
-    width: 90%;
     left: 50%;
     transform: translateX(-50%);
     justify-content: space-evenly;
