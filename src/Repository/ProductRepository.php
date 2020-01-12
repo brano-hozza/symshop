@@ -53,13 +53,13 @@ class ProductRepository extends ServiceEntityRepository
             $qb_price2 = "1=1";
         }else{
             $qb_price1 = $qb->expr()->gte("p.price", $arr_price[0]);
-            $qb_price2 = $qb->expr()->gte("p.price", $arr_price[1]);
+            $qb_price2 = $qb->expr()->lte("p.price", $arr_price[1]);
         }
         return $qb->where($qb_type)
             ->andWhere($qb_brand)
-           // ->andWhere($qb_size)
-           // ->andWhere($qb_price1)
-           // ->andWhere($qb_price2)
+            ->andWhere($qb_size)
+            ->andWhere($qb_price1)
+            ->andWhere($qb_price2)
             ->setMaxResults(20)
             ->getQuery()
             ->getResult();

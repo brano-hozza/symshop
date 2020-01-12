@@ -16,7 +16,6 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ProductController extends AbstractController
 {
-
     /**
      * @Route("/products", name="products")
      * @param Request $request
@@ -40,31 +39,13 @@ class ProductController extends AbstractController
         ]);
     }
 
-    public function create()
-    {
-
-    }
-
-
     /**
-     * @Route("/products/filter", name="filter_products")
+     * @Route("/detail", name="detail")
      * @param Request $request
      * @param ProductRepository $repository
      * @return Response
      */
-    public function filter_products(Request $request, ProductRepository $repository)
-    {
-        $title = "Bshop";
-        $announce = "Welcome to bshop";
-        $products = $repository->getByFilter($request->get('type'), $request->get('brand'),$request->get('size'),[$request->get('min_price'),$request->get('max_price')]);
-        return $this->render('/pages/products.html.twig', [
-            'title' => $title,
-            'announce' => $announce,
-            'products' => $products,
-            'sizes' => $repository->getFilterOf("size"),
-            'brands' => $repository->getFilterOf("brand"),
-            'types' => $repository->getFilterOf("type"),
-            'prices' => $repository->getFilterOf("price")
-        ]);
+    public function detail(Request $request, ProductRepository $repository){
+     return $this->render('/pages/detail.html.twig');
     }
 }
