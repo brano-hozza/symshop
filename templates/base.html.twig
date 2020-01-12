@@ -17,9 +17,13 @@
         <li class="nav-item"><a href="{{ path('products') }}">Products</a></li>
         <li class="nav-item"><a href="{{ path('blog') }}">Blog</a></li>
         <li class="nav-item"><a href="{{ path('contact') }}">Contact</a></li>
-        <li class="nav-item-right"><a href="{{ path('login') }}">Log In</a></li>
+        {% if online == false%}
+            <li class="nav-item-right"><a href="{{ path('app_login') }}">Log In</a></li>
+        {% else %}
+            <li class="nav-item-right"><a href="{{ path('app_logout') }}">Log out</a></li>
+        {%endif%}
     </ul>
-
+s
 </nav>
 {% block body %}{% endblock %}
 <footer class="page-footer">
