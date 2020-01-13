@@ -45,7 +45,7 @@ class MainController extends AbstractController
         $title = "Bshop";
         $announce = "Welcome to bshop";
         $online = $this->session->get("is_online");
-        return $this->render('/pages/index.html.twig',[
+        return $this->render('/pages/contact.html.twig',[
             'title' => $title,
             'announce' => $announce,
             'online' => $online
