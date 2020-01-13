@@ -44,9 +44,11 @@ class MainController extends AbstractController
     public function contact(){
         $title = "Bshop";
         $announce = "Welcome to bshop";
+        $online = $this->session->get("is_online");
         return $this->render('/pages/index.html.twig',[
             'title' => $title,
-            'announce' => $announce
+            'announce' => $announce,
+            'online' => $online
         ]);
     }
 }
