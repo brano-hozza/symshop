@@ -358,42 +358,32 @@ article {
     background-color: white;
 }
 /*    LOGIN     */
-.forms-article{
-    height: 100%;
-    width: 100%;
-    background-color: white;
-}
-
-.vl{
-    border-left: 1px solid #707070;
-    height: 800%;
-    transform: translateY(-200%);
+.form{
     position: absolute;
-    left: 50%;
-    top: 25%
-}
-
-
-.forms{
-    display: flex;
-    flex-wrap: wrap;
-    height: 20%;
-    position: absolute;
-    left: 50%;
     top: 50%;
+    left: 50%;
     transform: translate(-50%, -50%);
-}
-.signup, .login{
-    border: solid red 1px;
-
-}
-
-.signup-form input{
-    display: block;
+    text-align: center;
+    background-color: #0e0e0e;
+    border-radius: 10px;
+    padding: 70px 30px;
 }
 
-.login-form input{
-    display: block;
+.form h1{
+    color: white;
+}
+
+.form input{
+    margin: 15px 0;
+}
+
+.form label{
+    color: white;
+    padding-bottom: 5px;
+}
+
+.form a{
+    margin-top: 20px;
 }
 /*Products*/
 
@@ -461,13 +451,14 @@ article {
 
 .products-header{
     color: white;
+    background-image: url("../images/products-background.jpg");
     background-size: cover;
     background-repeat: no-repeat;
-    background-position-y: -1em;
+    background-position-y: -4em;
     margin: 0;
     text-align: center;
-    padding-top: 1em;
-    padding-bottom: 1em;
+    padding-top: 2em;
+    padding-bottom: 2em;
     font-size: 50px;
 }
 
@@ -490,12 +481,17 @@ article {
 }
 
 .filter-items{
+    padding-top: 1%;
+    padding-bottom: 4%;
     position: absolute;
     display: none;
     flex-wrap: wrap;
     left: 50%;
     transform: translateX(-50%);
-    justify-content: space-evenly;
+    background-color: #f9f9f9;
+    -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
 }
 
 .filter-items-border{
@@ -507,3 +503,26 @@ article {
 .filter-items-border:hover{
     border: solid 1px #8f8f8f;
 }
+
+.search{
+    position: absolute;
+    bottom: 1%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background-color: #2c783e;
+    border-style: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    color: white;
+    font-size: 15px;
+    text-transform: uppercase;
+}
+
+/*Pre telefóny*/
+@media only screen and (max-width: 991px){
+    .filter-items{
+        width: 100%;
+        padding-bottom: 20%;
+    }
+}
+
