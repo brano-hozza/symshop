@@ -38,6 +38,17 @@ class ProductController extends AbstractController
         $products = $repository->getByFilter($request->get('type'), $request->get('brand'), $request->get('size'), [$request->get('min_price'), $request->get('max_price')]);
         $online = $this->session->get("is_online", false);
 
+        /**
+         * @var $product Product
+         * @var $products Product[]
+         *
+         */
+        foreach ($products as $id => $product){
+            if(strlen($product->getDescription()) > 20){
+                $products[$id]->setDescription(str_split($product->getDescription(), 20)[0]."...");
+            };
+        }
+
         return $this->render('/pages/products.html.twig', [
             'title' => $title,
             'announce' => $announce,

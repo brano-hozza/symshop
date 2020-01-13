@@ -5,15 +5,16 @@ let arr = {
     price: false
 };
 openFilter = (id) => { //id = brand => size
+    console.log(id);
     if (!arr[id]) { // brand:false => size:false
         let id_str = id + "_sub";
-        document.getElementById(id_str).style.display = "flex";
+        document.getElementById(id_str).setAttribute("style", "display: flex;");
         arr[id] = true; // brand:true size:true
         for (let i in arr) {
             if (arr.hasOwnProperty(i)) {
                 if (i !== id) {
                     let id_str = i + "_sub";
-                    document.getElementById(id_str).style.display = "none";
+                    document.getElementById(id_str).setAttribute("style", "display: none;");
                     arr[i] = false;
                 }
             }//{"brand":true, "type":false, "price":false, "size":false}
