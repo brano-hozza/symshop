@@ -6,8 +6,10 @@
             <div class="profile">
                 <img src="{{ asset("images/acc.png") }}" style="width: 30%; height: auto;">
                 <h1>{{user.getUsername()}}</h1>
-                <h3>{{user.getFirstName()}} {{user.getLastName()}}</h3>
                 <p>{{user.getEmail()}}</p>
+                <br>
+                <p>First name: {{user.getFirstName()}}</p>
+                <p>Last name: {{user.getLastName()}}</p>
             </div>
         </section>
 {% endblock %}
