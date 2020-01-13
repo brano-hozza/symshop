@@ -372,7 +372,7 @@ article {
     text-align: center;
     background-color: #0e0e0e;
     border-radius: 10px;
-    padding: 30px 20px;
+    padding: 30px 30px;
     width: 200px;
     z-index: 1000;
 }
@@ -404,7 +404,7 @@ article {
 .form label {
     position: relative;
     color: white;
-    font-weight: 100;
+    font-weight: 400;
     font-family: Roboto;
     font-size: 13px;
     z-index: 1;
@@ -438,6 +438,10 @@ article {
     font-size: 15px;
     text-decoration: underline;
 
+}
+
+.agree{
+    width: 40px !important;
 }
 
 input:focus {
@@ -593,8 +597,26 @@ button:focus {
     -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
     -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
     box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+    text-align: center;
+    padding: 40px 30px;
+}
+
+.profile img{
+    margin: 0;
+    padding: 0;
+}
+
+.profile h1{
+    margin: 0;
+    padding: 0;
 
 }
+
+.profile p{
+    margin: 0;
+    padding: 0;
+}
+
 /*PROFILE*/
 
 /*Pre telefóny*/
@@ -604,17 +626,3 @@ button:focus {
         padding-bottom: 20%;
     }
 }
-/*Register */
-.register_form .label{
-    color: red;
-}
-.register_form .input{
-    width: 80%;
-}
-.register_form .checkbox{
-
-}
-.check{
-    width: 50px;
-}
-

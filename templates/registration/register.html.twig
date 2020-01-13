@@ -3,14 +3,14 @@
 {% block title %}Register{% endblock %}
 
 {% block body %}
-    <div style="background-color: white">
-    <h1>Register</h1>
+
 
     {{ form_start(registrationForm) }}
-        <div class="register_form">
+        <div class="form">
 
         {# form_row(registrationForm.username) }#}
-
+            <h1>Sign Up</h1>
+            <h3>to create an account</h3>
         {{ form_label(registrationForm.username, "Username:", {'label_attr': {'class': 'label'}}) }}
         {{ form_widget(registrationForm.username, {'attr': {'class': 'input'}} ) }}
 
@@ -26,8 +26,9 @@
         {{ form_label(registrationForm.plainPassword, "Password:",{'label_attr': {'class': 'label'}}) }}
         {{ form_widget(registrationForm.plainPassword, {'attr': {'class': 'input'}}) }}
 
-        {{ form_label(registrationForm.agreeTerms, "Agree terms:",{'label_attr': {'class': 'label'}}) }}
-        {{ form_widget(registrationForm.agreeTerms, {'attr': {'class': 'check'}}) }}
+        {{ form_label(registrationForm.agreeTerms, "Agree to terms:",{'label_attr': {'class': 'label'}}) }}
+        {{ form_widget(registrationForm.agreeTerms, {'attr': {'class': 'agree'}}) }}
+            <br>
 
         <button class="btn">Register</button>
         </div>
