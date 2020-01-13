@@ -2,13 +2,12 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-        <section>
-            <div style="color: white">
-                <p>{{user.getFirstName()}}</p>
-                <p>{{user.getLastName()}}</p>
-                <p>{{user.getUsername()}}</p>
+        <section style="width: 100%; height: 100%; background-color: white;">
+            <div class="profile">
+                <img src="{{ asset("images/acc.png") }}" style="width: 30%; height: auto;">
+                <h1>{{user.getUsername()}}</h1>
+                <h3>{{user.getFirstName()}} {{user.getLastName()}}</h3>
                 <p>{{user.getEmail()}}</p>
-
             </div>
         </section>
 {% endblock %}
