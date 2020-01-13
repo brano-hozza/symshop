@@ -18,6 +18,7 @@
                         <input value='{{ brand.brand }}' id='{{ brand.brand }}' type='checkbox' name='brand[]'>
                     </div>
                     {% endfor %}
+                    <input type="submit" value="Search" name="search" class="search">
                 </div>
                 <div class='filter-items' id='size_sub'>
                     {% for size in sizes %}
@@ -26,6 +27,7 @@
                             <input value='{{ size.size }}' id='{{ size.size }}' type='checkbox' name='size[]'>
                         </div>
                     {% endfor %}
+                    <input type="submit" value="Search" name="search" class="search">
                 </div>
                 <div class='filter-items' id='type_sub'>
                     {% for type in types %}
@@ -34,15 +36,16 @@
                             <input value='{{ type.type }}' id='{{ type.type }}' type='checkbox' name='type[]'>
                         </div>
                     {% endfor %}
+                    <input type="submit" value="Search" name="search" class="search">
                 </div>
 
-
+            <div class="filter-items" id="price_sub">
                 <label for="min_price">Minimal price: </label>
                 <input type="number" name="min_price" id="min_price">
                 <label for="max_price">Maximum price: </label>
                 <input type="number" name="max_price" id="max_price">
-                <input type="submit" value="Search" name="search">
-
+                <input type="submit" value="Search" name="search" class="search">
+            </div>
             </form>
             <div class='product-list'>
                 {% for product in products %}
@@ -52,7 +55,7 @@
                         <p class='product-description'>{{ product.description }}</p>
                         <p class='product-price'>{{ product.price }},-</p><br>
                         <p class='product-size'></p><br>
-                        <button class='button-buy'>LEARN MORE</button>
+                        <button class='button-buy'>BUY</button>
                     </div>
                 {% endfor %}
             </div>
