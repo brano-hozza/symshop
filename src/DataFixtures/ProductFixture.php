@@ -10,7 +10,7 @@ class ProductFixture extends BaseFixture
 
     protected function loadData(ObjectManager $manager)
     {
-        $this->createMany(10, 'main_products', function($i) use ($manager) {
+        $this->createMany(50, 'main_products', function($i) use ($manager) {
             $product = new Product();
             $product->setName($this->faker->lastName);
             $product->setDescription($this->faker->text);
