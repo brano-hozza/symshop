@@ -5,33 +5,43 @@
 {% block body %}
 
 
-    {{ form_start(registrationForm) }}
-        <div class="form">
+    {{ form_start(form) }}
+    <div class="form">
 
-        {# form_row(registrationForm.username) }#}
-            <h1>Sign Up</h1>
-            <h3>to create an account</h3>
-        {{ form_label(registrationForm.username, "Username:", {'label_attr': {'class': 'label'}}) }}
-        {{ form_widget(registrationForm.username, {'attr': {'class': 'input'}} ) }}
+        <h1>Sign Up</h1>
+        <h3>to create an account</h3>
 
-        {{ form_label(registrationForm.first_name, "First name:",{'label_attr': {'class': 'label'}}) }}
-        {{ form_widget(registrationForm.first_name, {'attr': {'class': 'input'}}) }}
-
-        {{ form_label(registrationForm.last_name, "Last name:",{'label_attr': {'class': 'label'}}) }}
-        {{ form_widget(registrationForm.last_name, {'attr': {'class': 'input'}}) }}
-
-        {{ form_label(registrationForm.email, "Email:",{'label_attr': {'class': 'label'}}) }}
-        {{ form_widget(registrationForm.email, {'attr': {'class': 'input'}}) }}
-
-        {{ form_label(registrationForm.plainPassword, "Password:",{'label_attr': {'class': 'label'}}) }}
-        {{ form_widget(registrationForm.plainPassword, {'attr': {'class': 'input'}}) }}
-
-        {{ form_label(registrationForm.agreeTerms, "Agree to terms:",{'label_attr': {'class': 'label'}}) }}
-        {{ form_widget(registrationForm.agreeTerms, {'attr': {'class': 'agree'}}) }}
-            <br>
-
-        <button class="btn">Register</button>
+        <div class="errors">
+            {{ form_errors(form.username) }}
+            {{ form_errors(form.first_name) }}
+            {{ form_errors(form.last_name) }}
+            {{ form_errors(form.email) }}
+            {{ form_errors(form.plainPassword) }}
+            {{ form_errors(form.agreeTerms) }}
+            {{ form_errors(form.agreeGDPR) }}
         </div>
-    {{ form_end(registrationForm) }}
+        {{ form_label(form.username) }}
+        {{ form_widget(form.username) }}
+
+        {{ form_label(form.first_name) }}
+        {{ form_widget(form.first_name) }}
+
+        {{ form_label(form.last_name) }}
+        {{ form_widget(form.last_name) }}
+
+        {{ form_label(form.email) }}
+        {{ form_widget(form.email) }}
+
+        {{ form_label(form.plainPassword) }}
+        {{ form_widget(form.plainPassword) }}
+
+        {{ form_label(form.agreeTerms) }}
+        {{ form_widget(form.agreeTerms) }}
+        <br>
+        {{ form_label(form.agreeGDPR) }}
+        {{ form_widget(form.agreeGDPR) }}
+
+        {{ form_widget(form.submit) }}
     </div>
+    {{ form_end(form) }}
 {% endblock %}

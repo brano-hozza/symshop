@@ -627,3 +627,10 @@ button:focus {
         padding-bottom: 20%;
     }
 }
+
+.errors{
+    color: red;
+    font-size: 10px;
+    text-align: left;
+    margin-left: 0;
+}
