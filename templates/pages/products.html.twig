@@ -1,10 +1,10 @@
 {% extends('base.html.twig') %}
 {% block body %}
-    <article style="background-color: #ffffff;">
+    <article style="background-color: #E2E2E2;">
         <section>
             <h1 class="products-header">PRODUCTS</h1>
             <form action="{{ path("products") }}"
-                  style="color: #000000; background-color: #ffffff; margin-top: -19px;" method="post">
+                  style="color: #000000; background-color: #E2E2E2; margin-top: -19px;" method="post">
                 <div class="filters">
                     <span class="filter-opener" id="brand" onclick="openFilter('brand');">Brand</span>
                     <span class="filter-opener" id="size" onclick="openFilter('size');">Size</span>
@@ -50,13 +50,14 @@
             <div class='product-list'>
                 {% for product in products %}
                     <div class='product-container'>
-                        <div style="height: 250px;">
+                        <div style="height: 240px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.46); background-color: white; border-radius: 25px;">
                             <img class='product-img' src={{ asset("images/#{product.img}.jpg") }} alt="{{ product.img }}">
                         </div>
-                        <h1 class='product-header' style="background-image: {{ asset('images/products-background.jpg') }}">{{ product.brand }} {{ product.name }}</h1>
-                        <p class='product-description'>{{ product.description }}</p>
-                        <p class='product-price'>{{ product.price }},-</p><br>
-                        <button class='button-buy'>BUY</button>
+                        <div class="product-info">
+                            <h1 class='product-header' style="background-image: {{ asset('images/products-background.jpg') }}; float: left;" >{{ product.brand }} {{ product.name }}</h1>
+                            <p class='product-description' style="float:left; text-align: left; width: 100%;">{{ product.description }}</p>
+                            <p class='product-price' style="float: right; margin-top: -12%;">${{ product.price }}</p><br>
+                        </div>
                     </div>
                 {% endfor %}
             </div>
