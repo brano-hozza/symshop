@@ -15,6 +15,7 @@ body {
     overflow-x: hidden;
     background-color: #040404;
     font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
+    opacity: 1;
 }
 
 .btn-link {
@@ -401,6 +402,10 @@ article {
     width: 100%;
 }
 
+.form input:focus{
+    border-bottom: 1px solid #2c783e;
+}
+
 .form label {
     position: relative;
     color: white;
@@ -422,6 +427,8 @@ article {
     margin-top: 20px;
     cursor: pointer;
 }
+
+
 
 .form p {
     margin-top: 25px;
@@ -560,6 +567,7 @@ button:focus {
     cursor: pointer;
 }
 
+
 .filter-items {
     padding-top: 1%;
     padding-bottom: 4%;
@@ -572,6 +580,10 @@ button:focus {
     -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
     -moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
     box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+}
+
+.filter-items label{
+    cursor: pointer;
 }
 
 .filter-items-border {
