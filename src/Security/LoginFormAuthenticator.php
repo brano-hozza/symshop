@@ -68,8 +68,11 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator implements P
         $user = $this->entityManager->getRepository(User::class)
             ->createQueryBuilder('u')
             ->where('u.username = :username')->setParameter('username', $credentials["username"])
-            ->orWhere('u.email = :email')->setParameter('email', $credentials["username"])->getQuery()->getResult()[0];
-
+            ->orWhere('u.email = :email')->setParameter('email', $credentials["username"])->getQuery()->getResult();
+        if (is_array($user) && count($user) > 0)
+        {
+            $user = $user[0];
+        }
         if (!$user) {
             // fail authentication with a custom error
             throw new CustomUserMessageAuthenticationException('Username could not be found.');
