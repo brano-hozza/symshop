@@ -670,6 +670,23 @@ button:focus {
 /*PROFILE*/
 
 /*CONTACT*/
+
+.contact-us{
+    color: white;
+    text-align: center;
+    margin-top: 100px;
+    margin-bottom: 70px;
+}
+
+.contact-us h1{
+    font-size: 40px;
+    margin: 0;
+}
+
+.contact-us h4{
+    margin: 0;
+}
+
 .contact{
     display: flex;
     flex-wrap: wrap;
@@ -685,14 +702,18 @@ button:focus {
     color: white;
     margin: 20px;
 }
+
+.contact-box div{
+    margin-top: 80px;
+}
+
 .contact-box img{
     width: 30px;
     height: auto;
-    margin-top: 5em;
 }
 
 .contact-box p{
-    margin: 5px;
+    margin: 15px;
 }
 /*CONTACT*/
 
