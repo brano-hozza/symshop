@@ -2,14 +2,44 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-        <section style="width: 100%; height: 100%; background-color: white;">
+        <section class="profile-section" style="width: 100%; height: 100%;">
             <div class="profile">
-                <img src="{{ asset("images/acc.png") }}" style="width: 30%; height: auto;">
-                <h1>{{user.getUsername()}}</h1>
-                <p>{{user.getEmail()}}</p>
-                <br>
-                <p>First name: {{user.getFirstName()}}</p>
-                <p>Last name: {{user.getLastName()}}</p>
+                <h1>Account Information.</h1>
+                <div class="account-information">
+                    <div>
+                        <p>{{user.getUsername()}}</p>
+                        <p>{{user.getEmail()}}</p>
+                    </div>
+                    <img src="{{ asset("images/acc.png") }}" >
+                </div>
+                <hr>
+                <h1>Personal Information.</h1>
+                <div class="personal-information">
+                    <div class="personal-info-elements">
+                        <p>First name</p>
+                        <p>Last name</p>
+                        <br>
+                        <p>Phone Number</p>
+                        <p>City</p>
+                        <p>Adress</p>
+
+                    </div>
+                    <div style="margin-left: 20px;" class="personal-info-details">
+                        <p>{{user.getFirstName()}}</p>
+                        <p>{{user.getLastName()}}</p>
+                        <br>
+                        <p>+421 167 888 666</p>
+                        <p>Krompahy</p>
+                        <p>Adresa</p>
+                    </div>
+                </div>
+
+                <div class="profile-button">
+                    <button>EDIT</button>
+                </div>
+            </div>
+            <div class="orders">
+
             </div>
         </section>
 {% endblock %}

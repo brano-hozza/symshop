@@ -20,11 +20,9 @@
         <li class="nav-item"><a href="{{ path('blog') }}">Blog</a></li>
         <li class="nav-item"><a href="{{ path('contact') }}">Contact</a></li>
         {% if is_granted('ROLE_USER') %}
-            <li class="nav-item"><a href="{{ path('profile') }}">Profile</a></li>
             <li class="nav-item-right"><a href="{{ path('profile') }}" class="user">{{ app.user.username }}</a></li>
             <li class="nav-item-right"><a href="{{ path('app_logout') }}">Log out</a></li>
         {% elseif is_granted('ROLE_ADMIN') %}
-            <li class="nav-item"><a href="{{ path('profile') }}">Profile</a></li>
             <li class="nav-item"><a href="{{ path('profile') }}">Admin</a></li>
             <li class="nav-item-right"><a href="{{ path('profile') }}" class="user">{{ app.user.username }}</a></li>
             <li class="nav-item-right"><a href="{{ path('app_logout') }}">Log out</a></li>
