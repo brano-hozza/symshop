@@ -33,8 +33,13 @@ class ProductController extends AbstractController
         $title = "Bshop";
         $announce = "Welcome to bshop";
         //dd($request->get('min_price'));
+        $type = $request->get('type');
+        $brand = $request->get('brand');
+        $size = $request->get('size');
+        $price = array($request->get('min_price'), $request->get('max_price'));
         $sort_by = $request->get('sort_by');
-        $products = $repository->getByFilter($request->get('type'), $request->get('brand'), $request->get('size'), [$request->get('min_price'), $request->get('max_price')], $sort_by);
+        $page = $request->get('page');
+        $products = $repository->getByFilter($type, $brand, $size, $price, $sort_by, $page);
 
 
         /**
@@ -53,9 +58,15 @@ class ProductController extends AbstractController
             'announce' => $announce,
             'products' => $products,
             'sizes' => $repository->getFilterOf("size"),
+            'old_size' => $size?$size:array(""),
             'brands' => $repository->getFilterOf("brand"),
+            'old_brand' => $brand?$brand:array(""),
             'types' => $repository->getFilterOf("type"),
+            'old_type' => $type?$type:array(""),
             'prices' => $repository->getFilterOf("price"),
+            'old_price' => $price?$price:array(null, null),
+            'page' => $page?$page:1,
+            'old_sort' =>$sort_by
         ]);
     }
 

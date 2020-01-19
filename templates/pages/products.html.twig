@@ -1,10 +1,10 @@
 {% extends('base.html.twig') %}
 {% block body %}
     <article style="background-color: #E2E2E2;">
+        <form action="{{ path("products") }}"
+              method="post" id="form">
         <section>
             <h1 class="products-header">PRODUCTS</h1>
-            <form action="{{ path("products") }}"
-                  style="color: #000000; background-color: #E2E2E2; margin-top: -19px;" method="post" id="form">
                 <div class="filters">
                     <span class="filter-opener" id="brand" onclick="openFilter('brand');">Brand</span>
                     <span class="filter-opener" id="size" onclick="openFilter('size');">Size</span>
@@ -15,7 +15,11 @@
                     {% for brand in brands %}
                     <div class='filter-items-border'>
                         <label for='{{ brand.brand }}'>{{ brand.brand }}</label>
-                        <input value='{{ brand.brand }}' id='{{ brand.brand }}' type='checkbox' name='brand[]'>
+                        {% if brand.brand in old_brand %}
+                            <input value='{{ brand.brand }}' id='{{ brand.brand }}' type='checkbox' name='brand[]' checked>
+                        {% else %}
+                            <input value='{{ brand.brand }}' id='{{ brand.brand }}' type='checkbox' name='brand[]'>
+                        {% endif %}
                     </div>
                     {% endfor %}
                     <input type="submit" value="Search" name="search" class="search">
@@ -24,7 +28,11 @@
                     {% for size in sizes %}
                         <div class='filter-items-border'>
                             <label for='{{ size.size }}'>{{ size.size }}</label>
-                            <input value='{{ size.size }}' id='{{ size.size }}' type='checkbox' name='size[]'>
+                            {% if size.size in old_size %}
+                                <input value='{{ size.size }}' id='{{ size.size }}' type='checkbox' name='size[]' checked>
+                            {% else %}
+                                <input value='{{ size.size }}' id='{{ size.size }}' type='checkbox' name='size[]'>
+                            {% endif %}
                         </div>
                     {% endfor %}
                     <input type="submit" value="Search" name="search" class="search">
@@ -33,7 +41,11 @@
                     {% for type in types %}
                         <div class='filter-items-border'>
                             <label for='{{ type.type }}'>{{ type.type }}</label>
-                            <input value='{{ type.type }}' id='{{ type.type }}' type='checkbox' name='type[]'>
+                            {% if type.type in old_type %}
+                                <input value='{{ type.type }}' id='{{ type.type }}' type='checkbox' name='type[]' checked>
+                            {% else %}
+                                <input value='{{ type.type }}' id='{{ type.type }}' type='checkbox' name='type[]'>
+                            {% endif %}
                         </div>
                     {% endfor %}
                     <input type="submit" value="Search" name="search" class="search">
@@ -41,21 +53,52 @@
 
                 <div class="filter-items" id="price_sub">
                     <label for="min_price" style="margin-left: 10px;">Minimal price: </label>
+                    {% if old_price[0] is null  %}
                     <input type="number" name="min_price" id="min_price" style="margin-right: 10px;">
+                    {% else %}
+                    <input type="number" name="min_price" id="min_price" style="margin-right: 10px;" value="{{ old_price[0] }}">
+                    {% endif %}
                     <label for="max_price" >Maximum price: </label>
-                    <input type="number" name="max_price" id="max_price" style="margin-right: 10px;">
+                    {% if old_price[1] is null  %}
+                        <input type="number" name="max_price" id="max_price" style="margin-right: 10px;">
+                    {% else %}
+                        <input type="number" name="max_price" id="max_price" style="margin-right: 10px;" value="{{ old_price[1] }}">
+                    {% endif %}
 
                     <input type="submit" value="Search" name="search" class="search">
                 </div>
                 <label for="sort_by">Sort by:</label>
-                <select name="sort_by" id="sort_by" onchange="document.getElementById('form').submit();">
-                    <option value="name">Name</option>
-                    <option value="price">Price</option>
-                    <option value="id">Type</option>
-                    <option value="brand">Brand</option>
-                    <option value="size">Size</option>
+                <select name="sort_by" id="sort_by" onchange="document.getElementById('form').submit();" >
+                    {% if old_sort == "name" %}
+                        <option value="name" selected>Name</option>
+                    {% else %}
+                        <option value="name" selected>Name</option>
+                    {% endif %}
+
+                    {% if old_sort == "price"  %}
+                        <option value="price" selected>Price</option>
+                    {% else %}
+                        <option value="price">Price</option>
+                    {% endif %}
+
+                    {% if old_sort == "type"%}
+                        <option value="type" selected>Type</option>
+                    {% else %}
+                        <option value="type">Type</option>
+                    {% endif %}
+
+                    {% if old_sort == "brand"%}
+                        <option value="brand" selected>Brand</option>
+                    {% else %}
+                        <option value="brand">Brand</option>
+                    {% endif %}
+
+                    {% if old_sort == "size"%}
+                        <option value="size" selected>Size</option>
+                    {% else %}
+                        <option value="size">Size</option>
+                    {% endif %}
                 </select>
-            </form>
             <div class='product-list'>
                 {% for product in products %}
                     <div class='product-container'>
@@ -70,6 +113,19 @@
                     </div>
                 {% endfor %}
             </div>
+            <div class="paging">
+
+
+                {% if page > 1 %}
+                    <input type="submit"  name="page" value="{{ page-1 }}">
+                {% endif %}
+                <p>{{ page }}</p>
+                {% if products|length > 19 %}
+                    <input type="submit"  name="page" value="{{ page+1 }}">
+                {% endif %}
+
+            </div>
         </section>
+        </form>
     </article>
 {% endblock %}
