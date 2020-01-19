@@ -27,8 +27,12 @@ openFilter = (id) => { //id = brand => size
     }
 };
 
+var mymap = L.map('mapid').setView([48.920049, 20.888158], 8);
+
 var CartoDB_DarkMatter = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
-    maxZoom: 19
-});
+    maxZoom: 19,
+    minZoom: 5
+}).addTo(mymap);
+

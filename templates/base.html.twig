@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="{{ asset("css/style.css") }}">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset("css/leaflet.css.css") }}">
+    <link rel="stylesheet" href="{{ asset("css/leaflet.css") }}">
     <script src="{{ asset('js/leaflet.js') }}"></script>
     <title>{{ title }}</title>
 </head>
@@ -20,7 +20,6 @@
         <li class="nav-item"><a href="{{ path('blog') }}">Blog</a></li>
         <li class="nav-item"><a href="{{ path('contact') }}">Contact</a></li>
         {% if app.user %}
-            <li class="nav-item"><a href="{{ path('profile') }}">Profile</a></li>
             <li class="nav-item-right"><a href="{{ path('profile') }}" class="user">{{ app.user.username }}</a></li>
             <li class="nav-item-right"><a href="{{ path('app_logout') }}">Log out</a></li>
         {% else %}
