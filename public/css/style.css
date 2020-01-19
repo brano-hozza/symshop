@@ -715,6 +715,21 @@ button:focus {
 .contact-box p{
     margin: 15px;
 }
+
+.map{
+    margin-top: 100px;
+}
+
+.map h1{
+    font-size: 40px;
+
+    text-align: center;
+    color: white;
+
+}
+#mapid{
+    height: 500px;
+}
 /*CONTACT*/
 
 
