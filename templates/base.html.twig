@@ -19,6 +19,7 @@
         <li class="nav-item"><a href="{{ path('contact') }}">Contact</a></li>
         {% if app.user %}
             <li class="nav-item"><a href="{{ path('profile') }}">Profile</a></li>
+            <li class="nav-item-right"><a href="{{ path('profile') }}" class="user">{{ app.user.username }}</a></li>
             <li class="nav-item-right"><a href="{{ path('app_logout') }}">Log out</a></li>
         {% else %}
             <li class="nav-item-right"><a href="{{ path('app_login') }}">Log In</a></li>
