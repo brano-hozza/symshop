@@ -4,9 +4,9 @@
 namespace App\Controller;
 
 
+use App\Repository\ProductRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -16,25 +16,22 @@ use Symfony\Component\Routing\Annotation\Route;
 class MainController extends AbstractController
 {
     private $session;
-    public function __construct(SessionInterface $session)
+    public function __construct()
     {
-        $this->session = $session;
     }
 
     /**
      * @Route("/", name="index")
+     * @param ProductRepository $repository
+     * @return Response
      */
-    public function show(){
+    public function show(ProductRepository $repository){
         $title = "Bshop";
         $announce = "Welcome to bshop";
-        $online = $this->session->get("is_online");
-        if($online == null){
-            $online = false;
-        }
         return $this->render('/pages/index.html.twig',[
+            'products' => $repository->findInRange(0,2),
             'title' => $title,
-            'announce' => $announce,
-            'online' => $online
+            'announce' => $announce
         ]);
     }
 
@@ -44,11 +41,9 @@ class MainController extends AbstractController
     public function contact(){
         $title = "Bshop";
         $announce = "Welcome to bshop";
-        $online = $this->session->get("is_online");
         return $this->render('/pages/contact.html.twig',[
             'title' => $title,
-            'announce' => $announce,
-            'online' => $online
+            'announce' => $announce
         ]);
     }
 }

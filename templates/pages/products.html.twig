@@ -4,7 +4,7 @@
         <section>
             <h1 class="products-header">PRODUCTS</h1>
             <form action="{{ path("products") }}"
-                  style="color: #000000; background-color: #E2E2E2; margin-top: -19px;" method="post">
+                  style="color: #000000; background-color: #E2E2E2; margin-top: -19px;" method="post" id="form">
                 <div class="filters">
                     <span class="filter-opener" id="brand" onclick="openFilter('brand');">Brand</span>
                     <span class="filter-opener" id="size" onclick="openFilter('size');">Size</span>
@@ -44,8 +44,17 @@
                     <input type="number" name="min_price" id="min_price" style="margin-right: 10px;">
                     <label for="max_price" >Maximum price: </label>
                     <input type="number" name="max_price" id="max_price" style="margin-right: 10px;">
+
                     <input type="submit" value="Search" name="search" class="search">
                 </div>
+                <label for="sort_by">Sort by:</label>
+                <select name="sort_by" id="sort_by" onchange="document.getElementById('form').submit();">
+                    <option value="name">Name</option>
+                    <option value="price">Price</option>
+                    <option value="id">Type</option>
+                    <option value="brand">Brand</option>
+                    <option value="size">Size</option>
+                </select>
             </form>
             <div class='product-list'>
                 {% for product in products %}

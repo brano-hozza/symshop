@@ -12,17 +12,15 @@ use phpDocumentor\Reflection\Types\This;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 class ProductController extends AbstractController
 {
-    private $session;
 
-    public function __construct(SessionInterface $session)
+    public function __construct()
     {
-        $this->session = $session;
     }
+
 
     /**
      * @Route("/products", name="products")
@@ -35,8 +33,9 @@ class ProductController extends AbstractController
         $title = "Bshop";
         $announce = "Welcome to bshop";
         //dd($request->get('min_price'));
-        $products = $repository->getByFilter($request->get('type'), $request->get('brand'), $request->get('size'), [$request->get('min_price'), $request->get('max_price')]);
-        $online = $this->session->get("is_online", false);
+        $sort_by = $request->get('sort_by');
+        $products = $repository->getByFilter($request->get('type'), $request->get('brand'), $request->get('size'), [$request->get('min_price'), $request->get('max_price')], $sort_by);
+
 
         /**
          * @var $product Product
@@ -57,7 +56,6 @@ class ProductController extends AbstractController
             'brands' => $repository->getFilterOf("brand"),
             'types' => $repository->getFilterOf("type"),
             'prices' => $repository->getFilterOf("price"),
-            'online' => $online
         ]);
     }
 
@@ -69,6 +67,10 @@ class ProductController extends AbstractController
      */
     public function detail(Request $request, ProductRepository $repository)
     {
-        return $this->render('/pages/detail.html.twig');
+        $id = $request->get('id');
+        $product = $repository->find($id);
+        return $this->render('/pages/detail.html.twig',[
+            'product' => 'product'
+        ]);
     }
 }

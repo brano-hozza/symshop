@@ -5,19 +5,14 @@ namespace App\Controller;
 
 
 use http\Client\Curl\User;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
-use function MongoDB\BSON\toJSON;
 
 class UserController extends AbstractController
 {
-    private $session;
-    public function __construct(SessionInterface $session)
+    public function __construct()
     {
-        $this->session = $session;
     }
     /**
      * @Route("/profile", name="profile")
@@ -26,17 +21,15 @@ class UserController extends AbstractController
         $title = "Bshop";
         $announce = "Welcome to bshop";
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
-        $online = $this->session->get("is_online", false);
-        if ($online){
-            /**
-             * @var $user User
-             */
-            $user = $this->getUser();
+        /**
+         * @var $user User
+         */
+        $user = $this->getUser();
+        if ($user){
             if(!is_null($user)) {
                 return $this->render('/pages/profile.html.twig', [
                     'title' => $title,
                     'announce' => $announce,
-                    'online' => $online,
                     'user' => $user
                 ]);
             }else{
