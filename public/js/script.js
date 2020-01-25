@@ -26,8 +26,20 @@ openFilter = (id) => { //id = brand => size
 
     }
 };
+let controller=false;
+openDetails=()=>{
 
-var mymap = L.map('mapid').setView([48.920049, 20.888158], 8);
+    if(controller===false){
+        controller = true;
+        document.getElementById("opendetails").style.height="auto";
+    }
+    else{
+        controller = false;
+        document.getElementById("opendetails").style.height="0";
+    }
+};
+
+var mymap = L.map('mapid').setView([48.814819, 19.740559], 7);
 
 var CartoDB_DarkMatter = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
@@ -35,4 +47,5 @@ var CartoDB_DarkMatter = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all
     maxZoom: 19,
     minZoom: 5
 }).addTo(mymap);
+
 

@@ -2,34 +2,43 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-        <section class="profile-section" style="width: 100%;">
+        <section class="profile-section" style="">
             <div class="profile">
-                <h1>Account Information.</h1>
+                <h1>Account Information</h1>
                 <div class="account-information">
+
+                    <img src="{{ asset("images/acc.png") }}" >
+
                     <div>
                         <p>{{user.getUsername()}}</p>
                         <p>{{user.getEmail()}}</p>
                     </div>
-                    <img src="{{ asset("images/acc.png") }}" >
+                    <div class="profile-button">
+                        <button>EDIT</button>
+                    </div>
                 </div>
-                <hr>
-                <h1>Personal Information.</h1>
+
+                <h1>Personal Information</h1>
                 <div class="personal-information">
                     <div class="personal-info-elements">
                         <p>First name</p>
                         <p>Last name</p>
-                        <br>
                         <p>Phone Number</p>
+                        <br>
+                        <p>Country</p>
                         <p>City</p>
+                        <p>Postal Code</p>
                         <p>Adress</p>
 
                     </div>
                     <div style="margin-left: 20px;" class="personal-info-details">
                         <p>{{user.getFirstName()}}</p>
                         <p>{{user.getLastName()}}</p>
-                        <br>
                         <p>+421 167 888 666</p>
+                        <br>
+                        <p>Slovakia</p>
                         <p>Krompahy</p>
+                        <p>053 42</p>
                         <p>Adresa</p>
 
                     </div>
@@ -39,8 +48,39 @@
                     <button>EDIT</button>
                 </div>
             </div>
-            <div class="orders">
 
+
+            <div class="orders">
+                <div class="all-orders">
+                    <div class="order-tags">
+                        <p>Shoe Name</p>
+                        <p>Price</p>
+                        <p>Order Date</p>
+                        <p>Order Number</p>
+                    </div>
+                    <div class="order-info">
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="orders-phone">
+                <div class="order-item-phone" onclick="openDetails()">
+                    <p>Shoe Name</p>
+                    <img src="{{ asset("images/arrow-down.png") }}" class="arrow-down" id="arrow-down" alt="arrow-down" >
+                </div>
+                <div class="order-item-phone-details" id="opendetails">
+                    <div class="order-item-phone-tags">
+                        <p>Price</p>
+                        <p>Order Date</p>
+                        <p>Order Number</p>
+                    </div>
+                    <div class="order-item-phone-info">
+                        <p>600€</p>
+                        <p>24.1.2020</p>
+                        <p>45642112</p>
+                    </div>
+                </div>
             </div>
         </section>
 {% endblock %}

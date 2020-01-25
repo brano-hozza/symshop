@@ -2,6 +2,8 @@ html {
     scroll-behavior: smooth;
     height: 100%;
     font-size: 10px;
+    overflow: auto;
+    box-sizing: border-box;
 }
 
 ::-webkit-scrollbar {
@@ -12,11 +14,14 @@ body {
     margin: 0 auto;
     width: 100%;
     height: 100%;
-    /*overflow-y: scroll;
-    overflow-x: hidden;*/
+    /*overflow-y: scroll;*/
+    /*overflow-x: hidden;*/
     background-color: #040404;
     font-family: Roboto, sans-serif;
     opacity: 1;
+    box-sizing: border-box;
+    display: block;
+    /*overflow: auto;*/
 }
 
 .btn-link {
@@ -59,6 +64,7 @@ nav {
     margin: 0;
     padding: 0;
     text-align: center;
+
 }
 
 .nav li {
@@ -395,6 +401,7 @@ article {
     color: white;
     margin: 0;
     padding: 0;
+    font-size: 3rem;
 }
 
 .form h3 {
@@ -403,6 +410,7 @@ article {
     margin-top: 0;
     padding: 0;
     font-weight: 500;
+    font-size: 1.5rem;
 }
 
 .form input {
@@ -413,10 +421,13 @@ article {
     margin-bottom: 1rem;
     color: white;
     width: 100%;
+    transition-duration: 0.3s;
 }
 
 .form input:focus{
     border-bottom: 0.1rem solid #2c783e;
+    background-color: #0a0a0a;
+    transition-duration: 0.3s;
 }
 
 .form label {
@@ -640,16 +651,35 @@ button:focus {
     cursor: pointer;
 }
 /*PROFILE*/
+.profile-section{
+    min-height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
 .profile{
     background-color: #0D0D0D;
-    height: auto;
-    border-radius: 1.5rem;
-    min-width: auto;
+    min-width: 32rem;
+    min-height: 100%;
     color: white;
 }
 
-.profile-section{
-    display: flex;
+
+
+.account-information{
+    text-align: center;
+    margin-top: 5rem;
+}
+
+.profile h1{
+    text-align: center;
+    font-weight: 500;
+    font-size: 2rem;
+}
+
+.profile p{
+    font-size: 1.5rem;
+    margin: 0.5rem;
 }
 
 .profile img{
@@ -658,54 +688,11 @@ button:focus {
     width: 6rem;
     height: auto;
 }
-.profile h1{
-    padding: 0;
-    font-size: 2rem;
-    margin: 2rem;
-}
-
-.profile hr{
-    width: 90%;
-    background-color: #707070;
-    border: 0 none;
-    color: #707070;
-    height: 0.1rem;
-}
-
-.profile p{
-    margin: 0;
-    padding: 0;
-    font-size: 1.7rem;
-}
-
-.account-information{
-    display: flex;
-    margin-top: 6rem;
-    margin-left: 2rem;
-    margin-right: 2rem;
-    color: #ececec;
-    font-weight: lighter;
-}
-
-.personal-information{
-    margin-left: 2rem;
-    margin-right: 2rem;
-    display: flex;
-    margin-top: 3rem;
-}
-
-.personal-info-elements{
-    font-weight: bold;
-}
-
-.personal-info-details{
-    color: #ececec;
-    font-weight: lighter;
-}
 
 .profile-button{
     text-align: center;
-    margin-top: 6rem;
+    margin-top: 3rem;
+    margin-bottom: 4rem;
 }
 .profile-button button{
     background-color: #2c783e;
@@ -724,6 +711,39 @@ button:focus {
 .profile-button button:hover{
     background-color: #20582e;
     transition-duration: 0.5s;
+}
+
+.personal-information{
+    margin-top: 3rem;
+    font-size: 1.8rem;
+    display: flex;
+    justify-content: center;
+}
+
+.personal-info-details{
+    font-weight: 300;
+}
+
+.personal-info-elements{
+    font-weight: 600;
+}
+
+
+.orders{
+    width: auto;
+}
+
+.order-tags p{
+    display: inline-block;
+    color: white;
+    width: auto;
+    padding-left: 6%;
+    padding-right: 6%;
+    margin: 0;
+}
+
+.orders-phone{
+    display: none;
 }
 /*PROFILE*/
 
@@ -767,6 +787,12 @@ button:focus {
     border-radius: 1.2rem;
     color: white;
     margin: 2rem;
+    transition-duration: 0.3s;
+}
+
+.contact-box:hover{
+    background-color: #070707;
+    transition-duration: 0.3s;
 }
 
 .contact-box div{
@@ -788,7 +814,6 @@ button:focus {
 
 .map h1{
     font-size: 4rem;
-
     text-align: center;
     color: white;
 
@@ -804,6 +829,69 @@ button:focus {
     .filter-items {
         width: 100%;
         padding-bottom: 20%;
+    }
+
+    .profile{
+        min-width: 100%;
+    }
+
+    .orders{
+        width: 100%;
+    }
+
+    .order-tags{
+        display:none;
+    }
+
+    .orders-phone{
+        text-align: center;
+        display: initial;
+        color: white;
+        width: 100%;
+    }
+
+    .order-item-phone{
+        font-size: 1.6rem;
+        text-align: center;
+        height: 5.3rem;
+        width: 80%;
+        background-color: #020202;
+        padding-top: 0.8rem;
+        padding-bottom: 0.8rem;
+        border-left: solid 3px #2c783e;
+        margin: 2rem auto 1rem;
+    }
+
+    .order-item-phone p{
+        float: left;
+        margin-left: 4rem;
+    }
+
+    .arrow-down{
+        width: 3rem;
+        height: auto;
+        float: right;
+        padding-top: 1rem;
+        margin-right: 2rem;
+    }
+
+    .order-item-phone-details{
+        text-align: left;
+        display: flex;
+        width: 80%;
+        margin: 0 auto;
+        font-size: 1.5rem;
+        background-color: #090909;
+        height: 0;
+        overflow: hidden;
+        transition-duration: 0.5s;
+    }
+
+    .order-item-phone-tags{
+        padding-left: 1.5rem;
+    }
+    .order-item-phone-info{
+        padding-left: 5rem;
     }
 
 
