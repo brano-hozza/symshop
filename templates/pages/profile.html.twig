@@ -32,14 +32,14 @@
 
                     </div>
                     <div style="margin-left: 20px;" class="personal-info-details">
-                        <p>{{user.getFirstName()}}</p>
-                        <p>{{user.getLastName()}}</p>
-                        <p>+421 167 888 666</p>
+                        <p>{{ user.getFirstName() }}</p>
+                        <p>{{ user.getLastName() }}</p>
+                        <p>{{ user.getPhoneNumber() ? user.getPhoneNumber() : "Neuvedené" }}</p>
                         <br>
-                        <p>Slovakia</p>
-                        <p>Krompahy</p>
-                        <p>053 42</p>
-                        <p>Adresa</p>
+                        <p>{{ user.getCountry() ? user.getCountry() : "Neuvedené" }}</p>
+                        <p>{{ user.getCity() ? user.getCity() : "Neuvedené" }}</p>
+                        <p>{{ user.getPostal() ? user.getPostal() : "Neuvedené"  }}</p>
+                        <p>{{ user.getStreet() ? user.getStreet() : "Neuvedené"  }}</p>
 
                     </div>
                 </div>

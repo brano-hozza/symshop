@@ -4,7 +4,9 @@ use App\Entity\ApiToken;
 use App\Entity\Blog;
 use App\Entity\User;
 use Doctrine\Common\Persistence\ObjectManager;
+use OwnObjects\BlahBlah;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+
 class UserFixture extends BaseFixture
 {
     private $passwordEncoder;
@@ -34,6 +36,11 @@ class UserFixture extends BaseFixture
                 $user,
                 'engage'
             ));
+            $user->setCity($this->faker->city);
+            $user->setCountry($this->faker->country);
+            $user->setPostal($this->faker->postcode);
+            $user->setStreet($this->faker->streetName);
+            $user->setPhoneNumber($this->faker->phoneNumber);
             $apiToken1 = new ApiToken($user);
             $apiToken2 = new ApiToken($user);
             if($this->faker->boolean) {
@@ -54,6 +61,11 @@ class UserFixture extends BaseFixture
                 $user,
                 'engage'
             ));
+            $user->setCity($this->faker->city);
+            $user->setCountry($this->faker->country);
+            $user->setPostal($this->faker->postcode);
+            $user->setStreet($this->faker->streetName);
+            $user->setPhoneNumber($this->faker->phoneNumber);
             return $user;
         });
         $manager->flush();
