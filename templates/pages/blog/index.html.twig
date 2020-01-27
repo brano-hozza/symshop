@@ -2,18 +2,21 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <article style="background-color: white">
-        <h1>Blogs</h1>
+    <article class="article-blog">
+        <h1 >Blog</h1>
         <form action="{{ path("blog") }}"
               method="post" id="form">
-            <input type="text" placeholder="Search..." name="search_phrase" value="{{ phrase }}">
-            <input type="submit" value="search" name="submit">
+            <div class="blog-search">
+                <input class="blog-search-input" type="text" placeholder="Search Here" name="search_phrase" value="{{ phrase }}">
+            </div>
             {% for blog in blogs %}
-                <div style="padding: 10px; border: solid black 1px">
-                    <h2>{{ blog.id }}. {{ blog.title }}</h2>
-                    <p>{{ blog.text }}</p>
-                    <i>{{ blog.user.username }}</i>
+                <div class="blog-container">
+                    <p class="blog-user">u/{{ blog.user.username }}</p>
+                    <h2 class="blog-title">{{blog.title}}</h2>
+                    <p class="blog-text">{{ blog.text }}</p>
+                    <p class="blog-date">Created On: {{ blog.getCreatedAt()|date("d/m/Y") }}</p>
                 </div>
+
             {% endfor %}
             <div class="paging">
 
