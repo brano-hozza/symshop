@@ -57,6 +57,31 @@ class User implements UserInterface
      */
     private $email;
 
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $city;
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $country;
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $street;
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $postal;
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $phone_number;
+
+    /**
+     * User constructor.
+     */
+
     public function __construct()
     {
         $this->blogs = new ArrayCollection();
@@ -74,7 +99,7 @@ class User implements UserInterface
      */
     public function getUsername(): string
     {
-        return (string) $this->username;
+        return (string)$this->username;
     }
 
     public function setUsername(string $username): self
@@ -108,7 +133,7 @@ class User implements UserInterface
      */
     public function getPassword(): string
     {
-        return (string) $this->password;
+        return (string)$this->password;
     }
 
     public function setPassword(string $password): self
@@ -199,6 +224,97 @@ class User implements UserInterface
     {
         $this->email = $email;
 
+        return $this;
+    }
+
+
+    /**
+     * @return mixed
+     */
+    public function getCity()
+    {
+        return $this->city;
+    }
+
+    /**
+     * @param mixed $city
+     * @return User
+     */
+    public function setCity($city): self
+    {
+        $this->city = $city;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCountry()
+    {
+        return $this->country;
+    }
+
+    /**
+     * @param mixed $country
+     * @return User
+     */
+    public function setCountry($country): self
+    {
+        $this->country = $country;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getStreet()
+    {
+        return $this->street;
+    }
+
+    /**
+     * @param mixed $street
+     * @return User
+     */
+    public function setStreet($street): self
+    {
+        $this->street = $street;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPostal()
+    {
+        return $this->postal;
+    }
+
+    /**
+     * @param mixed $postal
+     * @return User
+     */
+    public function setPostal($postal): self
+    {
+        $this->postal = $postal;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPhoneNumber()
+    {
+        return $this->phone_number;
+    }
+
+    /**
+     * @param mixed $phone_number
+     * @return User
+     */
+    public function setPhoneNumber($phone_number): self
+    {
+        $this->phone_number = $phone_number;
         return $this;
     }
 }
