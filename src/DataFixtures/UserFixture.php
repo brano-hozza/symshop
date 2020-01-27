@@ -4,7 +4,6 @@ use App\Entity\ApiToken;
 use App\Entity\Blog;
 use App\Entity\User;
 use Doctrine\Common\Persistence\ObjectManager;
-use OwnObjects\BlahBlah;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class UserFixture extends BaseFixture
@@ -16,7 +15,7 @@ class UserFixture extends BaseFixture
     }
 
     public function addBlog(ObjectManager $em, User $user){
-        $post = new Blog();
+        $post = new Blog(); 
         $post->setTitle($this->faker->name);
         $post->setCreatedAt($this->faker->dateTime);
         $post->setText($this->faker->text);
@@ -26,7 +25,7 @@ class UserFixture extends BaseFixture
 
     protected function loadData(ObjectManager $manager)
     {
-        $this->createMany(10, 'main_users', function($i) use ($manager) {
+        $this->createMany(50, 'main_users', function($i) use ($manager) {
             $user = new User();
             $user->setEmail(sprintf('spacebar%d@example.com', $i));
             $user->setUsername($this->faker->userName);

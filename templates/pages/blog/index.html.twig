@@ -1,0 +1,16 @@
+{# templates/blog/layout.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <article style="background-color: white">
+        <h1>Blogs</h1>
+        {% for blog in blogs %}
+            <div style="padding: 10px; border: solid black 1px">
+                <h2>{{ blog.id }}. {{ blog.title }}</h2>
+                <p>{{ blog.text }}</p>
+                <i>{{ blog.user.username }}</i>
+            </div>
+        {% endfor %}
+
+    </article>
+{% endblock %}

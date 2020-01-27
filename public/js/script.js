@@ -39,13 +39,17 @@ openDetails=()=>{
     }
 };
 
-var mymap = L.map('mapid').setView([48.814819, 19.740559], 7);
+let mymap = L.map('mapid').setView([48.9469267, 20.5665167], 20);
 
-var CartoDB_DarkMatter = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+let CartoDB_DarkMatter = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
     maxZoom: 19,
-    minZoom: 5
+    minZoom: 5,
+    center: [48.9469267, 20.5665167],
+    zoom: 1
 }).addTo(mymap);
 
-
+let marker = L.marker([48.9469267, 20.5665167]
+).addTo(mymap);
+marker.bindPopup("Hello it's me!").openPopup();
