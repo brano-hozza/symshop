@@ -79,7 +79,7 @@ class User implements UserInterface
     private $phone_number;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Order", mappedBy="user", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="ProductOrder", mappedBy="user", orphanRemoval=true)
      */
     private $orders;
 
@@ -326,14 +326,14 @@ class User implements UserInterface
     }
 
     /**
-     * @return Collection|Order[]
+     * @return Collection|ProductOrder[]
      */
     public function getOrders(): Collection
     {
         return $this->orders;
     }
 
-    public function addOrder(Order $order): self
+    public function addOrder(ProductOrder $order): self
     {
         if (!$this->orders->contains($order)) {
             $this->orders[] = $order;
@@ -343,7 +343,7 @@ class User implements UserInterface
         return $this;
     }
 
-    public function removeOrder(Order $order): self
+    public function removeOrder(ProductOrder $order): self
     {
         if ($this->orders->contains($order)) {
             $this->orders->removeElement($order);

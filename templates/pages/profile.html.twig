@@ -58,12 +58,16 @@
                         <th>Order Date</th>
                         <th>Order Number</th>
                     </tr>
-                    <tr>
-                        <td class="td-first">Yeezy 350 V2</td>
-                        <td>$250</td>
-                        <td>27/1/2020</td>
-                        <td>69</td>
-                    </tr>
+                    {% for order in user.getOrders()  %}
+                        {% for product in order.getProduct() %}
+                            <tr>
+                                <td class="td-first">{{ product.getBrand() }} {{ product.getName()}}</td>
+                                <td>${{ product.getPrice() }}</td>
+                                <td>{{ order.getCreatedAt()|date("Y/m/d")}}</td>
+                                <td>{{ order.getId() }}</td>
+                            </tr>
+                        {% endfor %}
+                    {% endfor %}
 
                 </table>
             </div>
@@ -79,11 +83,16 @@
                         <p>Order Date</p>
                         <p>Order Number</p>
                     </div>
-                    <div class="order-item-phone-info">
-                        <p>600€</p>
-                        <p>24.1.2020</p>
-                        <p>45642112</p>
-                    </div>
+                    {% for order in user.getOrders()  %}
+                        {% for product in order.getProduct() %}
+                            <tr>
+                                <td class="order-item-phone-info">{{ product.getBrand() }} {{ product.getName()}}</td>
+                                <td>${{ product.getPrice() }}</td>
+                                <td>{{ order.getCreatedAt()|date("Y/m/d")}}</td>
+                                <td>{{ order.getId() }}</td>
+                            </tr>
+                        {% endfor %}
+                    {% endfor %}
                 </div>
 
                 <div class="order-item-phone">
@@ -96,11 +105,16 @@
                         <p>Order Date</p>
                         <p>Order Number</p>
                     </div>
-                    <div class="order-item-phone-info">
-                        <p>600€</p>
-                        <p>24.1.2020</p>
-                        <p>45642112</p>
-                    </div>
+                    {% for order in user.getOrders()  %}
+                        {% for product in order.getProduct() %}
+                            <tr>
+                                <td class="order-item-phone-info">{{ product.getBrand() }} {{ product.getName()}}</td>
+                                <td>${{ product.getPrice() }}</td>
+                                <td>{{ order.getCreatedAt()|date("Y/m/d")}}</td>
+                                <td>{{ order.getId() }}</td>
+                            </tr>
+                        {% endfor %}
+                    {% endfor %}
                 </div>
             </div>
         </section>

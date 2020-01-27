@@ -4,7 +4,7 @@
 namespace App\DataFixtures;
 
 
-use App\Entity\Order;
+use App\Entity\ProductOrder;
 use App\Entity\Product;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -29,15 +29,16 @@ class OrderFixtures extends Fixture implements FixtureGroupInterface
     {
         $this->manager = $manager;
         $this->faker = Factory::create();
+
         $this->createMany(10, 'second', function($i) {
-            $order = new Order();
+            $order = new ProductOrder();
             $order->setUser($this->faker->randomElement($this->manager->getRepository(User::class)->findAll()));
             $order->addProduct($this->faker->randomElement($this->manager->getRepository(Product::class)->findAll()));
             $order->setCreatedAt($this->faker->dateTime);
             $order->setIsComplete(false);
             return $order;
         });
-        $manager->flush();
+        $this->manager->flush();
     }
     protected function createMany(int $count, string $groupName, callable $factory)
     {

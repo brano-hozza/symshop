@@ -20,4 +20,32 @@ Predtým než začneš upravovať sa uisti že si v branchy develop <code>git ch
     <li>Potom spravíš commit s odkazom: <code>git commit -m"Sprava sprava spravicka"</code></li>
     <li>Následne pushnes zmeny do repozitára: <code>git push origin develop</code></li>
 </ol>
+<h2>Reset db</h2>
+<ol>
+    <li>
+    <code>
+    php bin/console doctrine:database:drop --force
+    </code>
+    </li>
+    <li>
+    <code>
+    php bin/console doctrine:database:create
+    </code>
+    </li>
+    <li>
+    <code>
+    php bin/console doctrine:schema:update --force
+    </code>
+    </li>
+    <li>
+    <code>
+    php bin/console doctrine:fixtures:load --group=main1 --group=main2 --group=main3 --append
+    </code>
+    </li>
+    <li>
+    <code>
+    php bin/console doctrine:fixtures:load --group=second --append
+    </code>
+    </li>
+</ol>
         
