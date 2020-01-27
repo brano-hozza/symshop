@@ -53,7 +53,7 @@ class ProductController extends AbstractController
             };
         }
 
-        return $this->render('/pages/index.html.twig', [
+        return $this->render('/pages/product/index.html.twig', [
             'title' => $title,
             'announce' => $announce,
             'products' => $products,
@@ -80,7 +80,7 @@ class ProductController extends AbstractController
     {
         $id = $request->get('id');
         $product = $repository->find($id);
-        return $this->render('/pages/detail.html.twig',[
+        return $this->render('/pages/product/detail.html.twig',[
             'product' => 'product'
         ]);
     }

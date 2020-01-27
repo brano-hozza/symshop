@@ -21,15 +21,20 @@ class BlogRepository extends ServiceEntityRepository
 
     /**
      * @param $phrase string
+     * @param $page
      * @return object
      */
     public function getBySearch($phrase, $page){
-        $qb = $this->$this->createQueryBuilder("b");
-        $expr = $qb->expr();
+        $qb = $this->createQueryBuilder("b");
         return $qb
-            ->where($expr)
+            ->where("b.title LIKE :phrase")
+            ->orWhere( "b.text LIKE :phrase")
+            ->leftJoin("b.user", "u")
+            ->orWhere( "u.username LIKE :phrase")
+            ->setParameter("phrase", "%".$phrase."%")
             ->setFirstResult(($page - 1) * 20)
-            ->setMaxResult(20)
+            ->setMaxResults(20)
+            ->orderBy("b.id")
             ->getQuery()
             ->getResult();
     }

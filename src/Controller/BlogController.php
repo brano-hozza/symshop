@@ -42,7 +42,8 @@ class BlogController extends AbstractController
             'title' => $title,
             'announce' => $announce,
             'page' => $page,
-            'blogs' => $response
+            'blogs' => $response,
+            'phrase' => $request->get("search_phrase") ? $request->get("search_phrase") : ""
         ]);
     }
 
@@ -50,6 +51,7 @@ class BlogController extends AbstractController
      * @Route("/blog/create", name="blog_create")
      * @param Request $request
      * @return Response
+     * @throws \Exception
      */
     public function create(Request $request): Response
     {

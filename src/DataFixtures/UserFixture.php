@@ -25,7 +25,7 @@ class UserFixture extends BaseFixture
 
     protected function loadData(ObjectManager $manager)
     {
-        $this->createMany(50, 'main_users', function($i) use ($manager) {
+        $this->createMany(100, 'main_users', function($i) use ($manager) {
             $user = new User();
             $user->setEmail(sprintf('spacebar%d@example.com', $i));
             $user->setUsername($this->faker->userName);
@@ -49,7 +49,7 @@ class UserFixture extends BaseFixture
             $manager->persist($apiToken2);
             return $user;
         });
-        $this->createMany(3, 'admin_users', function($i) {
+        $this->createMany(10, 'admin_users', function($i) {
             $user = new User();
             $user->setEmail(sprintf('admin%d@thespacebar.com', $i));
             $user->setUsername($this->faker->userName);

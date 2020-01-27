@@ -4,13 +4,29 @@
 {% block body %}
     <article style="background-color: white">
         <h1>Blogs</h1>
-        {% for blog in blogs %}
-            <div style="padding: 10px; border: solid black 1px">
-                <h2>{{ blog.id }}. {{ blog.title }}</h2>
-                <p>{{ blog.text }}</p>
-                <i>{{ blog.user.username }}</i>
+        <form action="{{ path("blog") }}"
+              method="post" id="form">
+            <input type="text" placeholder="Search..." name="search_phrase" value="{{ phrase }}">
+            <input type="submit" value="search" name="submit">
+            {% for blog in blogs %}
+                <div style="padding: 10px; border: solid black 1px">
+                    <h2>{{ blog.id }}. {{ blog.title }}</h2>
+                    <p>{{ blog.text }}</p>
+                    <i>{{ blog.user.username }}</i>
+                </div>
+            {% endfor %}
+            <div class="paging">
+
+                {% if page > 1 %}
+                    <input type="submit"  name="next_page" value="{{ page-1 }}">
+                {% endif %}
+                <p>{{ page }}</p>
+                {% if blogs|length > 19 %}
+                    <input type="submit"  name="next_page" value="{{ page+1 }}">
+                {% endif %}
+
             </div>
-        {% endfor %}
+        </form>
 
     </article>
 {% endblock %}
