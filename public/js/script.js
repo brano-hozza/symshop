@@ -26,18 +26,37 @@ openFilter = (id) => { //id = brand => size
 
     }
 };
+let coll = document.getElementsByClassName("order-item-phone");
+let i;
+
 let controller=false;
 openDetails=()=>{
-
     if(controller===false){
         controller = true;
         document.getElementById("opendetails").style.height="auto";
+
     }
     else{
         controller = false;
         document.getElementById("opendetails").style.height="0";
     }
 };
+
+
+for (i = 0; i< coll.length; i++){
+    coll[i].addEventListener("click",function () {
+
+        let content = this.nextElementSibling;
+        if(content.style.maxHeight){
+            content.style.maxHeight = null;
+        } else {
+            content.style.maxHeight = "150px";
+        }
+    })
+}
+
+
+
 
 let mymap = L.map('mapid').setView([48.9469267, 20.5665167], 20);
 

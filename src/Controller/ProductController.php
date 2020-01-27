@@ -53,7 +53,7 @@ class ProductController extends AbstractController
             };
         }
 
-        return $this->render('/pages/index.html.twig', [
+        return $this->render('/pages/product/index.html.twig', [
             'title' => $title,
             'announce' => $announce,
             'products' => $products,

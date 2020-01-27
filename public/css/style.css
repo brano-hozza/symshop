@@ -883,10 +883,14 @@ button:focus {
         margin: 0 auto;
         font-size: 1.5rem;
         background-color: #090909;
-        height: 0;
+        max-height: 0;
         overflow: hidden;
-        transition-duration: 0.5s;
+        transition: max-height 0.2s ease-out;
     }
+    .order-item-phone-details:hover{
+        height: auto;
+    }
+
 
     .order-item-phone-tags{
         padding-left: 1.5rem;
@@ -895,6 +899,7 @@ button:focus {
     .order-item-phone-info{
         padding-left: 5rem;
         margin: 0 auto;
+
     }
 }
 
