@@ -4,15 +4,19 @@
 {% block body %}
     <article style="background-color: white">
         <h1>Blogs</h1>
+        {% if is_granted('ROLE_USER') %}
+            <a href="{{ path('blog_create') }}">Create Post</a>
+        {% endif %}
         <form action="{{ path("blog") }}"
               method="post" id="form">
             <input type="text" placeholder="Search..." name="search_phrase" value="{{ phrase }}">
             <input type="submit" value="search" name="submit">
             {% for blog in blogs %}
                 <div style="padding: 10px; border: solid black 1px">
-                    <h2>{{ blog.id }}. {{ blog.title }}</h2>
+                    <h2>{{ blog.getCreatedAt()|date("m/d/Y") }}. {{ blog.title }}</h2>
                     <p>{{ blog.text }}</p>
                     <i>{{ blog.user.username }}</i>
+
                 </div>
             {% endfor %}
             <div class="paging">

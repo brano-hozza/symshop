@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Entity;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping AS ORM;
 
 /**
@@ -48,6 +50,11 @@ class Product
      * @ORM\Column(type="string", length=255)
      */
     private $img;
+
+
+    public function __construct()
+    {
+    }
 
     /**
      * @return mixed
