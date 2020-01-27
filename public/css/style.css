@@ -731,16 +731,43 @@ button:focus {
 
 
 .orders{
-    width: auto;
+    width: 65%;
+    margin: 0 auto;
 }
 
-.order-tags p{
-    display: inline-block;
+.orders-table{
+    margin-top: 8rem;
+    text-align: left;
     color: white;
-    width: auto;
+    width: 100%;
+
+}
+
+.orders-table th{
+    font-size: 1.8rem;
+    font-weight: 500;
+    padding-bottom: 3rem;
+    padding-left: 1.8rem;
+}
+.orders-table td{
+    font-size: 1.5rem;
+    background-color: #000000;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    padding-left: 1.8rem;
+}
+
+.td-first{
+    border-left: 3px solid #2c783e;
+}
+
+
+.order-tags p{
+    display: inline;
+    color: white;
     padding-left: 6%;
     padding-right: 6%;
-    margin: 0;
+    margin: 0 auto;
 }
 
 .orders-phone{
@@ -887,6 +914,29 @@ button:focus {
 
     .product-container{
         width: 15rem;
+        height: 22rem!important;
+        text-align: left;
+        margin-left: 0.5rem;
+        margin-right: 0.5rem;
+    }
+
+    .product-header{
+        float: left!important;
+        font-size: 1.5rem;
+    }
+
+    .product-price{
+        float: left!important;
+        margin: 0!important;
+        font-size: 1.5rem;
+    }
+
+    .product-description{
+        float: left!important;
+        font-size: 1.2rem;
+    }
+    .product-container div{
+        height: 15rem!important;
     }
 
     .filter-items {

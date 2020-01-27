@@ -7,7 +7,7 @@
         <form action="{{ path("blog") }}"
               method="post" id="form">
             <div class="blog-search">
-                <input class="blog-search-input" type="text" placeholder="Search Here" name="search_phrase" value="{{ phrase }}">
+                <input class="blog-search-input" type="text" placeholder="Search Here" name="search_phrase" autocomplete="off" value="{{ phrase }}">
             </div>
             {% for blog in blogs %}
                 <div class="blog-container">
