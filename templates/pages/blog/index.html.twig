@@ -2,7 +2,6 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-<<<<<<< HEAD
     <article class="article-blog">
         <h1>Blogs</h1>
         {% if is_granted('ROLE_USER') %}
@@ -11,7 +10,8 @@
         <form action="{{ path("blog") }}"
               method="post" id="form">
             <div class="blog-search">
-                <input class="blog-search-input" type="text" placeholder="Search Here" name="search_phrase" autocomplete="off" value="{{ phrase }}">
+                <input class="blog-search-input" type="text" placeholder="Search Here" name="search_phrase" autocomplete="off" value="{{ phrase }}"><br>
+                <input type="submit" style="visibility: hidden">
             </div>
             {% for blog in blogs %}
                 <div class="blog-container">

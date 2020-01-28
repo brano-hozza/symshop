@@ -2,8 +2,38 @@
 {% block body %}
     <article style="background-color: #ffffff;">
         <section>
-            <h1 class="products-header">DETAIL</h1>
+            <h1 class="products-header">{{ product.getBrand() }}{{ product.getName() }}</h1>
 
+
+        </section>
+        <section>
+
+            <div class='product-list'>
+                <div class='product-container'>
+                    <div style="height: 240px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.46); background-color: white; border-radius: 25px;">
+                        <img class='product-img' src={{ asset("images/#{product.img}.jpg") }} alt="{{ product.img }}"
+                             alt="img">
+                    </div>
+                    <div class="product-info">
+                        <h1 class='product-header'
+                            style="background-image: {{ asset('images/products-background.jpg') }}; float: left;">{{ product.brand }} {{ product.name }}</h1>
+                        <p class='product-description'
+                           style="float:left; text-align: left; width: 100%;">{{ product.description }}</p>
+                        <p class='product-price' style="float: right; margin-top: -12%;">${{ product.price }}</p><br>
+                    </div>
+                </div>
+                <form action="{{path("create_order")}}">
+                    <input type="hidden" name="id" value="{{ product.getId() }}">
+                    <label>
+                        Amount:
+                        <input type="text"
+                               onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57"
+                               name="amount" />
+
+                    </label>
+                    <input type="submit">
+                </form>
+            </div>
         </section>
     </article>
 {% endblock %}
