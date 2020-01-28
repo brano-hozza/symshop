@@ -99,11 +99,29 @@
                         <option value="size">Size</option>
                     {% endif %}
                 </select>
+            <script>
+                let showProduct = id =>{
+                    let f = document.createElement('form');
+                    f.action='http://symshop.test/products/detail';
+                    f.method='POST';
+                    f.target='_blank';
+
+                    let i=document.createElement('input');
+                    i.type='hidden';
+                    i.name='id';
+                    i.value=id;
+                    f.appendChild(i);
+
+                    document.body.appendChild(f);
+                    f.submit();
+                };
+
+            </script>
             <div class='product-list'>
                 {% for product in products %}
                     <div class='product-container'>
                         <div style="height: 240px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.46); background-color: white; border-radius: 25px;">
-                            <img class='product-img' src={{ asset("images/#{product.img}.jpg") }} alt="{{ product.img }}">
+                            <img class='product-img' src={{ asset("images/#{product.img}.jpg") }} alt="{{ product.img }}" alt="img" onclick="showProduct({{ product.getId() }})">
                         </div>
                         <div class="product-info">
                             <h1 class='product-header' style="background-image: {{ asset('images/products-background.jpg') }}; float: left;" >{{ product.brand }} {{ product.name }}</h1>

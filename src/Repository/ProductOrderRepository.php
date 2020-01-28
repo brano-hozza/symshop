@@ -2,7 +2,9 @@
 
 namespace App\Repository;
 
+use App\Entity\Product;
 use App\Entity\ProductOrder;
+use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 
@@ -47,4 +49,18 @@ class ProductOrderRepository extends ServiceEntityRepository
         ;
     }
     */
+    public function addNew(Product $product, User $user)
+    {
+        $order = new ProductOrder();
+        $order->setUser($user);
+        $order->addProduct($product);
+        $order->setCreatedAt(new \DateTime());
+        $order->setIsComplete(false);
+        $entityManager = $this->getEntityManager();
+        $entityManager->persist($order);
+
+        // actually executes the queries (i.e. the INSERT query)
+        $entityManager->flush();
+
+    }
 }

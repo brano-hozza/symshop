@@ -61,7 +61,16 @@
                     {% for order in user.getOrders()  %}
                         {% for product in order.getProduct() %}
                             <tr>
-                                <td class="td-first">{{ product.getBrand() }} {{ product.getName()}}</td>
+                                <td
+                                        {% if order.getIsComplete() %}
+                                        class="td-first-inactive"
+                                        {% else %}
+                                        class="td-first"
+                                        {% endif %}
+
+
+
+                                >{{ product.getBrand() }} {{ product.getName()}}</td>
                                 <td>${{ product.getPrice() }}</td>
                                 <td>{{ order.getCreatedAt()|date("Y/m/d")}}</td>
                                 <td>{{ order.getId() }}</td>

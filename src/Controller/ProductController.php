@@ -71,7 +71,7 @@ class ProductController extends AbstractController
     }
 
     /**
-     * @Route("/detail", name="detail")
+     * @Route("/products/detail", name="detail")
      * @param Request $request
      * @param ProductRepository $repository
      * @return Response
@@ -79,9 +79,14 @@ class ProductController extends AbstractController
     public function detail(Request $request, ProductRepository $repository)
     {
         $id = $request->get('id');
-        $product = $repository->find($id);
+        $product = $repository->findOneBy(["id" =>$id]);
+        if($product == null){
+            return $this->redirectToRoute('products');
+        }
         return $this->render('/pages/product/detail.html.twig',[
-            'product' => 'product'
+            'title' => "Bshop",
+            'announce' =>  "Welcome to bshop",
+            'product' => $product
         ]);
     }
 }

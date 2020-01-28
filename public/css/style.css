@@ -760,6 +760,10 @@ button:focus {
 .td-first{
     border-left: 3px solid #2c783e;
 }
+.td-first-inactive{
+    border-left: 3px solid #403b3d;
+
+}
 
 
 .order-tags p{
