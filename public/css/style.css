@@ -142,7 +142,7 @@ nav {
 
 article {
     opacity: 1;
-    height: auto;
+    min-height: 100%
 
 }
 
@@ -932,6 +932,21 @@ button:focus {
 .create-blog-phone img{
     display: none;
 }
+
+
+.blog-create{
+    text-align: center;
+    padding-top: 15rem;
+    margin: 0 auto;
+
+}
+
+.blog-create h1{
+    font-size: 4rem;
+}
+
+
+
 /* BLOG */
 /*Pre telefóny*/
 @media only screen and (max-width: 991px) {

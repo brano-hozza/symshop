@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Blog;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -33,7 +34,7 @@ class BlogCreateType extends AbstractType
                     ])
                 ]
             ])
-            ->add('text', TextType::class, [
+            ->add('text', TextareaType::class, [
                 'label' => 'Body:',
                 'label_attr' =>['class' => 'blog_label'],
                 'required' => true,
