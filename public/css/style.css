@@ -695,7 +695,7 @@ button:focus {
     margin-top: 3rem;
     margin-bottom: 4rem;
 }
-.profile-button button{
+.profile-button .edit_button{
     background-color: #2c783e;
     border-style: none;
     border-radius: 0.8rem;
@@ -709,7 +709,7 @@ button:focus {
     margin-bottom: 2rem;
 }
 
-.profile-button button:hover{
+.profile-button .edit_button:hover{
     background-color: #20582e;
     transition-duration: 0.5s;
 }

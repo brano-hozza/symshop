@@ -15,10 +15,6 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class MainController extends AbstractController
 {
-    private $session;
-    public function __construct()
-    {
-    }
 
     /**
      * @Route("/", name="index")
@@ -28,7 +24,7 @@ class MainController extends AbstractController
     public function show(ProductRepository $repository){
         $title = "Bshop";
         $announce = "Welcome to bshop";
-        return $this->render('/pages/index.html.twig',[
+        return $this->render('main/index.html.twig',[
             'products' => $repository->findInRange(0,2),
             'title' => $title,
             'announce' => $announce
@@ -41,7 +37,7 @@ class MainController extends AbstractController
     public function contact(){
         $title = "Bshop";
         $announce = "Welcome to bshop";
-        return $this->render('/pages/contact.html.twig',[
+        return $this->render('main/contact.html.twig',[
             'title' => $title,
             'announce' => $announce
         ]);

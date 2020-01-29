@@ -38,7 +38,7 @@ class BlogController extends AbstractController
         $announce = "Welcome to bshop";
         dump($response);
 
-        return $this->render('/pages/blog/index.html.twig',[
+        return $this->render('blog/index.html.twig',[
             'title' => $title,
             'announce' => $announce,
             'page' => $page,
@@ -74,7 +74,7 @@ class BlogController extends AbstractController
                 return $this->redirectToRoute('blog');
             }
 
-            return $this->render('/pages/blog/create.html.twig', [
+            return $this->render('blog/create.html.twig', [
                 'form' => $form->createView(),
                 "title" => "Bshop",
                 "announce" => "nahahah"

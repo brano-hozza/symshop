@@ -7,12 +7,13 @@
                 <h1>Account Information</h1>
                 <div class="account-information">
 
-                    <img src="{{ asset("images/acc.png") }}" >
+                    <img src="{{ asset("images/acc.png") }}"  alt="acc">
 
                     <div>
                         <p>{{user.getUsername()}}</p>
                         <p>{{user.getEmail()}}</p>
                     </div>
+
                     <div class="profile-button">
                         <button>EDIT</button>
                     </div>
@@ -43,10 +44,11 @@
 
                     </div>
                 </div>
-
-                <div class="profile-button">
-                    <button>EDIT</button>
-                </div>
+                <form action="{{ path('user_edit') }}">
+                    <div class="profile-button">
+                        <input type="submit" value="EDIT" class="edit_button">
+                    </div>
+                </form>
             </div>
 
 

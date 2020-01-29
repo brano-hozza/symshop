@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class ProductOrderController extends AbstractController
 {
     /**
-     * @Route("/order/create", name="create_order")
+     * @Route("/order/create", name="order_create")
      * @param Request $request
      * @param ProductRepository $prodRepo
      * @param ProductOrderRepository $poRepo
@@ -22,7 +22,7 @@ class ProductOrderController extends AbstractController
     public function index(Request $request, ProductRepository $prodRepo, ProductOrderRepository $poRepo)
     {
         if(!$this->getUser()){
-            return $this->redirectToRoute("app_login");
+            return $this->redirectToRoute("user_login");
         }
         else if(!$request->get("id")){
             return $this->redirectToRoute("products");
@@ -35,7 +35,7 @@ class ProductOrderController extends AbstractController
             for ($i = 0; $i < $amount; $i++){
                 $poRepo->addNew($product, $this->getUser());
             }
-            return $this->redirectToRoute("profile");
+            return $this->redirectToRoute("user_profile");
         }
     }
 }

@@ -2845,7 +2845,7 @@ function getWheelDelta(e) {
 	       (e.deltaX || e.deltaZ) ? 0 :	// Skip horizontal/depth wheel events
 	       e.wheelDelta ? (e.wheelDeltaY || e.wheelDelta) / 2 : // Legacy IE pixels
 	       (e.detail && Math.abs(e.detail) < 32765) ? -e.detail * 20 : // Legacy Moz lines
-	       e.detail ? e.detail / -32765 * 60 : // Legacy Moz pages
+	       e.detail ? e.detail / -32765 * 60 : // Legacy Moz main
 	       0;
 }
 

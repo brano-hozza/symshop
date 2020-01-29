@@ -22,7 +22,7 @@
                         <p class='product-price' style="float: right; margin-top: -12%;">${{ product.price }}</p><br>
                     </div>
                 </div>
-                <form action="{{path("create_order")}}">
+                <form action="{{path("order_create")}}">
                     <input type="hidden" name="id" value="{{ product.getId() }}">
                     <label>
                         Amount:

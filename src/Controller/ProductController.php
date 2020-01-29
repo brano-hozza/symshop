@@ -16,12 +16,6 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ProductController extends AbstractController
 {
-
-    public function __construct()
-    {
-    }
-
-
     /**
      * @Route("/products", name="products")
      * @param Request $request
@@ -53,7 +47,7 @@ class ProductController extends AbstractController
             };
         }
 
-        return $this->render('/pages/product/index.html.twig', [
+        return $this->render('product/index.html.twig', [
             'title' => $title,
             'announce' => $announce,
             'products' => $products,
@@ -71,7 +65,7 @@ class ProductController extends AbstractController
     }
 
     /**
-     * @Route("/products/detail", name="detail")
+     * @Route("/products/detail", name="products_detail")
      * @param Request $request
      * @param ProductRepository $repository
      * @return Response
@@ -83,7 +77,7 @@ class ProductController extends AbstractController
         if($product == null){
             return $this->redirectToRoute('products');
         }
-        return $this->render('/pages/product/detail.html.twig',[
+        return $this->render('product/detail.html.twig',[
             'title' => "Bshop",
             'announce' =>  "Welcome to bshop",
             'product' => $product
