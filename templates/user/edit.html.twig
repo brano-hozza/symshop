@@ -3,8 +3,8 @@
 
 {% block body %}
     <section>
-        <div class="edit_user">
-            {{ form(form) }}
-        </div>
+        {{ form_start(form, {'attr': {'class':'form'}}) }}
+        <h1>Edit</h1>
+        {{ form_end(form) }}
     </section>
 {% endblock %}

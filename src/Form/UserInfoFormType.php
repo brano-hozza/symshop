@@ -36,14 +36,14 @@ class UserInfoFormType extends AbstractType
                 'required' => true,
                 'attr'=>['class' => 'input']
             ])
-            ->add('city',TextType::class, [
-                'label'=>'City:',
-                'label_attr' =>['class' => 'label'],
+            ->add('country',CountryType::class, [
+                'label'=>'Country:',
                 'required' => true,
                 'attr'=>['class' => 'input']
             ])
-            ->add('country',CountryType::class, [
-                'label'=>'Country:',
+            ->add('city',TextType::class, [
+                'label'=>'City:',
+                'label_attr' =>['class' => 'label'],
                 'required' => true,
                 'attr'=>['class' => 'input']
             ])
@@ -65,7 +65,7 @@ class UserInfoFormType extends AbstractType
                 'attr'=>['class' => 'input']
             ])
             ->add('submit', SubmitType::class, [
-                'label'=>'Submit:',
+                'label'=>'Submit',
                 'attr'=>['class' => 'btn']
             ])
         ;

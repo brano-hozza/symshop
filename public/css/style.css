@@ -471,6 +471,11 @@ article {
 
 }
 
+.form select{
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
 .agree{
     width: 4rem !important;
 }
@@ -1081,3 +1086,9 @@ button:focus {
     text-align: center;
 }
 #mapid { height: 18rem; }
+
+/* Edit user */
+.edit_user .label{
+    color: white !important;
+    margin-right: 1rem;
+}
