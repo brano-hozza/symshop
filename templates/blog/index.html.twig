@@ -5,7 +5,8 @@
     <article class="article-blog">
         <h1>Blogs</h1>
         {% if is_granted('ROLE_USER') %}
-            <a href="{{ path('blog_create') }}">Create Post</a>
+            <a class="create-blog" href="{{ path('blog_create') }}">Create Post</a>
+            <a class="create-blog-phone" href="{{ path('blog_create') }}"><img src="{{ asset("images/add.png") }}"></a>
         {% endif %}
         <form action="{{ path("blog") }}"
               method="post" id="form">

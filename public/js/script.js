@@ -40,9 +40,6 @@ for (i = 0; i< coll.length; i++){
     })
 }
 
-
-
-
 let mymap = L.map('mapid').setView([48.9469267, 20.5665167], 20);
 
 let CartoDB_DarkMatter = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {

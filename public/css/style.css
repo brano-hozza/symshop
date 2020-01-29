@@ -142,7 +142,7 @@ nav {
 
 article {
     opacity: 1;
-    height: auto;
+    min-height: 100%
 
 }
 
@@ -910,6 +910,41 @@ button:focus {
     color: #808080;
 }
 
+.create-blog{
+    background-color: #c2c2c2;
+    padding: 2rem 4rem;
+    font-size: 1.5rem;
+    text-decoration: none;
+    color: black;
+    position: fixed;
+    bottom: 4%;
+    right: 4%;
+}
+
+.create-blog:hover{
+    background-color: #ababab;
+}
+
+.create-blog:focus{
+    background-color: #8e8e8e;
+}
+
+.create-blog-phone img{
+    display: none;
+}
+
+
+.blog-create{
+    text-align: center;
+    padding-top: 15rem;
+    margin: 0 auto;
+
+}
+
+.blog-create h1{
+    font-size: 4rem;
+}
+
 
 
 /* BLOG */
@@ -1021,6 +1056,18 @@ button:focus {
         width: 80%;
     }
 
+    .create-blog{
+        display: none;
+    }
+
+    .create-blog-phone img{
+        position: fixed;
+        bottom: 3%;
+        right: 5%;
+        display:initial;
+        width: 6rem;
+        height: auto;
+    }
 }
 
 .errors{
