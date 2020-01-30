@@ -11,9 +11,10 @@
         <form action="{{ path("blog") }}"
               method="post" id="form">
             <div class="blog-search">
-                <input class="blog-search-input" type="text" placeholder="Search Here" name="search_phrase" autocomplete="off" value="{{ phrase }}"><br>
+                <input class="blog-search-input" type="text" placeholder="Search Here" name="search_phrase" autocomplete="off" value="{{ phrase }}" onkeydown="search(this.value);"><br>
                 <input type="submit" style="visibility: hidden">
             </div>
+            <div id="blogs">
             {% for blog in blogs %}
                 <div class="blog-container">
                     <p class="blog-user">u/{{ blog.user.username }}</p>
@@ -23,6 +24,7 @@
                 </div>
 
             {% endfor %}
+            </div>
             <div class="paging">
 
                 {% if page > 1 %}

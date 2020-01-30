@@ -26,13 +26,36 @@ openFilter = (id) => { //id = brand => size
 
     }
 };
+search = (val) => {
+    let xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function () {
+        if (this.readyState === 4 && this.status === 200) {
+            document.getElementById("blogs").innerHTML = "";
+            console.log(this.response);
+            let response = JSON.parse(this.response);
+            console.log(response);
+            for (let data in response) {
+                if (response.hasOwnProperty(data)) {
+                    let blog = response[data];
+                    document.getElementById("blogs").innerHTML += blog;
+                }
+            }
+        }
+
+    };
+    xhttp.open("POST", "blog");
+    xhttp.send({
+            'search_phrase': val
+    });
+
+};
 let coll = document.getElementsByClassName("order-item-phone");
 let i;
 
-for (i = 0; i< coll.length; i++){
-    coll[i].addEventListener("click",function () {
+for (i = 0; i < coll.length; i++) {
+    coll[i].addEventListener("click", function () {
         let content = this.nextElementSibling;
-        if(content.style.maxHeight){
+        if (content.style.maxHeight) {
             content.style.maxHeight = null;
         } else {
             content.style.maxHeight = "150px";
@@ -54,3 +77,4 @@ let CartoDB_DarkMatter = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all
 let marker = L.marker([48.9469267, 20.5665167]
 ).addTo(mymap);
 marker.bindPopup("Hello it's me!").openPopup();
+

@@ -9,15 +9,17 @@ use App\Form\BlogCreateType;
 use App\Repository\BlogRepository;
 use App\Repository\ProductRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Serializer\Exception\ExceptionInterface;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\Serializer;
 
 class BlogController extends AbstractController
 {
-    public function __construct()
-    {
-    }
+    protected $serializer;
 
     /**
      * @Route("/blog", name="blog")
@@ -25,25 +27,46 @@ class BlogController extends AbstractController
      * @param BlogRepository $repository
      * @return Response
      */
-    public function index(Request $request, BlogRepository $repository){
-        $page = $request->get("next_page") ?  $request->get("next_page")  : 1;
+    public function index(Request $request, BlogRepository $repository)
+    {
+        $page = $request->get("next_page", 1);
         $response = null;
-        if ($phrase = $request->get("search_phrase")){
-            $response = $repository->getBySearch($phrase, $page);
-        }else{
-            $response = $repository->findBy([], ["created_at"=>"DESC"], 20, ($page-1)*20);
+        $phrase = $request->get("search_phrase", null);
+        if ($request->isXmlHttpRequest()) {
+            $data = $request->query->get("data");
+            $JSONdata = json_decode($data);
+            dump($JSONdata);
+            $phrase = $JSONdata["search_phrase"];
         }
+        if ($phrase) {
+            $response = $repository->getBySearch($phrase, $page);
+        } else {
+            $response = $repository->findBy([], ["created_at" => "DESC"], 20, ($page - 1) * 20);
+        }
+        dump($request->isXmlHttpRequest());
 
         $title = "Bshop";
         $announce = "Welcome to bshop";
-        dump($response);
+        if ($request->isXmlHttpRequest()) {
+            $jsonResp = array();
+            foreach ($response as $blog) {
+                array_push($jsonResp, '<div class="blog-container">
+                            <p class="blog-user">u/' . ($blog->getUser())->getUsername() . '</p>
+                            <h2 class="blog-title">' . $blog->getTitle() . '</h2>
+                            <p class="blog-text">' . $blog->getText() . '</p>
+                            <p class="blog-date">Created On: ' . $blog->getCreatedAt()->format('Y/m/d') . '</p>
+                        </div>');
 
-        return $this->render('blog/index.html.twig',[
+            }
+            return new JsonResponse($jsonResp);
+        }
+
+        return $this->render('blog/index.html.twig', [
             'title' => $title,
             'announce' => $announce,
             'page' => $page,
             'blogs' => $response,
-            'phrase' => $request->get("search_phrase") ? $request->get("search_phrase") : ""
+            'phrase' => $request->get("search_phrase", "")
         ]);
     }
 
@@ -55,7 +78,7 @@ class BlogController extends AbstractController
      */
     public function create(Request $request): Response
     {
-        if($this->getUser()) {
+        if ($this->getUser()) {
             $blog = new Blog();
             $form = $this->createForm(BlogCreateType::class, $blog);
             $form->handleRequest($request);
@@ -79,7 +102,7 @@ class BlogController extends AbstractController
                 "title" => "Bshop",
                 "announce" => "nahahah"
             ]);
-        }else{
+        } else {
             return $this->redirectToRoute('blog');
         }
     }

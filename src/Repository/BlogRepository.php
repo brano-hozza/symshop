@@ -22,7 +22,8 @@ class BlogRepository extends ServiceEntityRepository
     /**
      * @param $phrase string
      * @param $page
-     * @return object
+     * @param $is_ajax
+     * @return mixed
      */
     public function getBySearch($phrase, $page){
         $qb = $this->createQueryBuilder("b");
