@@ -6,24 +6,19 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\UserInfoFormType;
-use Doctrine\ORM\EntityManagerInterface;
 use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 class UserController extends AbstractController
 {
-    public function __construct()
-    {
-    }
     /**
      * @Route("/user/profile", name="user_profile")
      */
-    public function show(){
+    public function index(){
         $title = "Bshop";
         $announce = "Welcome to bshop";
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');

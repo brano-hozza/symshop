@@ -3,8 +3,8 @@
     <article style="background-color: #E2E2E2;">
         <form action="{{ path("products") }}"
               method="post" id="form">
-        <section>
-            <h1 class="products-header">PRODUCTS</h1>
+            <section>
+                <h1 class="products-header">PRODUCTS</h1>
                 <div class="filters">
                     <span class="filter-opener" id="brand" onclick="openFilter('brand');">Brand</span>
                     <span class="filter-opener" id="size" onclick="openFilter('size');">Size</span>
@@ -13,14 +13,15 @@
                 </div>
                 <div class='filter-items' id='brand_sub'>
                     {% for brand in brands %}
-                    <div class='filter-items-border'>
-                        <label for='{{ brand.brand }}'>{{ brand.brand }}</label>
-                        {% if brand.brand in old_brand %}
-                            <input value='{{ brand.brand }}' id='{{ brand.brand }}' type='checkbox' name='brand[]' checked>
-                        {% else %}
-                            <input value='{{ brand.brand }}' id='{{ brand.brand }}' type='checkbox' name='brand[]'>
-                        {% endif %}
-                    </div>
+                        <div class='filter-items-border'>
+                            <label for='{{ brand.brand }}'>{{ brand.brand }}</label>
+                            {% if brand.brand in old_brand %}
+                                <input value='{{ brand.brand }}' id='{{ brand.brand }}' type='checkbox' name='brand[]'
+                                       checked>
+                            {% else %}
+                                <input value='{{ brand.brand }}' id='{{ brand.brand }}' type='checkbox' name='brand[]'>
+                            {% endif %}
+                        </div>
                     {% endfor %}
                     <div class="search-div">
                         <input type="submit" value="Search" name="search" class="search">
@@ -31,7 +32,8 @@
                         <div class='filter-items-border'>
                             <label for='{{ size.size }}'>{{ size.size }}</label>
                             {% if size.size in old_size %}
-                                <input value='{{ size.size }}' id='{{ size.size }}' type='checkbox' name='size[]' checked>
+                                <input value='{{ size.size }}' id='{{ size.size }}' type='checkbox' name='size[]'
+                                       checked>
                             {% else %}
                                 <input value='{{ size.size }}' id='{{ size.size }}' type='checkbox' name='size[]'>
                             {% endif %}
@@ -46,7 +48,8 @@
                         <div class='filter-items-border'>
                             <label for='{{ type.type }}'>{{ type.type }}</label>
                             {% if type.type in old_type %}
-                                <input value='{{ type.type }}' id='{{ type.type }}' type='checkbox' name='type[]' checked>
+                                <input value='{{ type.type }}' id='{{ type.type }}' type='checkbox' name='type[]'
+                                       checked>
                             {% else %}
                                 <input value='{{ type.type }}' id='{{ type.type }}' type='checkbox' name='type[]'>
                             {% endif %}
@@ -58,6 +61,7 @@
                 </div>
 
                 <div class="filter-items" id="price_sub">
+
                     <div class="price-sub">
                     {% if old_price[0] is null  %}
                     <input type="number" class="price" placeholder="From..." name="min_price" id="min_price" >
@@ -75,37 +79,38 @@
                     </div>
                 </div>
                 <label for="sort_by">Sort by:</label>
-                <select name="sort_by" id="sort_by" onchange="document.getElementById('form').submit();" >
+                <select name="sort_by" id="sort_by" onchange="document.getElementById('form').submit();">
                     {% if old_sort == "name" %}
                         <option value="name" selected>Name</option>
                     {% else %}
                         <option value="name" selected>Name</option>
                     {% endif %}
 
-                    {% if old_sort == "price"  %}
+                    {% if old_sort == "price" %}
                         <option value="price" selected>Price</option>
                     {% else %}
                         <option value="price">Price</option>
                     {% endif %}
 
-                    {% if old_sort == "type"%}
+                    {% if old_sort == "type" %}
                         <option value="type" selected>Type</option>
                     {% else %}
                         <option value="type">Type</option>
                     {% endif %}
 
-                    {% if old_sort == "brand"%}
+                    {% if old_sort == "brand" %}
                         <option value="brand" selected>Brand</option>
                     {% else %}
                         <option value="brand">Brand</option>
                     {% endif %}
 
-                    {% if old_sort == "size"%}
+                    {% if old_sort == "size" %}
                         <option value="size" selected>Size</option>
                     {% else %}
                         <option value="size">Size</option>
                     {% endif %}
                 </select>
+
             <script>
                 let showProduct = id =>{
                     let f = document.createElement('form');
@@ -129,28 +134,32 @@
                     <div class='product-container'>
                         <div style="height: 240px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.46); background-color: white; border-radius: 1rem;">
                             <img class='product-img' src={{ asset("images/#{product.img}.jpg") }} alt="{{ product.img }}" alt="img" onclick="showProduct({{ product.getId() }})">
+
                         </div>
-                        <div class="product-info">
-                            <h1 class='product-header' style="background-image: {{ asset('images/products-background.jpg') }}; float: left;" >{{ product.brand }} {{ product.name }}</h1>
-                            <p class='product-description' style="float:left; text-align: left; width: 100%;">{{ product.description }}</p>
-                            <p class='product-price' style="float: right; margin-top: -12%;">${{ product.price }}</p><br>
+                            <div class="product-info">
+                                <h1 class='product-header'
+                                    style="background-image: {{ asset('images/products-background.jpg') }}; float: left;">{{ product.brand }} {{ product.name }}</h1>
+                                <p class='product-description'
+                                   style="float:left; text-align: left; width: 100%;">{{ product.description }}</p>
+                                <p class='product-price' style="float: right; margin-top: -12%;">
+                                    ${{ product.price }}</p><br>
+                            </div>
+
                         </div>
-                    </div>
-                {% endfor %}
-            </div>
-            <div class="paging">
+                    {% endfor %}
+                <div class="paging">
 
 
-                {% if page > 1 %}
-                    <input type="submit"  name="page" value="{{ page-1 }}">
-                {% endif %}
-                <p>{{ page }}</p>
-                {% if products|length > 19 %}
-                    <input type="submit"  name="page" value="{{ page+1 }}">
-                {% endif %}
+                    {% if page > 1 %}
+                        <input type="submit" name="page" value="{{ page-1 }}">
+                    {% endif %}
+                    <p>{{ page }}</p>
+                    {% if products|length > 19 %}
+                        <input type="submit" name="page" value="{{ page+1 }}">
+                    {% endif %}
 
-            </div>
-        </section>
+                </div>
+            </section>
         </form>
     </article>
 {% endblock %}

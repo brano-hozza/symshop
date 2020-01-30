@@ -25,7 +25,7 @@ class BlogController extends AbstractController
      * @param BlogRepository $repository
      * @return Response
      */
-    public function show(Request $request, BlogRepository $repository){
+    public function index(Request $request, BlogRepository $repository){
         $page = $request->get("next_page") ?  $request->get("next_page")  : 1;
         $response = null;
         if ($phrase = $request->get("search_phrase")){
