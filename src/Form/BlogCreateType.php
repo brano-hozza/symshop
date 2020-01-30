@@ -53,7 +53,7 @@ class BlogCreateType extends AbstractType
             ])
             ->add('submit', SubmitType::class, [
                 'label' => 'Submit',
-                'attr' => ['class' => 'btn']
+                'attr' => ['class' => 'btn'],
             ])
         ;
     }

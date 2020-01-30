@@ -26,11 +26,11 @@
             <div class="paging">
 
                 {% if page > 1 %}
-                    <input type="submit"  name="next_page" value="{{ page-1 }}">
+                    <input type="submit"  name="next_page" value="{{ page-1 }}" class="page-button">
                 {% endif %}
                 <p>{{ page }}</p>
                 {% if blogs|length > 19 %}
-                    <input type="submit"  name="next_page" value="{{ page+1 }}">
+                    <input type="submit"  name="next_page" value="{{ page+1 }}" class="page-button">
                 {% endif %}
 
             </div>

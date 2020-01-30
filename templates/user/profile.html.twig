@@ -4,6 +4,7 @@
 {% block body %}
         <section class="profile-section" style="">
             <div class="profile">
+
                 <h1>Account Information</h1>
                 <div class="account-information">
 
@@ -81,49 +82,34 @@
             </div>
 
             <div class="orders-phone">
-                <div class="order-item-phone">
-                    <p>Shoe Name</p>
-                    <img src="{{ asset("images/arrow-down.png") }}" class="arrow-down" id="arrow-down" alt="arrow-down" >
-                </div>
-                <div class="order-item-phone-details" id="opendetails">
-                    <div class="order-item-phone-tags">
-                        <p>Price</p>
-                        <p>Order Date</p>
-                        <p>Order Number</p>
+            {% for order in user.getOrders() %}
+                {% for product in order.getProduct() %}
+                <div class="orders-dokopy">
+                    <div class="order-item-phone">
+                        <p>{{ product.getBrand() }} {{ product.getName()}}</p>
+                        <img src="{{ asset("images/arrow-down.png") }}" class="arrow-down" id="arrow-down" alt="arrow-down" >
                     </div>
-                    {% for order in user.getOrders()  %}
-                        {% for product in order.getProduct() %}
-                            <tr>
-                                <td class="order-item-phone-info">{{ product.getBrand() }} {{ product.getName()}}</td>
-                                <td>${{ product.getPrice() }}</td>
-                                <td>{{ order.getCreatedAt()|date("Y/m/d")}}</td>
-                                <td>{{ order.getId() }}</td>
-                            </tr>
-                        {% endfor %}
-                    {% endfor %}
-                </div>
+                    <div class="order-item-phone-details" id="opendetails">
 
-                <div class="order-item-phone">
-                    <p>Shoe Name</p>
-                    <img src="{{ asset("images/arrow-down.png") }}" class="arrow-down" id="arrow-down" alt="arrow-down" >
+                        <div class="order-item-phone-tags">
+                            <p>Price</p>
+                            <p>Order Date</p>
+                            <p>Order Number</p>
+                        </div>
+                        <div class="order-item-phone-info">
+                            <p>${{ product.getPrice() }}</p>
+                            <p>{{ order.getCreatedAt()|date("Y/m/d")}}</p>
+                            <p>{{ order.getId() }}</p>
+                        </div>
+
+
+
+
                 </div>
-                <div class="order-item-phone-details" id="opendetails">
-                    <div class="order-item-phone-tags">
-                        <p>Price</p>
-                        <p>Order Date</p>
-                        <p>Order Number</p>
-                    </div>
-                    {% for order in user.getOrders()  %}
-                        {% for product in order.getProduct() %}
-                            <tr>
-                                <td class="order-item-phone-info">{{ product.getBrand() }} {{ product.getName()}}</td>
-                                <td>${{ product.getPrice() }}</td>
-                                <td>{{ order.getCreatedAt()|date("Y/m/d")}}</td>
-                                <td>{{ order.getId() }}</td>
-                            </tr>
-                        {% endfor %}
-                    {% endfor %}
-                </div>
+                {% endfor %}
+            {% endfor %}
+            </div>
+
             </div>
         </section>
 {% endblock %}

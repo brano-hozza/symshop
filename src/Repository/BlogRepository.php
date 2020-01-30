@@ -34,7 +34,7 @@ class BlogRepository extends ServiceEntityRepository
             ->setParameter("phrase", "%".$phrase."%")
             ->setFirstResult(($page - 1) * 20)
             ->setMaxResults(20)
-            ->orderBy("b.id")
+            ->orderBy("b.created_at")
             ->getQuery()
             ->getResult();
     }

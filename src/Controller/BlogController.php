@@ -31,7 +31,7 @@ class BlogController extends AbstractController
         if ($phrase = $request->get("search_phrase")){
             $response = $repository->getBySearch($phrase, $page);
         }else{
-            $response = $repository->findBy([], [], 20, ($page-1)*20);
+            $response = $repository->findBy([], ["created_at"=>"DESC"], 20, ($page-1)*20);
         }
 
         $title = "Bshop";
