@@ -22,7 +22,7 @@ class ProductController extends AbstractController
      * @param ProductRepository $repository
      * @return Response
      */
-    public function show(Request $request, ProductRepository $repository)
+    public function index(Request $request, ProductRepository $repository)
     {
         $title = "Bshop";
         $announce = "Welcome to bshop";
@@ -65,15 +65,14 @@ class ProductController extends AbstractController
     }
 
     /**
-     * @Route("/products/detail", name="products_detail")
+     * @Route("/products/{product}", name="products_detail")
      * @param Request $request
+     * @param Product $product
      * @param ProductRepository $repository
      * @return Response
      */
-    public function detail(Request $request, ProductRepository $repository)
+    public function detail(Request $request, Product $product, ProductRepository $repository)
     {
-        $id = $request->get('id');
-        $product = $repository->findOneBy(["id" =>$id]);
         if($product == null){
             return $this->redirectToRoute('products');
         }

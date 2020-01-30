@@ -21,7 +21,7 @@ class MainController extends AbstractController
      * @param ProductRepository $repository
      * @return Response
      */
-    public function show(ProductRepository $repository){
+    public function index(ProductRepository $repository){
         $title = "Bshop";
         $announce = "Welcome to bshop";
         return $this->render('main/index.html.twig',[
