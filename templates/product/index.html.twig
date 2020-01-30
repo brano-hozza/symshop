@@ -22,7 +22,9 @@
                         {% endif %}
                     </div>
                     {% endfor %}
-                    <input type="submit" value="Search" name="search" class="search">
+                    <div class="search-div">
+                        <input type="submit" value="Search" name="search" class="search">
+                    </div>
                 </div>
                 <div class='filter-items' id='size_sub'>
                     {% for size in sizes %}
@@ -35,7 +37,9 @@
                             {% endif %}
                         </div>
                     {% endfor %}
-                    <input type="submit" value="Search" name="search" class="search">
+                    <div class="search-div">
+                        <input type="submit" value="Search" name="search" class="search">
+                    </div>
                 </div>
                 <div class='filter-items' id='type_sub'>
                     {% for type in types %}
@@ -48,25 +52,27 @@
                             {% endif %}
                         </div>
                     {% endfor %}
-                    <input type="submit" value="Search" name="search" class="search">
+                    <div class="search-div">
+                        <input type="submit" value="Search" name="search" class="search">
+                    </div>
                 </div>
 
                 <div class="filter-items" id="price_sub">
-                    <label for="min_price" style="margin-left: 10px;">Minimal price: </label>
-
+                    <div class="price-sub">
                     {% if old_price[0] is null  %}
-                    <input type="number" name="min_price" id="min_price" style="margin-right: 10px;">
+                    <input type="number" class="price" placeholder="From..." name="min_price" id="min_price" >
                     {% else %}
-                    <input type="number" name="min_price" id="min_price" style="margin-right: 10px;" value="{{ old_price[0] }}">
+                    <input type="number" class="price" placeholder="From..." name="min_price" id="min_price"  value="{{ old_price[0] }}">
                     {% endif %}
-                    <label for="max_price" >Maximum price: </label>
                     {% if old_price[1] is null  %}
-                        <input type="number" name="max_price" id="max_price" style="margin-right: 10px;">
+                        <input type="number" class="price" placeholder="To..." name="max_price" id="max_price" >
                     {% else %}
-                        <input type="number" name="max_price" id="max_price" style="margin-right: 10px;" value="{{ old_price[1] }}">
+                        <input type="number" class="price" placeholder="To..." name="max_price" id="max_price" value="{{ old_price[1] }}">
                     {% endif %}
-
-                    <input type="submit" value="Search" name="search" class="search">
+                    <div class="search-div">
+                        <input type="submit" value="Search" name="search" class="search">
+                    </div>
+                    </div>
                 </div>
                 <label for="sort_by">Sort by:</label>
                 <select name="sort_by" id="sort_by" onchange="document.getElementById('form').submit();" >
@@ -121,7 +127,7 @@
             <div class='product-list'>
                 {% for product in products %}
                     <div class='product-container'>
-                        <div style="height: 240px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.46); background-color: white; border-radius: 25px;">
+                        <div style="height: 240px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.46); background-color: white; border-radius: 1rem;">
                             <img class='product-img' src={{ asset("images/#{product.img}.jpg") }} alt="{{ product.img }}" alt="img" onclick="showProduct({{ product.getId() }})">
                         </div>
                         <div class="product-info">

@@ -496,7 +496,6 @@ button:focus {
 
 
 .product-container {
-
     width: 30rem;
     border-bottom: 0 none;
     font-family: 'Roboto', sans-serif;
@@ -611,7 +610,7 @@ button:focus {
 
 .filter-items {
     padding-top: 1%;
-    padding-bottom: 4%;
+    padding-bottom: 1rem !important;
     position: absolute;
     display: none;
     flex-wrap: wrap;
@@ -622,6 +621,7 @@ button:focus {
     -moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
     box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
     font-size: 1.4rem;
+    margin: 0 auto;
 }
 
 .filter-items label{
@@ -653,21 +653,37 @@ button:focus {
 }
 
 .search {
-    position: absolute;
-    bottom: 1%;
-    left: 50%;
-    transform: translate(-50%, -50%);
     background-color: #2c783e;
     border-style: none;
     border-radius: 0.4rem;
     padding: 1rem 2rem;
+    height: 4rem ;
     color: white;
     font-size: 1.5rem;
     text-transform: uppercase;
     cursor: pointer;
+    width: 10rem;
 }
 
+.search-div{
+    width: 100%;
+    text-align: center;
+    margin-top: 3rem;
+}
 
+.price-sub{
+    text-align: center;
+    width: 100%;
+    margin-top: 1.5rem;
+}
+
+.price{
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
+    border: none;
+    padding: 1rem 2rem;
+    background-color: #dadada;
+}
 /*PROFILE*/
 .profile-section{
     min-height: 100rem ;
@@ -982,7 +998,7 @@ button:focus {
     position: relative;
     margin-top: 2rem;
     color: #f3f3f3;
-    width: 95%;
+    width: 90%;
     font-size: 1.5rem;
     transition-duration: 0.3s;
     margin-bottom: 2rem;
@@ -1005,6 +1021,7 @@ button:focus {
     z-index: 1;
     float: left;
     font-style: italic;
+
 }
 
 .blog-create textarea{
@@ -1013,11 +1030,14 @@ button:focus {
     color: #f3f3f3;
     font-family: Roboto;
     border: 0.1rem solid #2d2d2e;
-    width: 95%;
+    width: 90%;
     height:25rem;
     margin-top: 2rem;
     font-size: 1.5rem;
     transition-duration: 0.3s;
+    padding-left: 1.5rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
     border-radius: 0.5rem;
 }
 
