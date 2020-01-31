@@ -62,6 +62,10 @@ nav {
     z-index: 1001;
 }
 
+.nav-phone{
+    display: none;
+}
+
 .nav {
     list-style: none !important;
     margin: 0;
@@ -643,7 +647,7 @@ button:focus {
     background-color: #efefef;
     min-width: 10%;
     text-align: center;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     transition-duration: 0.2s;
 }
 
@@ -1176,7 +1180,7 @@ button:focus {
 
     .create-blog-phone img{
         position: fixed;
-        bottom: 3%;
+        bottom: 13%;
         right: 5%;
         display:initial;
         width: 6rem;
@@ -1189,6 +1193,99 @@ button:focus {
 
     .blog-create input{
         width: 90%;
+    }
+
+    nav{
+        display: none;
+    }
+
+    .nav-phone{
+        display: flex;
+        flex-wrap: wrap;
+        background-color: #0F0F0F;
+        position: fixed;
+        width: 100%;
+        bottom: 0;
+    }
+
+    .nav-phone-right{
+        width: 63% !important;
+
+    }
+    .nav-phone-right ul{
+        text-align: center;
+        padding: 0;
+        margin-top: 2.5rem;
+
+    }
+    .nav-phone-right ul li{
+        display: inline;
+        color: white;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        text-align: left;
+        font-size: 1.5rem;
+    }
+
+    .nav-phone-right img{
+        width: 2.5rem;
+        height: auto;
+    }
+
+    .nav-phone-left{
+        width: 30%;
+        padding-left: 2rem;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+    }
+
+    .nav-phone-right{
+        width: 70%;
+    }
+
+
+    .nav-phone p{
+        margin: 0;
+        padding: 0;
+        color: #6A6A6A;
+        font-size: 1.5rem;
+    }
+
+    .user-p{
+        text-decoration: none;
+        background-color: #232323;
+        text-align: center;
+        padding-top: 0.5rem !important;
+        padding-bottom: 0.5rem !important;
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+        border-radius: 2.5rem;
+        margin-top: 0.5rem !important;
+        border: none;
+        color: #308E4F !important;
+    }
+
+    .user-p a{
+        text-decoration: none;
+    }
+
+    .phone-popup{
+        display: block;
+        position: absolute;
+        bottom: 60%;
+        background-color:#232323;
+        padding: 0rem;
+        border-radius: 10px;
+        height: 0;
+        overflow: hidden;
+        transition-duration: 0.2s;
+    }
+
+    .phone-popup a{
+        text-decoration: none;
+        font-size: 1.5rem;
+        color: #9b9b9b;
+        height: 5rem;
     }
 }
 
@@ -1203,7 +1300,7 @@ button:focus {
     text-align: center;
     color: #636363;
     font-size: 1.8rem;
-    padding-bottom: 5rem;
+    padding-bottom: 10rem;
     padding-top: 5rem;
 }
 

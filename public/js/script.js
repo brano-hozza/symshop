@@ -58,10 +58,23 @@ for (i = 0; i < coll.length; i++) {
         if (content.style.maxHeight) {
             content.style.maxHeight = null;
         } else {
-            content.style.maxHeight = "150px";
+            content.style.maxHeight = "15rem";
         }
     })
 }
+
+openPopup = () =>{
+    let content = document.getElementById("popup");
+    if(content.style.height){
+        content.style.height = null;
+        content.style.padding = null;
+    }
+    else{
+        content.style.height = "auto";
+        content.style.padding = "2rem";
+    }
+
+};
 
 let mymap = L.map('mapid').setView([48.9469267, 20.5665167], 20);
 
