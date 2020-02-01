@@ -687,6 +687,8 @@ button:focus {
     border: none;
     padding: 1rem 2rem;
     background-color: #dadada;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
 }
 /*PROFILE*/
 .profile-section{
@@ -1230,6 +1232,11 @@ button:focus {
     .nav-phone-right img{
         width: 2.5rem;
         height: auto;
+        outline: none;
+    }
+
+    .nav-phone-right img:focus{
+
     }
 
     .nav-phone-left{
@@ -1331,6 +1338,7 @@ button:focus {
     background-color: #525252;
     transition-duration: 0.1s;
 }
+
 
 #mapid { height: 18rem; }
 
