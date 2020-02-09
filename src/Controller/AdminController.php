@@ -3,11 +3,15 @@
 namespace App\Controller;
 
 use App\Entity\ProductOrder;
+use App\Entity\User;
 use App\Repository\ProductOrderRepository;
 use App\Repository\ProductRepository;
 use App\Repository\UserRepository;
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\Mapping\Entity;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -50,6 +54,47 @@ class AdminController extends AbstractController
             'announce' => 'nahahahahha',
             'order' => $order
         ]);
+
+    }
+
+    /**
+     * @Route("/admin/edit_user/{user}", name="admin_edit_user")
+     * @param User $user
+     * @param Request $request
+     * @return RedirectResponse|Response
+     */
+    public function edit_user(User $user, Request $request)
+    {
+        if ($user == null) {
+            return $this->redirectToRoute('index');
+        }
+        $user->setUsername($request->get("username"));
+        $user->setFirstName($request->get("firstName"));
+        $user->setLastName($request->get("lastName"));
+        $user->setEmail($request->get("email"));
+        /**
+         * array roles
+         */
+        $roles = $user->getRoles();
+        if($request->get("isAdmin") == "on" && !in_array("ROLE_ADMIN", $roles)){
+            array_push($roles, "ROLE_ADMIN");
+        }
+        else if($request->get("isAdmin") == null){
+            $key = array_search("ROLE_ADMIN", $roles);
+            if ($key !== false) {
+                unset($roles[$key]);
+            }
+        }
+
+        $user->setRoles($roles);
+        dump($user);
+        dump($request->get("isAdmin"));
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($user);
+        $em->flush();
+
+
+        return $this->redirectToRoute('admin');
 
     }
 }

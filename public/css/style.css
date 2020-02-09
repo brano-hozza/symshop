@@ -1363,7 +1363,7 @@ button:focus {
 }
 .admin-table-section .orders{
     display: inline-block;
-    width: 30%;
+    width: 50%;
 }
 .admin-product-table td, .admin-product-table th, .admin-product-table {
     border-collapse: collapse;
