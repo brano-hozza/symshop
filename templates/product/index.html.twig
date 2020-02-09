@@ -110,31 +110,13 @@
                         <option value="size">Size</option>
                     {% endif %}
                 </select>
-
-            <script>
-                let showProduct = id =>{
-                    let f = document.createElement('form');
-                    f.action='http://janos.test/products/detail';
-                    f.method='POST';
-                    f.target='_blank';
-
-                    let i=document.createElement('input');
-                    i.type='hidden';
-                    i.name='id';
-                    i.value=id;
-                    f.appendChild(i);
-
-                    document.body.appendChild(f);
-                    f.submit();
-                };
-
-            </script>
             <div class='product-list'>
                 {% for product in products %}
                     <div class='product-container'>
                         <div style="height: 240px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.46); background-color: white; border-radius: 1rem;">
-                            <img class='product-img' src={{ asset("images/#{product.img}.jpg") }} alt="{{ product.img }}" alt="img" onclick="showProduct({{ product.getId() }})">
-
+                            <a href="{{ path('products_detail',{product: product.getId()}) }}">
+                            <img class='product-img' src={{ asset("images/#{product.img}.jpg") }} alt="{{ product.img }}" alt="img">
+                            </a>
                         </div>
                             <div class="product-info">
                                 <h1 class='product-header'

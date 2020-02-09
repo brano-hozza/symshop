@@ -1347,3 +1347,64 @@ button:focus {
     color: white !important;
     margin-right: 1rem;
 }
+/* Admin table */
+
+.admin-table-section{
+    width: 100%;
+}
+.admin-table-section .products{
+    display: inline-block;
+    width: 20%;
+    margin-left: 5rem;
+}
+.admin-table-section .users{
+    display: inline-block;
+    width: 38%;
+}
+.admin-table-section .orders{
+    display: inline-block;
+    width: 30%;
+}
+.admin-product-table td, .admin-product-table th, .admin-product-table {
+    border-collapse: collapse;
+    border-left: 0;
+    border-right: 0;
+    padding-left: .5rem;
+    padding-right: .5rem;
+
+}
+.admin-product-table{
+    border: 1px solid black;
+}
+.admin-product-table td {
+    border-top: 1px solid grey;
+}
+
+.table_id{
+    font-size: 1.5rem ;
+    text-align: center;
+    width: 2rem;
+    border-right: 1px solid black !important;
+}
+.table_name{
+    font-size: 1.5rem ;
+    width: 10rem;
+}
+.table_pcs{
+    font-size: 1.5rem ;
+    text-align: center;
+    width: 2rem;
+}
+.table_size{
+    font-size: 1.5rem ;
+    text-align: center;
+    width: 2rem;
+}
+.table_brand{
+    font-size: 1.5rem ;
+    width: 10rem;
+    text-align: center;
+}
+
+
+

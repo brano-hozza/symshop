@@ -1,0 +1,103 @@
+{% extends 'base.html.twig' %}
+
+
+
+{% block body %}
+    <article class="article-blog">
+        <h1>Admin</h1>
+        <section class="admin-table-section">
+            <div class="products">
+                <h2>Produkty:</h2>
+                <table class="admin-product-table">
+                    <tr>
+                        <th class="table_id">ID</th>
+                        <th class="table_name">Name</th>
+                        <th class="table_pcs">Pcs</th>
+                        <th class="table_size">Size</th>
+                        <th class="table_brand">Brand</th>
+                    </tr>
+                    {% for product in products %}
+                        <tr>
+                            <td class="table_id">{{ product.getId() }}</td>
+                            <td class="table_name">{{ product.getName() }}</td>
+                            <td class="table_pcs">{{ product.getPcs() }}</td>
+                            <td class="table_size">{{ product.getSize() }}</td>
+                            <td class="table_brand">{{ product.getBrand() }}</td>
+                        </tr>
+
+                    {% endfor %}
+
+                </table>
+            </div>
+            <div class="users">
+                <h2>Uzivatelia:</h2>
+                <table class="admin-product-table">
+                    <tr>
+                        <th class="table_id">ID</th>
+                        <th class="table_name">Username</th>
+                        <th class="table_pcs">First name</th>
+                        <th class="table_size">Last name</th>
+                        <th class="table_brand">Email</th>
+                        <th class="table_brand">Is admin</th>
+                    </tr>
+                    {% for user in users %}
+                        <tr>
+                            <td class="table_id">{{ user.getId() }}</td>
+                            <td class="table_name">{{ user.getUsername() }}</td>
+                            <td class="table_pcs">{{ user.getFirstName() }}</td>
+                            <td class="table_size">{{ user.getLastName() }}</td>
+                            <td class="table_brand">{{ user.getEmail() }}</td>
+                            {% if 'ROLE_ADMIN' in user.getRoles() %}
+                                <td class="table_brand">Yes</td>
+                            {% else %}
+                                <td class="table_brand">No</td>
+                            {% endif %}
+                        </tr>
+
+                    {% endfor %}
+
+                </table>
+            </div>
+            <div class="orders">
+                <h2>Objednavky:</h2>
+                <table class="admin-product-table">
+                    <tr>
+                        <th class="table_id">ID</th>
+                        <th class="table_name">Product</th>
+                        <th class="table_pcs">User</th>
+                        <th class="table_size">Price</th>
+                        <th class="table_brand">Date</th>
+                        <th class="table_brand">Is complete</th>
+                        <th></th>
+                    </tr>
+                    {% for order in orders %}
+                        {% for product in order.getProduct() %}
+                            <tr>
+                                <td class="table_id">{{ order.getId() }}</td>
+                                <td class="table_name"
+
+                                >{{ product.getBrand() }} {{ product.getName() }}</td>
+                                <td class="table_name">{{ order.user.getUsername() }}</td>
+                                <td class="table_pcs">${{ product.getPrice() }}</td>
+                                <td class="table_brand">{{ order.getCreatedAt()|date("Y/m/d") }}</td>
+                                <td class="table_name">
+                                    {% if order.getIsComplete() %}
+                                        Hotovo
+                                    {% else %}
+                                        Prebieha
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    <a href="{{ path('admin_edit_order', {order: order.getId()}) }}">Edit</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    {% endfor %}
+
+                </table>
+            </div>
+        </section>
+
+    </article>
+
+{% endblock %}
