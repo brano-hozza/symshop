@@ -509,7 +509,7 @@ button:focus {
 
 .product-img {
     width: 90%;
-    height: auto;
+    height: 90%;
     margin-top: 2rem;
     margin-bottom: 1rem;
     padding-left: 0.5rem;

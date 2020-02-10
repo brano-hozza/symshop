@@ -38,21 +38,30 @@
             <li class="nav-item-right"><a href="{{ path('user_login') }}">Log In</a></li>
         {% endif %}
     </ul>
+    {% if admin is defined %}
+        {% if admin %}
+            <ul class="nav">
+                <li class="nav-item"><a href="{{ path('admin_product') }}">Products</a></li>
+                <li class="nav-item"><a href="{{ path('admin_user') }}">Blog</a></li>
+                <li class="nav-item"><a href="{{ path('admin_order') }}">Orders</a></li>
+            </ul>
+        {% endif %}
+    {% endif %}
 </nav>
 
 <nav class="nav-phone">
     {% if is_granted('ROLE_USER') %}
-    <div class="nav-phone-left">
-        <div>
-            <p>Logged In As</p>
-            <button onclick="openPopup();" class="user-p">{{ app.user.username }}</button>
-            <div class="phone-popup" id="popup">
-                <a href="{{ path('user_profile') }}">Profile</a>
-                <br>
-                <a href="{{ path('user_logout') }}">Log out</a>
+        <div class="nav-phone-left">
+            <div>
+                <p>Logged In As</p>
+                <button onclick="openPopup();" class="user-p">{{ app.user.username }}</button>
+                <div class="phone-popup" id="popup">
+                    <a href="{{ path('user_profile') }}">Profile</a>
+                    <br>
+                    <a href="{{ path('user_logout') }}">Log out</a>
+                </div>
             </div>
         </div>
-    </div>
     {% else %}
         <div class="nav-phone-left">
             <div>

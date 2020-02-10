@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <article style="background-color: #E2E2E2;">
+        <h1>Admin</h1>
+        <div class="orders">
+            <h2>Objednavky:</h2>
+            <table class="admin-product-table">
+                <tr>
+                    <th class="table_id">ID</th>
+                    <th class="table_name">Product</th>
+                    <th class="table_pcs">User</th>
+                    <th class="table_size">Price</th>
+                    <th class="table_brand">Date</th>
+                    <th class="table_brand"><label for="isComplete">Is complete</label></th>
+                    <th></th>
+                </tr>
+                {% for order in orders %}
+                    {% for product in order.getProduct() %}
+                        <tr>
+                            <form action="{{ path('admin_order_edit', {order: order.getId()}) }}">
+                                <td class="table_id">{{ order.getId() }}</td>
+                                <td class="table_name"
+
+                                >{{ product.getBrand() }} {{ product.getName() }}</td>
+                                <td class="table_name">{{ order.user.getUsername() }}</td>
+                                <td class="table_pcs">${{ product.getPrice() }}</td>
+                                <td class="table_brand">{{ order.getCreatedAt()|date("Y/m/d") }}</td>
+                                <td class="table_name">
+                                    {% if order.getIsComplete() %}
+                                        <input type="checkbox" checked name="isComplete" id="isComplete">
+                                    {% else %}
+                                        <input type="checkbox" name="isComplete" id="isComplete">
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    <input type="submit" value="Submit">
+                                </td>
+                            </form>
+                        </tr>
+                    {% endfor %}
+                {% endfor %}
+
+            </table>
+        </div>
+    </article>
+
+{% endblock %}
+

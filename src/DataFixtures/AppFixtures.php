@@ -52,7 +52,7 @@ class AppFixtures extends Fixture implements FixtureGroupInterface
             $product->setPcs($this->faker->numberBetween(10,30));
             $product->setType($this->faker->randomElement(["Shoes", "T-Shirt", "Headgear", "Trousers"]));
             $product->setPrice($this->faker->randomFloat(2,30,300));
-            $product->setImg($this->faker->randomElement(["img1", "img2", "img3", "jordan1", "jordan2", "jordan_hat1", "jordan_hat2", "none"]));
+            $product->setImg($this->faker->randomElement(["img1.jpg", "img2.jpg", "img3.jpg", "jordan1.jpg", "jordan2.jpg", "jordan_hat1.jpg", "jordan_hat2.jpg", "none.jpg"]));
             return $product;
         });
         $manager->flush();

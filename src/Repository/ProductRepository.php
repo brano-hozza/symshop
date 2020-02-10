@@ -49,6 +49,9 @@ class ProductRepository extends ServiceEntityRepository
         }else{
             $qb_size = $qb->expr()->in("p.size", $arr_size);
         }
+        /**
+         * @todo FIXNU DRUHU HODNOTU PLIS !!!
+         */
         if($arr_price[0] == null){
             $qb_price1 = "1=1";
             $qb_price2 = "1=1";

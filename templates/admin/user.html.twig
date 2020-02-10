@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <article style="background-color: #E2E2E2;">
+        <h1>Admin</h1>
+        <div class="users">
+            <h2>Uzivatelia:</h2>
+            <table class="admin-product-table">
+                <tr>
+                    <th class="table_id">ID</th>
+                    <th class="table_name"><label for="username">Username</label></th>
+                    <th class="table_pcs"><label for="firstName">First name</label></th>
+                    <th class="table_size"><label for="lastName">Last name</label></th>
+                    <th class="table_brand"><label for="email">Email</label></th>
+                    <th class="table_brand"><label for="isAdmin">Is admin</label></th>
+                    <th class="table_brand">Submit</th>
+                </tr>
+                {% for user in users %}
+                    <tr>
+                        <form action="{{ path('admin_user_edit', {user: user.getId()}) }}">
+                            <td class="table_id">{{ user.getId() }}</td>
+                            <td class="table_name"><input type="text" value="{{ user.getUsername() }}" id="username" name="username"></td>
+                            <td class="table_pcs"><input type="text" value="{{ user.getFirstName() }}" id="firstName" name="firstName"> </td>
+                            <td class="table_size"><input type="text" value="{{ user.getLastName() }}" id="lastName" name="lastName"></td>
+                            <td class="table_brand"><input type="email" value="{{ user.getEmail() }}" name="email" id="email"></td>
+                            {% if 'ROLE_ADMIN' in user.getRoles() %}
+                                <td class="table_brand"><input type="checkbox" checked id="isAdmin" name="isAdmin"></td>
+                            {% else %}
+                                <td class="table_brand"><input type="checkbox" id="isAdmin" name="isAdmin"></td>
+                            {% endif %}
+                            <td><input type="submit" name="submit" id="submit"></td>
+                        </form>
+                    </tr>
+
+                {% endfor %}
+
+            </table>
+        </div>
+    </article>
+
+{% endblock %}
+
