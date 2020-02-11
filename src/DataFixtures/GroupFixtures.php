@@ -16,7 +16,6 @@ class GroupFixtures extends Fixture implements DependentFixtureInterface
      */
     public function getDependencies()
     {
-        // TODO: Implement getDependencies() method.
         return array(
             AppFixtures::class,
             OrderFixtures::class
@@ -28,6 +27,5 @@ class GroupFixtures extends Fixture implements DependentFixtureInterface
      */
     public function load(ObjectManager $manager)
     {
-        // TODO: Implement load() method.
     }
 }
