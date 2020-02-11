@@ -800,6 +800,8 @@ button:focus {
 
 .shipping-info{
     width: 60rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
 }
 
 .shipping-info h1{
@@ -813,6 +815,7 @@ button:focus {
 
 .shipipng-img{
     text-align: center;
+    margin-top: 2rem;
 }
 
 .shipipng-img img{
@@ -820,7 +823,40 @@ button:focus {
     height: auto;
 }
 
+.size-chart{
+    text-align: center;
+    margin: 0 auto;
+    width: 80%;
 
+    border-collapse: collapse;
+
+}
+
+.size-chart tr{
+    margin: 0;
+}
+
+.size-chart-dark{
+    background-color: #e1e1e1;
+}
+
+.size-chart th{
+    font-size: 3rem;
+    border-bottom: 2px solid grey;
+}
+
+.size-chart td{
+    font-size: 2rem;
+
+    margin: 0;
+    padding-bottom: 1rem;
+    padding-top: 1rem;
+}
+
+.size-chart tr:hover
+{
+    background-color: #cecece;
+}
 /*Product Detail*/
 
 /*PROFILE*/
