@@ -3,15 +3,15 @@
 
 {% block body %}
     <article class="article-blog">
-        <h1>Blogs</h1>
+        <h1>{% trans %}BLOGS{% endtrans %}</h1>
         {% if is_granted('ROLE_USER') %}
-            <a class="create-blog" href="{{ path('blog_create') }}">Create Post</a>
+            <a class="create-blog" href="{{ path('blog_create') }}">{% trans %}CREATE_POST{% endtrans %}</a>
             <a class="create-blog-phone" href="{{ path('blog_create') }}"><img src="{{ asset("images/add.png") }}"></a>
         {% endif %}
         <form action="{{ path("blog") }}"
               method="post" id="form">
             <div class="blog-search">
-                <input class="blog-search-input" type="text" placeholder="Search Here" name="search_phrase" autocomplete="off" value="{{ phrase }}" onkeydown="search(this.value);"><br>
+                <input class="blog-search-input" type="text" placeholder="{% trans %}SEARCH_HERE{% endtrans %}" name="search_phrase" autocomplete="off" value="{{ phrase }}" onkeydown="search(this.value);"><br>
                 <input type="submit" style="visibility: hidden">
             </div>
             <div id="blogs">
@@ -20,7 +20,7 @@
                     <p class="blog-user">u/{{ blog.user.username }}</p>
                     <h2 class="blog-title">{{blog.title}}</h2>
                     <p class="blog-text">{{ blog.text }}</p>
-                    <p class="blog-date">Created On: {{ blog.getCreatedAt()|date("d/m/Y") }}</p>
+                    <p class="blog-date">{% trans %}CREATED_ON{% endtrans %}: {{ blog.getCreatedAt()|date("d/m/Y") }}</p>
                 </div>
 
             {% endfor %}

@@ -1,0 +1,72 @@
+USERNAME: Prihlasovacie meno
+PASSWORD: Heslo
+EMAIL: Email
+LOG_IN: Prihlásenie
+LOG_IN_DESCRIPTION: do vášho účtu
+SIGN_IN: Prihlásiť
+NOT_SIGNED: Ešte nie ste registrovaný?
+CLICK_HERE: Stlač tu!
+
+LOG_OUT: Odhlásiť
+
+HOME: Domov
+PRODUCTS: Produkty
+BLOG: Blog
+CONTACT: Kontakt
+ORDERS: Objednávky
+ADMIN: Admin
+
+ADMIN_PRODUCTS: Správa produktov
+ADMIN_BLOG: Edit blogu
+ADMIN_ORDERS: Spracovanie objednávok
+
+BRAND: Značka
+TYPE: Typ oblečenia
+SIZE: Veľkosť
+PRICE: Cena
+
+NAME_PRODUCT: Názov A-Z
+NAME_PRODUCT_DESC: Názov Z-A
+
+PRICE_PRODUCT: Cena od najnižšiej
+PRICE_PRODUCT_DESC: Cena od najvyššej
+
+TYPE_PRODUCT: Typ A-Z
+TYPE_PRODUCT_DESC: Typ Z-A
+
+BRAND_PRODUCT: Značka A-Z
+BRAND_PRODUCT_DESC: Značka Z-A
+
+SIZE_PRODUCT: Veľkosť od najnižšiej
+SIZE_PRODUCT_DESC: Veľkosť od najvyššej
+
+FROM: Od...
+TO: Do...
+
+CONTACT_US: Kontaktujte nás
+ANY_QUESTIONS: Ak máte akékoľvek otázky
+FIND_US_HERE: Nájdete nás tu
+
+BLOGS: Blogy
+SEARCH_HERE: Vyhľadaj tu
+CREATED_ON: Vzniknutý
+CREATE_POST: Nový príspevok
+
+SUBMIT: Potvrdiť
+BODY: Telo
+TITLE: Titulok
+
+ACCOUNT_INFORMATIONS: Informácie o účte
+PERSONAL_INFORMATIONS: Osobné informácie
+FIRST_NAME: Meno
+LAST_NAME: Priezvisko
+PHONE_NUMBER: Telefónne číslo
+COUNTRY: Krajina
+CITY: Mesto
+POSTAL_CODE: PSČ
+ADDRESS: Adresa
+EDIT: Upraviť
+
+ITEM_NAME: Názov produktu
+ORDER_DATE: Dátum objednania
+ORDER_NUMBER: Číslo objednávky

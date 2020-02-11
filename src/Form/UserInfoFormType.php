@@ -11,61 +11,67 @@ use Symfony\Component\Form\Extension\Core\Type\TelType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class UserInfoFormType extends AbstractType
 {
+    private $translator;
+    public function __construct(TranslatorInterface $translator)
+    {
+        $this->translator = $translator;
+    }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('first_name',TextType::class, [
-                'label'=>'First name:',
+                'label'=>$this->translator->trans("FIRST_NAME").':',
                 'label_attr' =>['class' => 'label'],
                 'required' => true,
                 'attr'=>['class' => 'input']
             ])
             ->add('last_name',TextType::class, [
-                'label'=>'Last name:',
+                'label'=>$this->translator->trans("LAST_NAME").':',
                 'label_attr' =>['class' => 'label'],
                 'required' => true,
                 'attr'=>['class' => 'input']
             ])
             ->add('email',EmailType::class, [
-                'label'=>'Email:',
+                'label'=>$this->translator->trans("EMAIL").':',
                 'label_attr' =>['class' => 'label'],
                 'required' => true,
                 'attr'=>['class' => 'input']
             ])
             ->add('country',CountryType::class, [
-                'label'=>'Country:',
+                'label'=>$this->translator->trans("COUNTRY").':',
                 'required' => true,
                 'attr'=>['class' => 'input']
             ])
             ->add('city',TextType::class, [
-                'label'=>'City:',
+                'label'=>$this->translator->trans("CITY").':',
                 'label_attr' =>['class' => 'label'],
                 'required' => true,
                 'attr'=>['class' => 'input']
             ])
             ->add('street',TextType::class, [
-                'label'=>'Street:',
+                'label'=>$this->translator->trans("ADDRESS").':',
                 'label_attr' =>['class' => 'label'],
                 'required' => true,
                 'attr'=>['class' => 'input']
             ])
             ->add('postal',TextType::class, [
-                'label'=>'Postal:',
+                'label'=>$this->translator->trans("POSTAL_CODE").':',
                 'label_attr' =>['class' => 'label'],
                 'required' => true,
                 'attr'=>['class' => 'input']
             ])
             ->add('phone_number',TelType::class, [
-                'label'=>'Phone number:',
+                'label'=>$this->translator->trans("PHONE_NUMBER").':',
                 'required' => true,
                 'attr'=>['class' => 'input']
             ])
             ->add('submit', SubmitType::class, [
-                'label'=>'Submit',
+                'label'=>$this->translator->trans("SUBMIT"),
                 'attr'=>['class' => 'btn']
             ])
         ;

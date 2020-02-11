@@ -60,16 +60,17 @@ class ProductRepository extends ServiceEntityRepository
         }
         $sort = explode("_", $sort_by);
 
+
         if (empty($sort[1])){
             $sort[1] = 'ASC';
         }
         if ($sort[0] == null){
-            $sort[0] = 'id';
+            $sort[0] = 'name';
         }
         if($page == null){
             $page = 1;
         }
-        dump("p.id",($page-1)*20);
+        dump($sort);
         return $qb
             ->andWhere($qb_type)
             ->andWhere($qb_brand)

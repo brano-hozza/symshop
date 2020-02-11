@@ -11,14 +11,21 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class BlogCreateType extends AbstractType
 {
+    private $translator;
+    public function __construct(TranslatorInterface $translator)
+    {
+        $this->translator = $translator;
+    }
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('title', TextType::class, [
-                'label' => 'Title:',
+                'label' => $this->translator->trans("TITLE").":",
                 'label_attr' =>['class' => 'blog_label'],
                 'required' => true,
                 'attr'=>['class' => 'blog_input'],
@@ -35,7 +42,7 @@ class BlogCreateType extends AbstractType
                 ]
             ])
             ->add('text', TextareaType::class, [
-                'label' => 'Body:',
+                'label' => $this->translator->trans("BODY").":",
                 'label_attr' =>['class' => 'blog_label'],
                 'required' => true,
                 'attr'=>['class' => 'blog_input'],
@@ -52,7 +59,7 @@ class BlogCreateType extends AbstractType
                 ]
             ])
             ->add('submit', SubmitType::class, [
-                'label' => 'Submit',
+                'label' => $this->translator->trans("SUBMIT"),
                 'attr' => ['class' => 'btn'],
             ])
         ;

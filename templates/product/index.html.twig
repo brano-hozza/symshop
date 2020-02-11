@@ -6,10 +6,10 @@
             <section>
                 <h1 class="products-header">PRODUCTS</h1>
                 <div class="filters">
-                    <span class="filter-opener" id="brand" onclick="openFilter('brand');">Brand</span>
-                    <span class="filter-opener" id="size" onclick="openFilter('size');">Size</span>
-                    <span class="filter-opener" id="type" onclick="openFilter('type');">Type</span>
-                    <span class="filter-opener" id="price" onclick="openFilter('price');">Price</span>
+                    <span class="filter-opener" id="brand" onclick="openFilter('brand');">{% trans %}BRAND{% endtrans %}</span>
+                    <span class="filter-opener" id="size" onclick="openFilter('size');">{% trans %}SIZE{% endtrans %}</span>
+                    <span class="filter-opener" id="type" onclick="openFilter('type');">{% trans %}TYPE{% endtrans %}</span>
+                    <span class="filter-opener" id="price" onclick="openFilter('price');">{% trans %}PRICE{% endtrans %}</span>
                 </div>
                 <div class='filter-items' id='brand_sub'>
                     {% for brand in brands %}
@@ -64,15 +64,15 @@
 
                     <div class="price-sub">
                         {% if old_price[0] is null %}
-                            <input type="number" class="price" placeholder="From..." name="min_price" id="min_price">
+                            <input type="number" class="price" placeholder="{% trans %}FROM{% endtrans %}" name="min_price" id="min_price">
                         {% else %}
-                            <input type="number" class="price" placeholder="From..." name="min_price" id="min_price"
+                            <input type="number" class="price" placeholder="{% trans %}FROM{% endtrans %}" name="min_price" id="min_price"
                                    value="{{ old_price[0] }}">
                         {% endif %}
                         {% if old_price[1] is null %}
-                            <input type="number" class="price" placeholder="To..." name="max_price" id="max_price">
+                            <input type="number" class="price" placeholder="{% trans %}TO{% endtrans %}" name="max_price" id="max_price">
                         {% else %}
-                            <input type="number" class="price" placeholder="To..." name="max_price" id="max_price"
+                            <input type="number" class="price" placeholder="{% trans %}TO{% endtrans %}" name="max_price" id="max_price"
                                    value="{{ old_price[1] }}">
                         {% endif %}
                         <div class="search-div">
@@ -83,33 +83,63 @@
                 <div class="sort-by">
                     <select name="sort_by" id="sort_by" onchange="document.getElementById('form').submit();">
                         {% if old_sort == "name" %}
-                            <option value="name" selected>Name</option>
+                            <option value="name" selected>{% trans %}NAME_PRODUCT{% endtrans %}</option>
                         {% else %}
-                            <option value="name" selected>Name</option>
+                            <option value="name">{% trans %}NAME_PRODUCT{% endtrans %}</option>
+                        {% endif %}
+
+                        {% if old_sort == "name_DESC" %}
+                            <option value="name_DESC" selected>{% trans %}NAME_PRODUCT_DESC{% endtrans %}</option>
+                        {% else %}
+                            <option value="name_DESC">{% trans %}NAME_PRODUCT_DESC{% endtrans %}</option>
                         {% endif %}
 
                         {% if old_sort == "price" %}
-                            <option value="price" selected>Price</option>
+                            <option value="price" selected>{% trans %}PRICE_PRODUCT{% endtrans %}</option>
                         {% else %}
-                            <option value="price">Price</option>
+                            <option value="price">{% trans %}PRICE_PRODUCT{% endtrans %}</option>
+                        {% endif %}
+
+                        {% if old_sort == "price_DESC" %}
+                            <option value="price_DESC" selected>{% trans %}PRICE_PRODUCT_DESC{% endtrans %}</option>
+                        {% else %}
+                            <option value="price_DESC">{% trans %}PRICE_PRODUCT_DESC{% endtrans %}</option>
                         {% endif %}
 
                         {% if old_sort == "type" %}
-                            <option value="type" selected>Type</option>
+                            <option value="type" selected>{% trans %}TYPE_PRODUCT{% endtrans %}</option>
                         {% else %}
-                            <option value="type">Type</option>
+                            <option value="type">{% trans %}TYPE_PRODUCT{% endtrans %}</option>
+                        {% endif %}
+
+                        {% if old_sort == "type_DESC" %}
+                            <option value="type_DESC" selected>{% trans %}TYPE_PRODUCT_DESC{% endtrans %}</option>
+                        {% else %}
+                            <option value="type_DESC">{% trans %}TYPE_PRODUCT_DESC{% endtrans %}</option>
                         {% endif %}
 
                         {% if old_sort == "brand" %}
-                            <option value="brand" selected>Brand</option>
+                            <option value="brand" selected>{% trans %}BRAND_PRODUCT{% endtrans %}</option>
                         {% else %}
-                            <option value="brand">Brand</option>
+                            <option value="brand">{% trans %}BRAND_PRODUCT{% endtrans %}</option>
+                        {% endif %}
+
+                        {% if old_sort == "brand_DESC" %}
+                            <option value="brand_DESC" selected>{% trans %}BRAND_PRODUCT_DESC{% endtrans %}</option>
+                        {% else %}
+                            <option value="brand_DESC">{% trans %}BRAND_PRODUCT_DESC{% endtrans %}</option>
                         {% endif %}
 
                         {% if old_sort == "size" %}
-                            <option value="size" selected>Size</option>
+                            <option value="size" selected>{% trans %}SIZE_PRODUCT{% endtrans %}</option>
                         {% else %}
-                            <option value="size">Size</option>
+                            <option value="size">{% trans %}SIZE_PRODUCT{% endtrans %}</option>
+                        {% endif %}
+
+                        {% if old_sort == "size_DESC" %}
+                            <option value="size_DESC" selected>{% trans %}SIZE_PRODUCT_DESC{% endtrans %}</option>
+                        {% else %}
+                            <option value="size_DESC">{% trans %}SIZE_PRODUCT_DESC{% endtrans %}</option>
                         {% endif %}
                     </select>
                 </div>
@@ -133,18 +163,19 @@
 
                         </div>
                     {% endfor %}
-                    <div class="paging">
+                </div>
+                <div class="paging">
 
 
-                        {% if page > 1 %}
-                            <input type="submit" name="page" value="{{ page-1 }}">
-                        {% endif %}
-                        <p>{{ page }}</p>
-                        {% if products|length > 19 %}
-                            <input type="submit" name="page" value="{{ page+1 }}">
-                        {% endif %}
+                    {% if page > 1 %}
+                        <input type="submit" name="page" value="{{ page-1 }}">
+                    {% endif %}
+                    <p>{{ page }}</p>
+                    {% if products|length > 19 %}
+                        <input type="submit" name="page" value="{{ page+1 }}">
+                    {% endif %}
 
-                    </div>
+                </div>
             </section>
         </form>
     </article>

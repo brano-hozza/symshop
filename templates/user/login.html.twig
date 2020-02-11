@@ -13,13 +13,13 @@
             You are logged in as {{ app.user.username }}, <a href="{{ path('user_logout') }}">Logout</a>
         </div>-->
     {% endif %}
-        <h1 class="h3 mb-3 font-weight-normal">Log In</h1>
-        <h3>to your account</h3>
-        <label class="label" for="inputUsername">Username/Email</label>
+        <h1 class="h3 mb-3 font-weight-normal">{% trans %}LOG_IN{% endtrans %}</h1>
+        <h3>{% trans %}LOG_IN_DESCRIPTION{% endtrans %}</h3>
+        <label class="label" for="inputUsername">{% trans %}USERNAME{% endtrans %}/{% trans %}EMAIL{% endtrans %}</label>
         <br>
         <input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control" autocomplete="off" required autofocus>
         <br>
-        <label for="inputPassword">Password</label>
+        <label for="inputPassword">{% trans %}PASSWORD{% endtrans %}</label>
         <br>
         <input type="password" name="password" id="inputPassword" class="form-control" required>
         <br>
@@ -41,11 +41,11 @@
     #}
 
     <button class="btn btn-lg btn-primary" type="submit">
-        Sign in
+        {% trans %}SIGN_IN{% endtrans %}
     </button>
     <br>
-    <p>Not signed up yet?</p>
-    <a href="{{ path('user_register') }}">Click here!</a>
+    <p>{% trans %}NOT_SIGNED{% endtrans %}</p>
+    <a href="{{ path('user_register') }}">{% trans %}CLICK_HERE{% endtrans %}</a>
 </form>
 
 
