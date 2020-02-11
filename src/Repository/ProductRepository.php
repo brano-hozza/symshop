@@ -33,7 +33,6 @@ class ProductRepository extends ServiceEntityRepository
 
     public function getByFilter($arr_type, $arr_brand, $arr_size, $arr_price, $sort_by, $page){
         $qb = $this->createQueryBuilder("p");
-        $sorter = "price";
         if($arr_type == null){
             $qb_type = "1=1";
         }else{
@@ -59,9 +58,13 @@ class ProductRepository extends ServiceEntityRepository
         }else{
             $qb_price2 = $qb->expr()->lte("p.price", $arr_price[1]);
         }
+        $sort = explode("_", $sort_by);
 
-        if ($sort_by == null){
-            $sort_by = 'id';
+        if (empty($sort[1])){
+            $sort[1] = 'ASC';
+        }
+        if ($sort[0] == null){
+            $sort[0] = 'id';
         }
         if($page == null){
             $page = 1;
@@ -75,7 +78,8 @@ class ProductRepository extends ServiceEntityRepository
             ->andWhere($qb_price2)
             ->setFirstResult(($page-1)*20)
             ->setMaxResults(20)
-            ->orderBy("p.".$sort_by)
+            ->orderBy("p.".$sort[0], $sort[1])
+
             ->getQuery()
             ->getResult();
     }
