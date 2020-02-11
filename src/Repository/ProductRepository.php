@@ -49,16 +49,17 @@ class ProductRepository extends ServiceEntityRepository
         }else{
             $qb_size = $qb->expr()->in("p.size", $arr_size);
         }
-        /**
-         * @todo FIXNU DRUHU HODNOTU PLIS !!!
-         */
         if($arr_price[0] == null){
             $qb_price1 = "1=1";
-            $qb_price2 = "1=1";
         }else{
             $qb_price1 = $qb->expr()->gte("p.price", $arr_price[0]);
+        }
+        if($arr_price[1] == null){
+            $qb_price2 = "1=1";
+        }else{
             $qb_price2 = $qb->expr()->lte("p.price", $arr_price[1]);
         }
+
         if ($sort_by == null){
             $sort_by = 'id';
         }

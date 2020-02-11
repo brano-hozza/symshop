@@ -120,6 +120,5 @@ class AppFixtures extends Fixture implements FixtureGroupInterface
     public static function getGroups(): array
     {
         return ['main1', 'main2', 'main3'];
-        // TODO: Implement getGroups() method.
     }
 }
