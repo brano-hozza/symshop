@@ -21,6 +21,29 @@ class ProductOrderRepository extends ServiceEntityRepository
         parent::__construct($registry, ProductOrder::class);
     }
 
+    public function findByFilter($filter){
+        $response = array();
+        $qb = $this->createQueryBuilder("o");
+        $response = $qb
+            ->leftJoin("o.product", "p")
+            ->leftJoin("o.user", "u")
+            ->andWhere("u.username LIKE :username")
+            ->setParameter("username", "%".$filter["user"]."%")
+            ->andWhere("p.name LIKE :product")
+            ->setParameter("product", "%".$filter["product"]."%")
+            ->orWhere("p.brand LIKE :brand")
+            ->setParameter("brand", "%".$filter["product"]."%")
+            ->andWhere("p.price LIKE :price")
+            ->setParameter("price", "%".$filter["price"]."%")
+            ->andWhere("o.is_complete = ".$filter["complete"])
+            ->orderBy("o.created_at",$filter["date"])
+            ->getQuery()
+            ->getResult();
+
+        return $response;
+
+    }
+
     // /**
     //  * @return Order[] Returns an array of Order objects
     //  */

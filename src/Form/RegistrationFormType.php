@@ -15,14 +15,21 @@ use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\Unique;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class RegistrationFormType extends AbstractType
 {
+    private $translator;
+    public function __construct(TranslatorInterface $translator)
+    {
+        $this->translator = $translator;
+    }
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('username', TextType::class, [
-                'label'=>'Username:',
+                'label'=>$this->translator->trans("USERNAME").":",
                 'label_attr' =>['class' => 'label'],
                 'required' => true,
                 'attr'=>['class' => 'input'],
@@ -39,19 +46,19 @@ class RegistrationFormType extends AbstractType
                 ],
             ])
             ->add('first_name',TextType::class, [
-                'label'=>'First name:',
+                'label'=>$this->translator->trans("FIRST_NAME").":",
                 'label_attr' =>['class' => 'label'],
                 'required' => true,
                 'attr'=>['class' => 'input']
             ])
             ->add('last_name',TextType::class, [
-                'label'=>'Last name:',
+                'label'=>$this->translator->trans("LAST_NAME").":",
                 'label_attr' =>['class' => 'label'],
                 'required' => true,
                 'attr'=>['class' => 'input']
             ])
             ->add('email',EmailType::class, [
-                'label'=>'Email:',
+                'label'=>$this->translator->trans("EMAIL").":",
                 'label_attr' =>['class' => 'label'],
                 'required' => true,
                 'attr'=>['class' => 'input'],
@@ -64,7 +71,7 @@ class RegistrationFormType extends AbstractType
             ->add('plainPassword', PasswordType::class, [
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
-                'label'=>'Password:',
+                'label'=>$this->translator->trans("PASSWORD").":",
                 'label_attr' =>['class' => 'label'],
                 'required' => true,
                 'attr'=>['class' => 'input'],
@@ -82,7 +89,7 @@ class RegistrationFormType extends AbstractType
                 ],
             ])
             ->add('agreeTerms', CheckboxType::class, [
-                'label'=>'Agree terms:',
+                'label'=>$this->translator->trans("AGREE_TERMS").":",
                 'label_attr' =>['class' => 'label'],
                 'required' => true,
                 'attr'=>['class' => 'agree'],
@@ -94,7 +101,7 @@ class RegistrationFormType extends AbstractType
                 ],
             ])
             ->add('agreeGDPR', CheckboxType::class, [
-                'label'=>'Accepting GDPR:',
+                'label'=>$this->translator->trans("AGREE_GDPR").":",
                 'label_attr' =>['class' => 'label'],
                 'required' => true,
                 'attr'=>['class' => 'agree'],
@@ -106,7 +113,7 @@ class RegistrationFormType extends AbstractType
                 ],
             ])
             ->add('submit', SubmitType::class, [
-                'label' => 'Submit',
+                'label' =>$this->translator->trans("SUBMIT").":",
                 'attr' => ['class' => 'btn']
             ])
         ;

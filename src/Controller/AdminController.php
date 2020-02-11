@@ -36,15 +36,34 @@ class AdminController extends AbstractController
     /**
      * @Route("/admin/order", name="admin_order")
      * @param ProductOrderRepository $repository
+     * @param Request $request
      * @return RedirectResponse|Response
      */
-    public function order(ProductOrderRepository $repository)
+    public function order(ProductOrderRepository $repository, Request $request)
     {
-        $orders = $repository->findAll();
+        $complete = "false";
+        if( $request->get('complete', '') == "on"){
+            $complete = "true";
+        }
+        $filter = [
+            'product'=>$request->get('product', ''),
+            'user' => $request->get('user', ''),
+            'price' => $request->get('price', ''),
+            'date' =>$request->get('created_at', ''),
+            'complete' => $complete,
+
+        ];
+        $orders = $repository->findByFilter($filter);
+
         return $this->render('admin/order.html.twig', [
             'title' => "BSHOP",
             'announce' => 'nahahahahha',
             'admin' => true,
+            'product' => $request->get('product', ''),
+            'user' => $request->get('user', ''),
+            'price' => $request->get('price', ''),
+            'date' =>$request->get('created_at', ''),
+            'complete' => $request->get('complete', ''),
             'orders' => $orders
         ]);
 
@@ -137,7 +156,7 @@ class AdminController extends AbstractController
         }
         dump($request->get("isComplete"));
         $isComplete = $request->get("isComplete") == "on";
-        if ($order->getIsComplete() != $isComplete){
+        if ($order->getIsComplete() != $isComplete) {
             $order->setIsComplete(!$order->getIsComplete());
             dump("Menime");
         }
@@ -169,12 +188,12 @@ class AdminController extends AbstractController
         $product->setPrice($request->get("price"));
         $product->setSize($request->get("size"));
         $file = $request->files->get("image");
-        $newFileName = $product->getName().'-'.uniqid().'.'.$file->guessExtension();
+        $newFileName = $product->getName() . '-' . uniqid() . '.' . $file->guessExtension();
         dump($newFileName);
-        try{
-         $file->move( $this->getParameter('img_directory'), $newFileName);
-        }catch (FileException $e){
-         throw $e;
+        try {
+            $file->move($this->getParameter('img_directory'), $newFileName);
+        } catch (FileException $e) {
+            throw $e;
         }
         $product->setImg($newFileName);
 

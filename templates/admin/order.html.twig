@@ -15,6 +15,40 @@
                     <th class="table_brand"><label for="isComplete">Is complete</label></th>
                     <th></th>
                 </tr>
+                <tr>
+                    <form action="{{ path('admin_order') }}" id="filtre">
+                        <td></td>
+                        <td><input type="text" name="product" value="{{ product }}"
+                                   onchange="document.getElementById('filtre').submit();"></td>
+                        <td><input type="text" name="user" value="{{ user }}"
+                                   onchange="document.getElementById('filtre').submit();"></td>
+                        <td><input type="number" name="price" value="{{price}}"
+                                   onchange="document.getElementById('filtre').submit();">
+                        </td>
+                        <td>
+                            <select name="created_at" id="sort"
+                                    onchange="document.getElementById('filtre').submit();">
+                                {% if date == "ASC" %}
+                                    <option value="ASC" selected>Od najstarsieho</option>
+                                    <option value="DESC">Od najnovsieho</option>
+                                {% else %}
+                                    <option value="ASC">Od najstarsieho</option>
+                                    <option value="DESC" selected>Od najnovsieho</option>
+                                {% endif %}
+                            </select>
+                        </td>
+                        <td>
+                            {% if complete == "on" %}
+                                <input type="checkbox" checked name="complete"
+                                       onchange="document.getElementById('filtre').submit();">
+                            {% else %}
+                                <input type="checkbox" name="complete"
+                                       onchange="document.getElementById('filtre').submit();">
+                            {% endif %}
+                        </td>
+                        <td></td>
+                    </form>
+                </tr>
                 {% for order in orders %}
                     {% for product in order.getProduct() %}
                         <tr>

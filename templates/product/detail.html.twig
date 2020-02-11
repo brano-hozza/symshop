@@ -14,10 +14,14 @@
                         <p>EUR {{ product.size }}</p>
                         <p>${{ product.price }}</p>
                     </div>
+                    {% if can_shop %}
                     <form action="{{path("order_create")}}">
                         <input type="hidden" name="id" value="{{ product.getId() }}">
                         <input type="submit" class="btn">
                     </form>
+                    {% else %}
+                        <div class="btn-off">{%trans%}CANT_SHOP{% endtrans %}</div>
+                    {% endif %}
                 </div>
             </div>
             <div class="shipping">

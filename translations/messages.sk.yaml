@@ -43,6 +43,8 @@ SIZE_PRODUCT_DESC: Veľkosť od najvyššej
 FROM: Od...
 TO: Do...
 
+CANT_SHOP: Nie je možné kúpiť
+
 CONTACT_US: Kontaktujte nás
 ANY_QUESTIONS: Ak máte akékoľvek otázky
 FIND_US_HERE: Nájdete nás tu
@@ -70,3 +72,8 @@ EDIT: Upraviť
 ITEM_NAME: Názov produktu
 ORDER_DATE: Dátum objednania
 ORDER_NUMBER: Číslo objednávky
+
+SIGN_UP: Registrovať
+TO_CREATE: a vytvoriť účet
+AGREE_TERMS: Súhlasím s obch. pod.
+AGREE_GDPR: Súhlasím s GDPR

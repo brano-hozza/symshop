@@ -5,6 +5,7 @@ namespace App\Controller;
 
 
 use App\Entity\Product;
+use App\Entity\User;
 use App\Repository\ProductRepository;
 use Doctrine\Common\Collections\Criteria;
 use Doctrine\ORM\EntityManagerInterface;
@@ -76,10 +77,27 @@ class ProductController extends AbstractController
         if($product == null){
             return $this->redirectToRoute('products');
         }
+        $can_shop = true;
+        /**
+         * @var User $user
+         */
+        if ($user = $this->getUser()){
+            if ($user->getCity() == "" or
+                $user->getCountry() == "" or
+                $user->getStreet() == "" or
+                $user->getPostal() == "" or
+                $user->getPhoneNumber() == ""){
+                $can_shop = false;
+
+            }
+        }else{
+            $can_shop = false;
+        }
         return $this->render('product/detail.html.twig',[
             'title' => "Bshop",
             'announce' =>  "Welcome to bshop",
-            'product' => $product
+            'product' => $product,
+            'can_shop' => $can_shop
         ]);
     }
 }

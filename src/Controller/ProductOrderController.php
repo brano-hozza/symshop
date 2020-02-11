@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
 use App\Repository\ProductOrderRepository;
 use App\Repository\ProductRepository;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -28,6 +29,7 @@ class ProductOrderController extends AbstractController
             return $this->redirectToRoute("products");
         }
         else{
+
             $amount = $request->get("amount")?$request->get("amount"):1;
             dump($amount);
             $id = $request->get("id");
