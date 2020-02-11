@@ -1,39 +1,42 @@
 {% extends('base.html.twig') %}
 {% block body %}
     <article style="background-color: #ffffff;">
-        <section>
-            <h1 class="products-header">{{ product.getBrand() }}{{ product.getName() }}</h1>
-
-
-        </section>
-        <section>
-
-            <div class='product-list'>
-                <div class='product-container'>
-                    <div style="height: 240px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.46); background-color: white; border-radius: 25px;">
-                        <img class='product-img' src={{ asset("images/#{product.img}.jpg") }} alt="{{ product.img }}"
-                             alt="img">
-                    </div>
-                    <div class="product-info">
-                        <h1 class='product-header'
-                            style="background-image: {{ asset('images/products-background.jpg') }}; float: left;">{{ product.brand }} {{ product.name }}</h1>
-                        <p class='product-description'
-                           style="float:left; text-align: left; width: 100%;">{{ product.description }}</p>
-                        <p class='product-price' style="float: right; margin-top: -12%;">${{ product.price }}</p><br>
-                    </div>
+        <section style="">
+            <div class="product-detail">
+                <div class="product-photo">
+                    <h2 style="margin-left: 3rem;">Produkty > {{ product.brand }} {{ product.name }}</h2>
+                    <img src={{ asset("images/#{product.img}.jpg") }} alt="{{ product.img }}" alt="img">
                 </div>
-                <form action="{{path("order_create")}}">
-                    <input type="hidden" name="id" value="{{ product.getId() }}">
-                    <label>
-                        Amount:
-                        <input type="text"
-                               onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57"
-                               name="amount" />
-
-                    </label>
-                    <input type="submit">
-                </form>
+                <div class="product-order">
+                    <h1>{{ product.brand }} {{ product.name }}</h1>
+                    <p>{{ product.description }}</p>
+                    <div class="detail-sizes">
+                        <p>EUR {{ product.size }}</p>
+                        <p>${{ product.price }}</p>
+                    </div>
+                    <form action="{{path("order_create")}}">
+                        <input type="hidden" name="id" value="{{ product.getId() }}">
+                        <input type="submit" class="btn">
+                    </form>
+                </div>
             </div>
+            <div class="shipping">
+                <div class="shipipng-img">
+                    <img src="{{ asset("images/shipping.png") }}">
+                </div>
+                <div class="shipping-info">
+                    <h1>Doručenie</h1>
+                    <p>Všetky objednávky posielame Slovenskou poštou na dobierku, alebo cez osobný odber v
+                        mestách Košice, Spišská Nová Ves, Spišské Podhradie, Poprad, Prešov, atď.</p>
+                    <p>Ak máte otázky, kontaktujte nás pre bližšie ifnormácie.</p>
+                </div>
+            </div>
+
+            <div>
+                <h1>Veľkostná tabuľka</h1>
+            </div>
+
+
         </section>
     </article>
 {% endblock %}
