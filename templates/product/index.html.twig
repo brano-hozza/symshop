@@ -63,61 +63,65 @@
                 <div class="filter-items" id="price_sub">
 
                     <div class="price-sub">
-                    {% if old_price[0] is null  %}
-                    <input type="number" class="price" placeholder="From..." name="min_price" id="min_price" >
-                    {% else %}
-                    <input type="number" class="price" placeholder="From..." name="min_price" id="min_price"  value="{{ old_price[0] }}">
-                    {% endif %}
-                    {% if old_price[1] is null  %}
-                        <input type="number" class="price" placeholder="To..." name="max_price" id="max_price" >
-                    {% else %}
-                        <input type="number" class="price" placeholder="To..." name="max_price" id="max_price" value="{{ old_price[1] }}">
-                    {% endif %}
-                    <div class="search-div">
-                        <input type="submit" value="Search" name="search" class="search">
-                    </div>
+                        {% if old_price[0] is null %}
+                            <input type="number" class="price" placeholder="From..." name="min_price" id="min_price">
+                        {% else %}
+                            <input type="number" class="price" placeholder="From..." name="min_price" id="min_price"
+                                   value="{{ old_price[0] }}">
+                        {% endif %}
+                        {% if old_price[1] is null %}
+                            <input type="number" class="price" placeholder="To..." name="max_price" id="max_price">
+                        {% else %}
+                            <input type="number" class="price" placeholder="To..." name="max_price" id="max_price"
+                                   value="{{ old_price[1] }}">
+                        {% endif %}
+                        <div class="search-div">
+                            <input type="submit" value="Search" name="search" class="search">
+                        </div>
                     </div>
                 </div>
-                <label for="sort_by">Sort by:</label>
-                <select name="sort_by" id="sort_by" onchange="document.getElementById('form').submit();">
-                    {% if old_sort == "name" %}
-                        <option value="name" selected>Name</option>
-                    {% else %}
-                        <option value="name" selected>Name</option>
-                    {% endif %}
+                <div class="sort-by">
+                    <select name="sort_by" id="sort_by" onchange="document.getElementById('form').submit();">
+                        {% if old_sort == "name" %}
+                            <option value="name" selected>Name</option>
+                        {% else %}
+                            <option value="name" selected>Name</option>
+                        {% endif %}
 
-                    {% if old_sort == "price" %}
-                        <option value="price" selected>Price</option>
-                    {% else %}
-                        <option value="price">Price</option>
-                    {% endif %}
+                        {% if old_sort == "price" %}
+                            <option value="price" selected>Price</option>
+                        {% else %}
+                            <option value="price">Price</option>
+                        {% endif %}
 
-                    {% if old_sort == "type" %}
-                        <option value="type" selected>Type</option>
-                    {% else %}
-                        <option value="type">Type</option>
-                    {% endif %}
+                        {% if old_sort == "type" %}
+                            <option value="type" selected>Type</option>
+                        {% else %}
+                            <option value="type">Type</option>
+                        {% endif %}
 
-                    {% if old_sort == "brand" %}
-                        <option value="brand" selected>Brand</option>
-                    {% else %}
-                        <option value="brand">Brand</option>
-                    {% endif %}
+                        {% if old_sort == "brand" %}
+                            <option value="brand" selected>Brand</option>
+                        {% else %}
+                            <option value="brand">Brand</option>
+                        {% endif %}
 
-                    {% if old_sort == "size" %}
-                        <option value="size" selected>Size</option>
-                    {% else %}
-                        <option value="size">Size</option>
-                    {% endif %}
-                </select>
-            <div class='product-list'>
-                {% for product in products %}
-                    <div class='product-container'>
-                        <div style="height: 240px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.46); background-color: white; border-radius: 1rem;">
-                            <a href="{{ path('products_detail',{product: product.getId()}) }}">
-                            <img class='product-img' src={{ asset("images/#{product.img}") }} alt="{{ product.img }}" alt="img">
-                            </a>
-                        </div>
+                        {% if old_sort == "size" %}
+                            <option value="size" selected>Size</option>
+                        {% else %}
+                            <option value="size">Size</option>
+                        {% endif %}
+                    </select>
+                </div>
+                <div class='product-list'>
+                    {% for product in products %}
+                        <div class='product-container'>
+                            <div style="height: 240px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.46); background-color: white; border-radius: 1rem;">
+                                <a href="{{ path('products_detail',{product: product.getId()}) }}">
+                                    <img class='product-img'
+                                         src={{ asset("images/#{product.img}") }} alt="{{ product.img }}" alt="img">
+                                </a>
+                            </div>
                             <div class="product-info">
                                 <h1 class='product-header'
                                     style="background-image: {{ asset('images/products-background.jpg') }}; float: left;">{{ product.brand }} {{ product.name }}</h1>
@@ -129,18 +133,18 @@
 
                         </div>
                     {% endfor %}
-                <div class="paging">
+                    <div class="paging">
 
 
-                    {% if page > 1 %}
-                        <input type="submit" name="page" value="{{ page-1 }}">
-                    {% endif %}
-                    <p>{{ page }}</p>
-                    {% if products|length > 19 %}
-                        <input type="submit" name="page" value="{{ page+1 }}">
-                    {% endif %}
+                        {% if page > 1 %}
+                            <input type="submit" name="page" value="{{ page-1 }}">
+                        {% endif %}
+                        <p>{{ page }}</p>
+                        {% if products|length > 19 %}
+                            <input type="submit" name="page" value="{{ page+1 }}">
+                        {% endif %}
 
-                </div>
+                    </div>
             </section>
         </form>
     </article>

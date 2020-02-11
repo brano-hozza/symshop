@@ -1,39 +1,119 @@
 {% extends('base.html.twig') %}
 {% block body %}
     <article style="background-color: #ffffff;">
-        <section>
-            <h1 class="products-header">{{ product.getBrand() }}{{ product.getName() }}</h1>
-
-
-        </section>
-        <section>
-
-            <div class='product-list'>
-                <div class='product-container'>
-                    <div style="height: 240px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.46); background-color: white; border-radius: 25px;">
-                        <img class='product-img' src={{ asset("images/#{product.img}.jpg") }} alt="{{ product.img }}"
-                             alt="img">
-                    </div>
-                    <div class="product-info">
-                        <h1 class='product-header'
-                            style="background-image: {{ asset('images/products-background.jpg') }}; float: left;">{{ product.brand }} {{ product.name }}</h1>
-                        <p class='product-description'
-                           style="float:left; text-align: left; width: 100%;">{{ product.description }}</p>
-                        <p class='product-price' style="float: right; margin-top: -12%;">${{ product.price }}</p><br>
-                    </div>
+        <section style="">
+            <div class="product-detail">
+                <div class="product-photo">
+                    <h2 style="margin-left: 3rem;">Produkty > {{ product.brand }} {{ product.name }}</h2>
+                    <img src={{ asset("images/#{product.img}") }} alt="{{ product.img }}" alt="img">
                 </div>
-                <form action="{{path("order_create")}}">
-                    <input type="hidden" name="id" value="{{ product.getId() }}">
-                    <label>
-                        Amount:
-                        <input type="text"
-                               onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57"
-                               name="amount" />
-
-                    </label>
-                    <input type="submit">
-                </form>
+                <div class="product-order">
+                    <h1>{{ product.brand }} {{ product.name }}</h1>
+                    <p>{{ product.description }}</p>
+                    <div class="detail-sizes">
+                        <p>EUR {{ product.size }}</p>
+                        <p>${{ product.price }}</p>
+                    </div>
+                    <form action="{{path("order_create")}}">
+                        <input type="hidden" name="id" value="{{ product.getId() }}">
+                        <input type="submit" class="btn">
+                    </form>
+                </div>
             </div>
+            <div class="shipping">
+                <div class="shipipng-img">
+                    <img src="{{ asset("images/shipping.png") }}">
+                </div>
+                <div class="shipping-info">
+                    <h1>Doručenie</h1>
+                    <p>Všetky objednávky posielame Slovenskou poštou na dobierku, alebo cez osobný odber v
+                        mestách Košice, Spišská Nová Ves, Spišské Podhradie, Poprad, Prešov, atď.</p>
+                    <p>Ak máte otázky, kontaktujte nás pre bližšie ifnormácie.</p>
+                </div>
+            </div>
+
+            <div style="padding-bottom: 5rem;">
+                <h1 style="font-size: 4rem; margin-top: 6rem; text-align: center;">Veľkostná tabuľka (Muži)</h1>
+
+                <table class="size-chart">
+                    <tr>
+                        <th>EU</th>
+                        <th>UK</th>
+                        <th>US</th>
+                        <th>CM</th>
+                    </tr>
+                    <tr class="size-chart-dark">
+                        <td>35</td>
+                        <td>2.5</td>
+                        <td>3.5</td>
+                        <td>22.6</td>
+                    </tr>
+                    <tr>
+                        <td>36</td>
+                        <td>3.5</td>
+                        <td>4.5</td>
+                        <td>23.3</td>
+                    </tr>
+                    <tr class="size-chart-dark">
+                        <td>37</td>
+                        <td>4</td>
+                        <td>5</td>
+                        <td>24</td>
+                    </tr>
+                    <tr>
+                        <td>38</td>
+                        <td>5</td>
+                        <td>6</td>
+                        <td>24.6</td>
+                    </tr>
+                    <tr class="size-chart-dark">
+                        <td>39</td>
+                        <td>5.5</td>
+                        <td>6.5</td>
+                        <td>25.3</td>
+                    </tr>
+                    <tr>
+                        <td>40</td>
+                        <td>6.5</td>
+                        <td>7.5</td>
+                        <td>26</td>
+                    </tr>
+                    <tr class="size-chart-dark">
+                        <td>41</td>
+                        <td>7</td>
+                        <td>8</td>
+                        <td>26.6</td>
+                    </tr>
+                    <tr>
+                        <td>42</td>
+                        <td>8</td>
+                        <td>9</td>
+                        <td>27.3</td>
+                    </tr>
+                    <tr class="size-chart-dark">
+                        <td>43</td>
+                        <td>9</td>
+                        <td>10</td>
+                        <td>28</td>
+                    </tr>
+                    <tr>
+                        <td>44</td>
+                        <td>9.5</td>
+                        <td>10.5</td>
+                        <td>28.6</td>
+                    </tr>
+                    <tr class="size-chart-dark">
+                        <td>45</td>
+                        <td>10.5</td>
+                        <td>11.5</td>
+                        <td>29.3</td>
+                    </tr>
+
+                </table>
+
+            </div>
+
+
         </section>
     </article>
 {% endblock %}
