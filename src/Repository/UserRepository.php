@@ -70,7 +70,7 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
             ->setParameter("phone_number", "%".$filter["phone_number"]."%")
             ->andWhere("u.roles LIKE :role")
             ->setParameter("role", "%".$role."%")
-            ->andWhere("u.active = ".$filter["active"])
+            ->andWhere("u.active = ". ($filter["active"]==true?"true":"false"))
             ->orderBy("u.id")
             ->getQuery()
             ->getResult();

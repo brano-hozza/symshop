@@ -17,7 +17,7 @@
                     <th class="table_brand"><label for="postal">Postal</label></th>
                     <th class="table_brand"><label for="phone_number">Phone</label></th>
                     <th class="table_brand"><label for="isAdmin">Is admin</label></th>
-                    <th class="table_brand"><label for="active">Active</label></th>
+                    <th class="table_brand"><label for="banned">Banned</label></th>
                     <th class="table_brand">Submit</th>
                 </tr>
                 <tr>
@@ -69,11 +69,11 @@
                             {% endif %}
                         </td>
                         <td>
-                            {% if active == "true" %}
-                                <input type="checkbox" checked name="active"
+                            {% if banned == "true" %}
+                                <input type="checkbox" checked name="banned"
                                        onchange="document.getElementById('filtre').submit();">
                             {% else %}
-                                <input type="checkbox" name="active"
+                                <input type="checkbox" name="banned"
                                        onchange="document.getElementById('filtre').submit();">
                             {% endif %}
                         </td>
@@ -98,9 +98,9 @@
                                 <td class="table_brand"><input type="checkbox" id="isAdmin" name="isAdmin"></td>
                             {% endif %}
                             {% if user.active %}
-                                <td class="table_brand"><input type="checkbox" checked id="active" name="active"></td>
+                                <td class="table_brand"><input type="checkbox" id="banned" name="banned"></td>
                             {% else %}
-                                <td class="table_brand"><input type="checkbox" id="active" name="active"></td>
+                                <td class="table_brand"><input type="checkbox" checked id="banned" name="banned"></td>
                             {% endif %}
                             <td><input type="submit" name="submit" id="submit"></td>
                         </form>

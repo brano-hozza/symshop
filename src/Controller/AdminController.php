@@ -80,9 +80,9 @@ class AdminController extends AbstractController
         if( $request->get('admin', '') == "on"){
             $admin = "true";
         }
-        $active = "false";
-        if( $request->get('active', '') == "on"){
-            $active = "true";
+        $banned = "false";
+        if( $request->get('banned', '') == "on"){
+            $banned = "true";
         }
         $filter = [
             'username'=>$request->get('username', ''),
@@ -95,7 +95,7 @@ class AdminController extends AbstractController
             'postal' =>$request->get('postal', ''),
             'phone_number' =>$request->get('phone_number', ''),
             'admin' => $admin,
-            'active'=> $active
+            'active'=> $banned == "false"
 
         ];
         $users = $repository->findByFilter($filter);
@@ -114,7 +114,7 @@ class AdminController extends AbstractController
             'postal' =>$request->get('postal', ''),
             'phone_number' =>$request->get('phone_number', ''),
             'is_admin' => $admin,
-            'active'=> $active
+            'banned'=> $banned
         ]);
 
     }
@@ -186,6 +186,12 @@ class AdminController extends AbstractController
             if ($key !== false) {
                 unset($roles[$key]);
             }
+        }
+        if ($request->get("banned") == "on"){
+            $user->setActive(false);
+        }
+        else if($request->get("banned") == null){
+            $user->setActive(true);
         }
 
         $user->setRoles($roles);
