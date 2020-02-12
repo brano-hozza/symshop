@@ -132,6 +132,10 @@ nav {
     color: #337626;
 }
 
+.admin-nav-phone{
+    display: none;
+}
+
 .index-article {
     max-width: 100%;
     height: 100%;
@@ -509,7 +513,7 @@ button:focus {
 
 .product-img {
     width: 90%;
-    height: 90%;
+    height: auto;
     margin-top: 2rem;
     margin-bottom: 1rem;
     padding-left: 0.5rem;
@@ -827,7 +831,6 @@ button:focus {
     text-align: center;
     margin: 0 auto;
     width: 80%;
-
     border-collapse: collapse;
 
 }
@@ -940,7 +943,7 @@ button:focus {
 
 
 .orders{
-    width: 65%;
+    width: 80%;
     margin: 0 auto;
     min-height: 100% !important;
 
@@ -1463,6 +1466,20 @@ button:focus {
         font-size: 1.5rem;
     }
 
+    .admin-nav-phone{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        background-color: #cccccc;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    .admin-nav-phone img{
+        margin: 1rem 3rem;
+        width: 4rem;
+    }
+
     .user-p{
         text-decoration: none;
         background-color: #232323;
@@ -1499,6 +1516,11 @@ button:focus {
         color: #9b9b9b;
         height: 5rem;
     }
+
+    .article-blog{
+        padding-bottom: 10rem !important;
+    }
+
 }
 
 .errors{
@@ -1552,64 +1574,126 @@ button:focus {
     color: white !important;
     margin-right: 1rem;
 }
+
+/*ADMIN*/
+.admin-index{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    height: auto;
+}
+
+.admin-index a{
+    background-color: #dddddd;
+    border-radius: 1rem;
+    width: 25rem;
+    height: 25rem;
+    margin: 3rem;
+    text-align: center;
+    text-decoration: none;
+    color: #2b2b2b;
+    box-shadow: 0 1px 0 1px rgba(0,0,0,.04);
+}
+
+.admin-index img{
+    width: 6rem;
+    height: auto;
+    transition-duration: 0.2s;
+    margin-bottom: 1rem;
+    margin-top: 6.5rem;
+}
+
+.admin-index a:hover{
+    color: #3e7ce4
+}
+
+.admin-link-products:hover > .admin-img-products{
+    width: 7rem;
+}
+.admin-link-users:hover > .admin-img-users{
+    width: 7rem;
+}
+.admin-link-orders:hover > .admin-img-orders{
+    width: 7rem;
+}
+
+
+.admin-nav img{
+    width: 4rem;
+    height: auto;
+    margin-left: 4rem;
+    margin-right: 4rem;
+}
+
+.admin-nav{
+    background-color: #060606;
+}
+.admin-tables{
+    overflow-x: scroll;
+    padding-top: 5rem;
+    padding-bottom: 10rem;
+
+}
+
+.admin-tables h1{
+    text-align: center;
+    font-size: 2.5rem;
+
+}
+
+.admin-product-table{
+    margin: 0 auto;
+}
+
+/*ADMIN end*/
+
 /* Admin table */
 
-.admin-table-section{
-    width: 100%;
-}
-.admin-table-section .products{
-    display: inline-block;
-    width: 20%;
-    margin-left: 5rem;
-}
-.admin-table-section .users{
-    display: inline-block;
-    width: 38%;
-}
-.admin-table-section .orders{
-    display: inline-block;
-    width: 50%;
-}
-.admin-product-table td, .admin-product-table th, .admin-product-table {
-    border-collapse: collapse;
-    border-left: 0;
-    border-right: 0;
-    padding-left: .5rem;
-    padding-right: .5rem;
-
-}
 .admin-product-table{
-    border: 1px solid black;
+    border-collapse: collapse;
+    margin-top: 5rem;
 }
-.admin-product-table td {
-    border-top: 1px solid grey;
+
+.admin-product-table tr th{
+    font-size: 1.8rem;
+    border-bottom: 1px solid #0b0b0b;
+    padding-bottom: 1rem;
+}
+
+.admin-product-table tr td{
+    font-size: 1.5rem;
+    border-bottom: 1px solid #555555;
+    padding: 2rem;
 }
 
 .table_id{
-    font-size: 1.5rem ;
-    text-align: center;
-    width: 2rem;
-    border-right: 1px solid black !important;
-}
-.table_name{
-    font-size: 1.5rem ;
-    width: 10rem;
-}
-.table_pcs{
-    font-size: 1.5rem ;
-    text-align: center;
-    width: 2rem;
-}
-.table_size{
-    font-size: 1.5rem ;
-    text-align: center;
-    width: 2rem;
-}
-.table_brand{
-    font-size: 1.5rem ;
-    width: 10rem;
+    width: 4rem;
     text-align: center;
 }
 
+.admin-product-table input{
+    border: none;
+    padding-top: 0.7rem;
+    padding-bottom: 0.7rem;
+    padding-left: 0.5rem;
+    background-color: #cacaca;
+    text-align: center;
+    border-radius: 0.5rem;
+    transition-duration: 0.1s;
+    border: 1px solid #cacaca;
+}
 
+.admin-product-table input:hover{
+    background-color: #b7b7b7;
+    transition-duration: 0.1s;
+    border: 1px solid #3e7ce4;
+}
 
+.admin-product-table input:focus{
+    border: 1px solid #3e7ce4;
+}
+
+.admin-product-table textarea{
+    border: none;
+    background-color: #cacaca;
+}
