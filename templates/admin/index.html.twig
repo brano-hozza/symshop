@@ -3,9 +3,23 @@
 
 
 {% block body %}
-    <article class="article-blog">
+    <article class="article-blog" style="padding-top: 10rem; padding-bottom: 40rem;">
         <h1>Admin</h1>
+        <div class="admin-index">
+            <a class="admin-link-products" href="{{ path('admin_product') }}">
+                    <img class="admin-img-products" src="{{ asset("images/products.png" ) }}">
+                    <p>Správa produktov</p>
+            </a>
+            <a class="admin-link-users" href="{{ path('admin_user') }}">
+                    <img class="admin-img-users" src="{{ asset("images/users.png") }}">
+                    <p>Správa používateľov</p>
 
+            </a>
+            <a class="admin-link-orders" href="{{ path('admin_order') }}">
+                    <img class="admin-img-orders" src="{{ asset("images/shipping.png") }}">
+                    <p>Správa objednávok</p>
+            </a>
+        </div>
     </article>
 
 {% endblock %}
