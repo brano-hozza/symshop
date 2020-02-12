@@ -58,8 +58,9 @@
                     <th>{% trans %}ORDER_DATE{% endtrans %}</th>
                     <th>{% trans %}ORDER_NUMBER{% endtrans %}</th>
                 </tr>
-                {% for order in user.getOrders() %}
-                    {% for product in order.getProduct() %}
+                {% for order in orders %}
+                    {% for product in order.getProducts() %}
+                        <p style="color: white">{{ product.name}}</p>
                         <tr>
                             <td
                                     {% if order.getIsComplete() %}
@@ -81,8 +82,8 @@
         </div>
 
         <div class="orders-phone">
-            {% for order in user.getOrders() %}
-            {% for product in order.getProduct() %}
+            {% for order in orders %}
+            {% for product in order.getProducts() %}
             <div class="orders-dokopy">
                 <div class="order-item-phone">
                     <p>{{ product.getBrand() }} {{ product.getName() }}</p>

@@ -37,6 +37,7 @@ class ProductOrderController extends AbstractController
             for ($i = 0; $i < $amount; $i++){
                 $poRepo->addNew($product, $this->getUser());
             }
+
             return $this->redirectToRoute("user_profile");
         }
     }

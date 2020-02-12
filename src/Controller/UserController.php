@@ -6,6 +6,7 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\UserInfoFormType;
+use App\Repository\ProductOrderRepository;
 use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -17,8 +18,11 @@ class UserController extends AbstractController
 {
     /**
      * @Route("/user/profile", name="user_profile")
+     * @param ProductOrderRepository $orderRepository
+     * @return RedirectResponse|Response
+     * @throws Exception
      */
-    public function index(){
+    public function index(ProductOrderRepository $orderRepository){
         $title = "Bshop";
         $announce = "Welcome to bshop";
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
@@ -28,10 +32,13 @@ class UserController extends AbstractController
         $user = $this->getUser();
         if ($user){
             if(!is_null($user)) {
+                $orders = $orderRepository->findBy(["user" => $user]);
+                //dump($orders);
                 return $this->render('user/profile.html.twig', [
                     'title' => $title,
                     'announce' => $announce,
-                    'user' => $user
+                    'user' => $user,
+                    'orders' => $orders
                 ]);
             }else{
                 throw new Exception("User wasn't found");

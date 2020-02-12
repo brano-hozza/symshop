@@ -15,19 +15,77 @@
                     <th class="table_pcs"><label for="pcs">Pcs</label></th>
                     <th class="table_size"><label for="size">Size</label></th>
                     <th class="table_brand"><label for="image">Image</label></th>
+                    <th class="table_brand"><label for="reserved">Reserved</label></th>
                     <th class="table_size"><label for="submit">Submit</label></th>
+                </tr>
+                <tr>
+                    <form action="{{ path('admin_product') }}" id="filtre">
+                        <td></td>
+                        <td>
+                            <input type="text" name="name" value="{{ name }}"
+                                   onchange="document.getElementById('filtre').submit();">
+                        </td>
+                        <td>
+                            <input type="text" name="brand" value="{{ brand }}"
+                                   onchange="document.getElementById('filtre').submit();">
+                        </td>
+                        <td>
+                            <input type="number" name="description" value="{{description}}"
+                                   onchange="document.getElementById('filtre').submit();">
+                        </td>
+                        <td>
+                            <input type="number" name="price" value="{{ price }}"
+                                   onchange="document.getElementById('filtre').submit();">
+                        </td>
+                        <td>
+                            <input type="number" name="pcs" value="{{ pcs }}"
+                                   onchange="document.getElementById('filtre').submit();">
+                        </td>
+                        <td>
+                            <input type="number" name="size" value="{{ size }}"
+                                   onchange="document.getElementById('filtre').submit();">
+                        </td>
+                        <td>
+                            <input type="text" name="image" value="{{ image }}"
+                                   onchange="document.getElementById('image').submit();">
+                        </td>
+                        <td>
+                            {% if reserved == "true" %}
+                                <input type="checkbox" checked name="reserved"
+                                       onchange="document.getElementById('filtre').submit();">
+                            {% else %}
+                                <input type="checkbox" name="reserved"
+                                       onchange="document.getElementById('filtre').submit();">
+                            {% endif %}
+                        </td>
+                        <td></td>
+                    </form>
                 </tr>
                 {% for product in products %}
                     <tr>
-                        <form enctype="multipart/form-data" method="post" name="form"  action="{{ path('admin_product_edit', {product:product.getId()}) }}">
+                        <form enctype="multipart/form-data" method="post" name="form"
+                              action="{{ path('admin_product_edit', {product:product.getId()}) }}">
                             <td class="table_id">{{ product.getId() }}</td>
-                            <td class="table_name"><input type="text" value="{{ product.getName() }}" name="name" id="name"> </td>
-                            <td class="table_brand"><input type="text" value="{{ product.getBrand() }}" name="brand" id="brand"></td>
-                            <td class="table_brand"><textarea name="description" id="description">{{ product.getDescription() }}</textarea></td>
-                            <td class="table_pcs"><input type="number" value="{{ product.getPrice() }}" name="price" id="price"></td>
-                            <td class="table_pcs"><input type="number" value="{{ product.getPcs() }}" name="pcs" id="pcs"></td>
-                            <td class="table_size"><input type="number" value="{{ product.getSize() }}" name="size" id="size"></td>
-                            <td class="table_brand"><input type="file" id="image" accept="image/jpg" name="image" value="{{ product.getImg() }}"></td>
+                            <td class="table_name"><input type="text" value="{{ product.getName() }}" name="name"
+                                                          id="name"></td>
+                            <td class="table_brand"><input type="text" value="{{ product.getBrand() }}" name="brand"
+                                                           id="brand"></td>
+                            <td class="table_brand"><textarea name="description"
+                                                              id="description">{{ product.getDescription() }}</textarea>
+                            </td>
+                            <td class="table_pcs"><input type="number" value="{{ product.getPrice() }}" name="price"
+                                                         id="price"></td>
+                            <td class="table_pcs"><input type="number" value="{{ product.getPcs() }}" name="pcs"
+                                                         id="pcs"></td>
+                            <td class="table_size"><input type="number" value="{{ product.getSize() }}" name="size"
+                                                          id="size"></td>
+                            <td class="table_brand"><input type="file" id="image" accept="image/jpg" name="image"
+                                                           value="{{ product.getImg() }}"></td>
+                            {% if product.isReserved() %}
+                                <td class="table_brand"><input type="checkbox" checked name="reserved" id="reserved"></td>
+                            {% else %}
+                                <td class="table_brand"><input type="checkbox" name="reserved" id="reserved"></td>
+                            {% endif %}
                             <td class="table_size"><input type="submit" value="Edit" name="submit" id="submit"></td>
                         </form>
                     </tr>

@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use phpDocumentor\Reflection\Types\Mixed_;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ProductOrderRepository")
@@ -19,15 +20,15 @@ class ProductOrder
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="orders")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="orders")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=false)
      */
     private $user;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Product")
+     * @ORM\OneToMany(targetEntity="Product", mappedBy="order", orphanRemoval=false)
      */
-    private $product;
+    private $products;
 
     /**
      * @ORM\Column(type="datetime")
@@ -39,9 +40,10 @@ class ProductOrder
      */
     private $is_complete;
 
+
     public function __construct()
     {
-        $this->product = new ArrayCollection();
+        $this->products = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -64,24 +66,47 @@ class ProductOrder
     /**
      * @return Collection|Product[]
      */
-    public function getProduct(): Collection
+    public function getProducts(): Collection
     {
-        return $this->product;
+        return $this->products;
+    }
+
+    /**
+     * @param Collection|Product[] $products
+     * @return $this
+     */
+    public function setProducts($products):self{
+        $this->products = $products;
+        return $this;
     }
 
     public function addProduct(Product $product): self
     {
-        if (!$this->product->contains($product)) {
-            $this->product[] = $product;
+        $product->setReserved(true);
+        if (!$this->products->contains($product)) {
+            $this->products->add($product);
+            $product->setOrder($this);
         }
-
         return $this;
     }
 
     public function removeProduct(Product $product): self
     {
-        if ($this->product->contains($product)) {
-            $this->product->removeElement($product);
+        if ($this->products->contains($product)) {
+            $this->products->removeElement($product);
+            if ($product->getOrder() == $this) {
+                $product->setReserved(false);
+                $product->setOrder(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function removeProducts(): self
+    {
+        foreach ($this->products as $key => $product){
+            $this->removeProduct($this->products[$key]);
         }
 
         return $this;
@@ -110,4 +135,5 @@ class ProductOrder
 
         return $this;
     }
+
 }

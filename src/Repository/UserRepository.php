@@ -42,4 +42,38 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         $this->_em->flush();
     }
 
+    public function findByFilter(array $filter)
+    {
+        $role = "[";
+        if ($filter["admin"] == "true"){
+            $role= "ROLE_ADMIN";
+        }
+        $qb = $this->createQueryBuilder("u");
+        return $qb
+            ->andWhere("u.username LIKE :username")
+            ->setParameter("username", "%".$filter["username"]."%")
+            ->andWhere("u.first_name LIKE :firstName")
+            ->setParameter("firstName", "%".$filter["firstName"]."%")
+            ->andWhere("u.last_name LIKE :lastName")
+            ->setParameter("lastName", "%".$filter["lastName"]."%")
+            ->andWhere("u.email LIKE :email")
+            ->setParameter("email", "%".$filter["email"]."%")
+            ->andWhere("u.city LIKE :city")
+            ->setParameter("city", "%".$filter["city"]."%")
+            ->andWhere("u.country LIKE :country")
+            ->setParameter("country", "%".$filter["country"]."%")
+            ->andWhere("u.street LIKE :street")
+            ->setParameter("street", "%".$filter["street"]."%")
+            ->andWhere("u.postal LIKE :postal")
+            ->setParameter("postal", "%".$filter["postal"]."%")
+            ->andWhere("u.phone_number LIKE :phone_number")
+            ->setParameter("phone_number", "%".$filter["phone_number"]."%")
+            ->andWhere("u.roles LIKE :role")
+            ->setParameter("role", "%".$role."%")
+            ->andWhere("u.active = ".$filter["active"])
+            ->orderBy("u.id")
+            ->getQuery()
+            ->getResult();
+    }
+
 }

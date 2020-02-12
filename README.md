@@ -20,7 +20,7 @@ Predtým než začneš upravovať sa uisti že si v branchy develop <code>git ch
     <li>Potom spravíš commit s odkazom: <code>git commit -m"Sprava sprava spravicka"</code></li>
     <li>Následne pushnes zmeny do repozitára: <code>git push origin develop</code></li>
 </ol>
-<h2>Reset db</h2>
+<h2>Reset/Update db</h2>
 <ol>
     <li>
     <code>

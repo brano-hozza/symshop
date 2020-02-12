@@ -22,10 +22,9 @@ class ProductOrderRepository extends ServiceEntityRepository
     }
 
     public function findByFilter($filter){
-        $response = array();
         $qb = $this->createQueryBuilder("o");
-        $response = $qb
-            ->leftJoin("o.product", "p")
+        return $qb
+            ->leftJoin("o.products", "p")
             ->leftJoin("o.user", "u")
             ->andWhere("u.username LIKE :username")
             ->setParameter("username", "%".$filter["user"]."%")
@@ -40,46 +39,17 @@ class ProductOrderRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
 
-        return $response;
-
     }
 
-    // /**
-    //  * @return Order[] Returns an array of Order objects
-    //  */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('o')
-            ->andWhere('o.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('o.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
-
-    /*
-    public function findOneBySomeField($value): ?Order
-    {
-        return $this->createQueryBuilder('o')
-            ->andWhere('o.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
     public function addNew(Product $product, User $user)
     {
+        $entityManager = $this->getEntityManager();
         $order = new ProductOrder();
         $order->setUser($user);
         $order->addProduct($product);
         $order->setCreatedAt(new \DateTime());
         $order->setIsComplete(false);
-        $entityManager = $this->getEntityManager();
+        dump($order);
         $entityManager->persist($order);
 
         // actually executes the queries (i.e. the INSERT query)

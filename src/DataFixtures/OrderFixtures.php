@@ -34,6 +34,17 @@ class OrderFixtures extends Fixture implements FixtureGroupInterface
             $order = new ProductOrder();
             $order->setUser($this->faker->randomElement($this->manager->getRepository(User::class)->findAll()));
             $order->addProduct($this->faker->randomElement($this->manager->getRepository(Product::class)->findAll()));
+            /**
+             * @var array Product $product
+             */
+            $product = $order->getProducts();
+            foreach ($product as $key => $pr){
+                $pr->setOrder($order);
+                $pr->setReserved(true);
+                $product[$key] = $pr ;
+
+            }
+            $order->setProducts($product);
             $order->setCreatedAt($this->faker->dateTime);
             $order->setIsComplete(false);
             return $order;

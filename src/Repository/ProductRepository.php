@@ -77,10 +77,10 @@ class ProductRepository extends ServiceEntityRepository
             ->andWhere($qb_size)
             ->andWhere($qb_price1)
             ->andWhere($qb_price2)
+            ->andWhere("p.reserved = FALSE")
             ->setFirstResult(($page-1)*20)
             ->setMaxResults(20)
             ->orderBy("p.".$sort[0], $sort[1])
-
             ->getQuery()
             ->getResult();
     }
@@ -128,4 +128,27 @@ class ProductRepository extends ServiceEntityRepository
         ;
     }
     */
+    public function findByFilter(array $filter)
+    {
+        $qb = $this->createQueryBuilder("p");
+        return $qb
+            ->andWhere("p.name LIKE :name")
+            ->setParameter("name", "%".$filter["name"]."%")
+            ->andWhere("p.brand LIKE :brand")
+            ->setParameter("brand", "%".$filter["brand"]."%")
+            ->andWhere("p.description LIKE :description")
+            ->setParameter("description", "%".$filter["description"]."%")
+            ->andWhere("p.price LIKE :price")
+            ->setParameter("price", "%".$filter["price"]."%")
+            ->andWhere("p.pcs LIKE :pcs")
+            ->setParameter("pcs", "%".$filter["pcs"]."%")
+            ->andWhere("p.size LIKE :size")
+            ->setParameter("size", "%".$filter["size"]."%")
+            ->andWhere("p.img LIKE :image")
+            ->setParameter("image", "%".$filter["image"]."%")
+            ->andWhere("p.reserved = ".$filter["reserved"])
+            ->orderBy("p.id")
+            ->getQuery()
+            ->getResult();
+    }
 }

@@ -64,7 +64,9 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator implements P
         if (!$this->csrfTokenManager->isTokenValid($token)) {
             throw new InvalidCsrfTokenException();
         }
-
+        /**
+         * @var User $user
+         */
         $user = $this->entityManager->getRepository(User::class)
             ->createQueryBuilder('u')
             ->where('u.username = :username')->setParameter('username', $credentials["username"])
@@ -76,6 +78,9 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator implements P
         if (!$user) {
             // fail authentication with a custom error
             throw new CustomUserMessageAuthenticationException('Username could not be found.');
+        }
+        if (!$user->isActive()){
+            throw new CustomUserMessageAuthenticationException('User is banned.');
         }
 
         return $user;

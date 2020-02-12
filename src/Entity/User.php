@@ -83,6 +83,11 @@ class User implements UserInterface
      */
     private $orders;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $active = true;
+
 
     /**
      * User constructor.
@@ -354,6 +359,22 @@ class User implements UserInterface
         }
 
         return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isActive(): bool
+    {
+        return $this->active;
+    }
+
+    /**
+     * @param bool $active
+     */
+    public function setActive(bool $active): void
+    {
+        $this->active = $active;
     }
 
 

@@ -74,14 +74,47 @@ class AdminController extends AbstractController
      * @param UserRepository $repository
      * @return RedirectResponse|Response
      */
-    public function user(UserRepository $repository)
+    public function user(UserRepository $repository, Request $request)
     {
-        $users = $repository->findAll();
+        $admin = "false";
+        if( $request->get('admin', '') == "on"){
+            $admin = "true";
+        }
+        $active = "false";
+        if( $request->get('active', '') == "on"){
+            $active = "true";
+        }
+        $filter = [
+            'username'=>$request->get('username', ''),
+            'firstName' => $request->get('firstName', ''),
+            'lastName' => $request->get('lastName', ''),
+            'email' =>$request->get('email', ''),
+            'city' =>$request->get('city', ''),
+            'country' =>$request->get('country', ''),
+            'street' =>$request->get('street', ''),
+            'postal' =>$request->get('postal', ''),
+            'phone_number' =>$request->get('phone_number', ''),
+            'admin' => $admin,
+            'active'=> $active
+
+        ];
+        $users = $repository->findByFilter($filter);
         return $this->render('admin/user.html.twig', [
             'title' => "BSHOP",
             'announce' => 'nahahahahha',
             'admin' => true,
-            'users' => $users
+            'users' => $users,
+            'username'=>$request->get('username', ''),
+            'firstName' => $request->get('firstName', ''),
+            'lastName' => $request->get('lastName', ''),
+            'email' =>$request->get('email', ''),
+            'city' =>$request->get('city', ''),
+            'country' =>$request->get('country', ''),
+            'street' =>$request->get('street', ''),
+            'postal' =>$request->get('postal', ''),
+            'phone_number' =>$request->get('phone_number', ''),
+            'is_admin' => $admin,
+            'active'=> $active
         ]);
 
     }
@@ -89,16 +122,40 @@ class AdminController extends AbstractController
     /**
      * @Route("/admin/product", name="admin_product")
      * @param ProductRepository $repository
+     * @param Request $request
      * @return RedirectResponse|Response
      */
-    public function product(ProductRepository $repository)
+    public function product(ProductRepository $repository, Request $request)
     {
-        $products = $repository->findAll();
+        $reserved = "false";
+        if( $request->get('reserved', '') == "on"){
+            $reserved = "true";
+        }
+        $filter = [
+            'name'=>$request->get('name', ''),
+            'brand' => $request->get('brand', ''),
+            'description' => $request->get('description', ''),
+            'price' =>$request->get('price', ''),
+            'pcs' =>$request->get('pcs', ''),
+            'size' =>$request->get('size', ''),
+            'image' =>$request->get('image', ''),
+            'reserved' => $reserved,
+
+        ];
+        $products = $repository->findByFilter($filter);
         return $this->render('admin/product.html.twig', [
             'title' => "BSHOP",
             'announce' => 'nahahahahha',
             'admin' => true,
-            'products' => $products
+            'products' => $products,
+            'name'=>$request->get('name', ''),
+            'brand' => $request->get('brand', ''),
+            'description' => $request->get('description', ''),
+            'price' =>$request->get('price', ''),
+            'pcs' =>$request->get('pcs', ''),
+            'size' =>$request->get('size', ''),
+            'image' =>$request->get('image', ''),
+            'reserved' => $reserved,
         ]);
 
     }
@@ -151,17 +208,20 @@ class AdminController extends AbstractController
      */
     public function edit_order(ProductOrder $order, Request $request)
     {
+        $em = $this->getDoctrine()->getManager();
         if ($order == null) {
             return $this->redirectToRoute('index');
         }
-        dump($request->get("isComplete"));
+        if (!$request->get("submit")){
+            $order->removeProducts();
+            $em->remove($order);
+            $em->flush();
+            return $this->redirectToRoute('admin_order');
+        }
         $isComplete = $request->get("isComplete") == "on";
         if ($order->getIsComplete() != $isComplete) {
             $order->setIsComplete(!$order->getIsComplete());
-            dump("Menime");
         }
-        dump($order);
-        $em = $this->getDoctrine()->getManager();
         $em->persist($order);
         $em->flush();
 
@@ -181,6 +241,7 @@ class AdminController extends AbstractController
         if ($product == null) {
             return $this->redirectToRoute('index');
         }
+        $is_reserved = $request->get("reserved") == "on";
         $product->setName($request->get("name"));
         $product->setBrand($request->get("brand"));
         $product->setDescription($request->get("description"));
