@@ -5,9 +5,12 @@ LOG_IN: Prihlásenie
 LOG_IN_DESCRIPTION: do vášho účtu
 SIGN_IN: Prihlásiť
 NOT_SIGNED: Ešte nie ste registrovaný?
-CLICK_HERE: Stlač tu!
-
+CLICK_HERE: Klikni tu!
+LOGGED_IN_AS: Prihlásený ako
+NOT_LOGGED_IN: Niesi prihláseny!
 LOG_OUT: Odhlásiť
+PROFILE: Profil
+CANCEL: Zrušiť
 
 HOME: Domov
 PRODUCTS: Produkty
@@ -21,7 +24,7 @@ ADMIN_USER: Správa použivateľov
 ADMIN_ORDERS: Spracovanie objednávok
 
 BRAND: Značka
-TYPE: Typ oblečenia
+TYPE: Typ
 SIZE: Veľkosť
 PRICE: Cena
 
@@ -93,3 +96,5 @@ IMAGE: Obrázok
 RESERVED: Rezervovaný
 
 DELETE: Odstrániť
+
+POPUP_MSG: Pre vytvorenie objednávky je potrebné vytvorenie profilu a vyplnenie všetkých údajov

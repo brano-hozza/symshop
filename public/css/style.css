@@ -334,6 +334,24 @@ article {
     }
 }
 
+@keyframes shake {
+    10%, 90% {
+        transform: translate3d(-1px, 0, 0);
+    }
+
+    20%, 80% {
+        transform: translate3d(2px, 0, 0);
+    }
+
+    30%, 50%, 70% {
+        transform: translate3d(-4px, 0, 0);
+    }
+
+    40%, 60% {
+        transform: translate3d(4px, 0, 0);
+    }
+}
+
 .heading::selection {
     background-color: #308E4F;
 }
@@ -787,6 +805,7 @@ button:focus {
     font-size: 1.8rem;
     color: #4f4f4f;
     margin-top: 5rem;
+    margin-bottom: 4rem;
 }
 
 .detail-sizes p{
@@ -943,7 +962,7 @@ button:focus {
 
 
 .orders{
-    width: 80%;
+    width: 60%;
     margin: 0 auto;
     min-height: 100% !important;
 
@@ -1238,15 +1257,20 @@ button:focus {
 }
 
 .btn-off{
+
     background-color: #575554;
     border-style: none;
     border-radius: 0.4rem;
     padding: 1rem 2.5rem;
     color: white;
     font-size: 1.5rem;
-    margin-top: 2rem;
+
     margin-bottom: 2rem;
     cursor: pointer;
+}
+
+.btn-off:hover{
+    cursor: no-drop;
 }
 
 /* BLOG */
@@ -1520,7 +1544,15 @@ button:focus {
     .article-blog{
         padding-bottom: 10rem !important;
     }
+    .popup{
+        margin-left: 0!important;
+        margin-right: 0!important;
+    }
 
+    .btn-off{
+        margin-left: 0!important;
+        margin-right: 0!important;
+    }
 }
 
 .errors{
@@ -1696,4 +1728,66 @@ button:focus {
 .admin-product-table textarea{
     border: none;
     background-color: #cacaca;
+}
+
+
+.popup{
+    background-color: #f5f5f5;
+    border-top-right-radius: 1rem;
+    border-top-left-radius: 1rem;
+    overflow: hidden;
+    transition-duration: 0.2s;
+    height: 0;
+}
+
+
+
+.shake{
+    animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+}
+
+.popup h1{
+    margin-top: 0;
+    margin-bottom: 1rem;
+    padding-top:2rem;
+}
+
+.popup p{
+
+    width: 80%;
+    margin: 0 auto;
+    margin-bottom: 3rem;
+}
+
+.popup-buttons{
+    display: flex;
+    border-top: 1px #dbdbdb solid;
+    margin: 0 !important;
+}
+
+
+.popup-button {
+    width: 100% !important;
+    background-color: transparent;
+    border: none;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+    transition-duration: 0.2s;
+}
+
+.popup-buttons button:hover{
+    color: #e44150;
+    transition-duration: 0.2s;
+    background-color: #e6e6e6;
+}
+
+.popup-buttons a:hover{
+    color: #3e7ce4;
+    transition-duration: 0.2s;
+    background-color: #e6e6e6;
 }

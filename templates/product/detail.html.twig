@@ -15,14 +15,33 @@
                         <p>${{ product.price }}</p>
                     </div>
                     {% if can_shop %}
-                    <form action="{{path("order_create")}}">
+                    <form action="{{ path("order_create") }}">
                         <input type="hidden" name="id" value="{{ product.getId() }}">
                         <input type="submit" class="btn">
                     </form>
                     {% else %}
-                        <div class="btn-off">{%trans%}CANT_SHOP{% endtrans %}</div>
-                    {% endif %}
+                    <div class="popup" id="productPopup">
+                        <h1 id="title">Oh oh!</h1>
+                        <p>{% trans %}Pre vytvorenie objednávky je potrebné vytvorenie profilu a vyplnenie všetkých údajov{% endtrans %}</p>
+                        <div class="popup-buttons">
+                            {% if is_granted('ROLE_USER') %}
+                                <button class="popup-button"
+                                        onclick="popupClose();"
+                                        style="border-right: 1px #dbdbdb solid">{% trans %}CANCEL{% endtrans %}</button>
+                                <a class="popup-button" href="{{ path('user_edit') }}">{% trans %}EDIT{% endtrans %}</a>
+                            {% else %}
+                                <button class="popup-button"
+                                        onclick="popupClose();"
+                                        style="border-right: 1px #dbdbdb solid">{% trans %}CANCEL{% endtrans %}</button>
+                                <a class="popup-button"
+                                   href="{{ path('user_login') }}">{% trans %}SIGN_UP{% endtrans %}</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="btn-off" onclick="productPopup();">{% trans %}CANT_SHOP{% endtrans %}</div>
                 </div>
+                {% endif %}
+            </div>
             </div>
             <div class="shipping">
                 <div class="shipipng-img">
@@ -39,7 +58,7 @@
             <div style="padding-bottom: 5rem; margin-top: 20rem;">
                 <h1 style="font-size: 4rem; margin-top: 6rem; text-align: center;">Veľkostná tabuľka (Muži)</h1>
 
-                <table class="size-chart" >
+                <table class="size-chart">
                     <tr>
                         <th>EU</th>
                         <th>UK</th>
