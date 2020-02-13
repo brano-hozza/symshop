@@ -60,7 +60,7 @@
                 </tr>
                 {% for order in orders %}
                     {% for product in order.getProducts() %}
-                        <p style="color: white">{{ product.name}}</p>
+
                         <tr>
                             <td
                                     {% if order.getIsComplete() %}
