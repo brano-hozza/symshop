@@ -26,29 +26,33 @@ openFilter = (id) => { //id = brand => size
 
     }
 };
-search = (val) => {
-    let xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function () {
-        if (this.readyState === 4 && this.status === 200) {
-            document.getElementById("blogs").innerHTML = "";
-            console.log(this.response);
-            let response = JSON.parse(this.response);
-            console.log(response);
-            for (let data in response) {
-                if (response.hasOwnProperty(data)) {
-                    let blog = response[data];
-                    document.getElementById("blogs").innerHTML += blog;
+$(document).ready(function () {
+    $("#searchbar").on("keyup", function () {
+        var value = $(this).val();
+        $.post(
+            '/blog',
+            {
+                data: value
+            },
+            function (data, status) {
+                console.log(status);
+                $("#blogs").html("");
+                for (let row in data) {
+                    if (data.hasOwnProperty(row)) {
+                        $("#blogs").append(data[row]);
+                    }
                 }
-            }
-        }
+                console.log(data.length);
+                if (data.length < 20) {
+                    $("#next").css("visibility", "hidden")
+                }else{
+                    $("#next").css("visibility", "visible")
 
-    };
-    xhttp.open("POST", "blog");
-    xhttp.send({
-            'search_phrase': val
+                }
+            },
+        );
     });
-
-};
+});
 let coll = document.getElementsByClassName("order-item-phone");
 let i;
 
@@ -63,13 +67,12 @@ for (i = 0; i < coll.length; i++) {
     })
 }
 
-openPopup = () =>{
+openPopup = () => {
     let content = document.getElementById("popup");
-    if(content.style.height){
+    if (content.style.height) {
         content.style.height = null;
         content.style.padding = null;
-    }
-    else{
+    } else {
         content.style.height = "auto";
         content.style.padding = "2rem";
     }

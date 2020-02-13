@@ -29,16 +29,15 @@ class BlogController extends AbstractController
      */
     public function index(Request $request, BlogRepository $repository)
     {
+
         $page = $request->get("next_page", 1);
         $response = null;
         $phrase = $request->get("search_phrase", null);
         if ($request->isXmlHttpRequest()) {
-            $data = $request->query->get("data");
-            $JSONdata = json_decode($data);
-            dump($JSONdata);
-            $phrase = $JSONdata["search_phrase"];
+            $phrase = $request->request->get("data");
+            $page = 1;
         }
-        if ($phrase) {
+        if ($phrase != null && $phrase != "") {
             $response = $repository->getBySearch($phrase, $page);
         } else {
             $response = $repository->findBy([], ["created_at" => "DESC"], 20, ($page - 1) * 20);

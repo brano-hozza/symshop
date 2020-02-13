@@ -11,8 +11,8 @@
         <form action="{{ path("blog") }}"
               method="post" id="form">
             <div class="blog-search">
-                <input class="blog-search-input" type="text" placeholder="{% trans %}SEARCH_HERE{% endtrans %}" name="search_phrase" autocomplete="off" value="{{ phrase }}" onkeydown="search(this.value);"><br>
-                <input type="submit" style="visibility: hidden">
+                <input id="searchbar" class="blog-search-input" type="text" placeholder="{% trans %}SEARCH_HERE{% endtrans %}" name="search_phrase" autocomplete="off" value="{{ phrase }}"><br>
+                <!--<input type="submit" style="visibility: hidden">-->
             </div>
             <div id="blogs">
             {% for blog in blogs %}
@@ -32,7 +32,7 @@
                 {% endif %}
                 <p>{{ page }}</p>
                 {% if blogs|length > 19 %}
-                    <input type="submit"  name="next_page" value="{{ page+1 }}" class="page-button">
+                    <input type="submit" id="next" name="next_page" value="{{ page+1 }}" class="page-button">
                 {% endif %}
 
             </div>
