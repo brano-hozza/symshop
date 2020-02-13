@@ -8,8 +8,13 @@ use App\Entity\Blog;
 use App\Form\BlogCreateType;
 use App\Repository\BlogRepository;
 use App\Repository\ProductRepository;
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\OptimisticLockException;
+use Doctrine\ORM\ORMException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -104,5 +109,18 @@ class BlogController extends AbstractController
         } else {
             return $this->redirectToRoute('blog');
         }
+    }
+
+    /**
+     * @Route("/blog/remove/{blog}", name="blog_remove")
+     * @param Blog $blog
+     * @param EntityManagerInterface $entityManager
+     * @return RedirectResponse
+     */
+    public function remove(Blog $blog, EntityManagerInterface $entityManager){
+        $entityManager->remove($blog);
+        $entityManager->flush();
+        return $this->redirectToRoute('blog');
+
     }
 }

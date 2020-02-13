@@ -8,7 +8,6 @@
                 <div class="filters">
                     <span class="filter-opener" id="brand" onclick="openFilter('brand');">{% trans %}BRAND{% endtrans %}</span>
                     <span class="filter-opener" id="size" onclick="openFilter('size');">{% trans %}SIZE{% endtrans %}</span>
-                    <span class="filter-opener" id="type" onclick="openFilter('type');">{% trans %}TYPE{% endtrans %}</span>
                     <span class="filter-opener" id="price" onclick="openFilter('price');">{% trans %}PRICE{% endtrans %}</span>
                 </div>
                 <div class='filter-items' id='brand_sub'>
@@ -36,22 +35,6 @@
                                        checked>
                             {% else %}
                                 <input value='{{ size.size }}' id='{{ size.size }}' type='checkbox' name='size[]'>
-                            {% endif %}
-                        </div>
-                    {% endfor %}
-                    <div class="search-div">
-                        <input type="submit" value="Search" name="search" class="search">
-                    </div>
-                </div>
-                <div class='filter-items' id='type_sub'>
-                    {% for type in types %}
-                        <div class='filter-items-border'>
-                            <label for='{{ type.type }}'>{{ type.type }}</label>
-                            {% if type.type in old_type %}
-                                <input value='{{ type.type }}' id='{{ type.type }}' type='checkbox' name='type[]'
-                                       checked>
-                            {% else %}
-                                <input value='{{ type.type }}' id='{{ type.type }}' type='checkbox' name='type[]'>
                             {% endif %}
                         </div>
                     {% endfor %}
@@ -104,18 +87,6 @@
                             <option value="price_DESC" selected>{% trans %}PRICE_PRODUCT_DESC{% endtrans %}</option>
                         {% else %}
                             <option value="price_DESC">{% trans %}PRICE_PRODUCT_DESC{% endtrans %}</option>
-                        {% endif %}
-
-                        {% if old_sort == "type" %}
-                            <option value="type" selected>{% trans %}TYPE_PRODUCT{% endtrans %}</option>
-                        {% else %}
-                            <option value="type">{% trans %}TYPE_PRODUCT{% endtrans %}</option>
-                        {% endif %}
-
-                        {% if old_sort == "type_DESC" %}
-                            <option value="type_DESC" selected>{% trans %}TYPE_PRODUCT_DESC{% endtrans %}</option>
-                        {% else %}
-                            <option value="type_DESC">{% trans %}TYPE_PRODUCT_DESC{% endtrans %}</option>
                         {% endif %}
 
                         {% if old_sort == "brand" %}

@@ -4,17 +4,17 @@
     <article style="background-color: #E2E2E2;">
 
         <div class="admin-orders admin-tables">
-            <h1 style="margin: 0;">Správca Objednávok</h1>
+            <h1 style="margin: 0;">{% trans %}ADMIN_ORDERS{% endtrans %}</h1>
             <table class="admin-product-table">
                 <tr>
                     <th class="table_id">ID</th>
-                    <th class="table_name">Product</th>
-                    <th class="table_pcs">User</th>
-                    <th class="table_size">Price</th>
-                    <th class="table_brand">Date</th>
-                    <th class="table_brand"><label for="isComplete">Is complete</label></th>
-                    <th>Submit</th>
-                    <th>Remove</th>
+                    <th class="table_name">{% trans %}PRODUCT{% endtrans %}</th>
+                    <th class="table_pcs">{% trans %}USER{% endtrans %}</th>
+                    <th class="table_size">{% trans %}PRICE{% endtrans %}</th>
+                    <th class="table_brand">{% trans %}DATE{% endtrans %}</th>
+                    <th class="table_brand"><label for="isComplete">{% trans %}IS_COMPLETE{% endtrans %}</label></th>
+                    <th>{% trans %}SUBMIT{% endtrans %}</th>
+                    <th>{% trans %}REMOVE{% endtrans %}</th>
                 </tr>
                 <tr>
                     <form action="{{ path('admin_order') }}" id="filtre">
@@ -70,7 +70,7 @@
                                     {% endif %}
                                 </td>
                                 <td>
-                                    <input type="submit" value="submit" name="submit">
+                                    <input type="submit" value="{% trans %}SUBMIT{% endtrans %}" name="submit">
                                 </td>
                                 <td>
                                     <input type="submit" value="X" name="delete">

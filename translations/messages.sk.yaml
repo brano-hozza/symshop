@@ -77,3 +77,19 @@ SIGN_UP: Registrovať
 TO_CREATE: a vytvoriť účet
 AGREE_TERMS: Súhlasím s obch. pod.
 AGREE_GDPR: Súhlasím s GDPR
+
+IS_ADMIN: Admin
+BANNED: Ban
+
+PRODUCT: Produkt
+USER: Uživateľ
+DATE: Vytvorené
+IS_COMPLETE: Hotová
+REMOVE: Odstrániť
+
+NAME: Názov
+DESCRIPTION: Popis
+IMAGE: Obrázok
+RESERVED: Rezervovaný
+
+DELETE: Odstrániť

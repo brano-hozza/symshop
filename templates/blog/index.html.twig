@@ -14,6 +14,8 @@
                 <input id="searchbar" class="blog-search-input" type="text" placeholder="{% trans %}SEARCH_HERE{% endtrans %}" name="search_phrase" autocomplete="off" value="{{ phrase }}"><br>
                 <!--<input type="submit" style="visibility: hidden">-->
             </div>
+
+        </form>
             <div id="blogs">
             {% for blog in blogs %}
                 <div class="blog-container">
@@ -21,6 +23,11 @@
                     <h2 class="blog-title">{{blog.title}}</h2>
                     <p class="blog-text">{{ blog.text }}</p>
                     <p class="blog-date">{% trans %}CREATED_ON{% endtrans %}: {{ blog.getCreatedAt()|date("d/m/Y") }}</p>
+                    {% if is_granted('ROLE_ADMIN') %}
+                    <form action="{{ path('blog_remove', {blog: blog.id}) }}" id="delete">
+                        <input type="submit" value="{% trans %}DELETE{% endtrans %}">
+                    </form>
+                    {% endif %}
                 </div>
 
             {% endfor %}
@@ -36,7 +43,6 @@
                 {% endif %}
 
             </div>
-        </form>
 
     </article>
 {% endblock %}

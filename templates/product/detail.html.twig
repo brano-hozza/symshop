@@ -4,7 +4,7 @@
         <section style="">
             <div class="product-detail">
                 <div class="product-photo">
-                    <h2 style="margin-left: 3rem;">Produkty > {{ product.brand }} {{ product.name }}</h2>
+                    <h2 style="margin-left: 3rem;">{% trans %}PRODUCTS{% endtrans %} > {{ product.brand }} {{ product.name }}</h2>
                     <img src={{ asset("images/#{product.img}") }} alt="{{ product.img }}" alt="img">
                 </div>
                 <div class="product-order">

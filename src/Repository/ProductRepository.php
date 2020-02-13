@@ -140,8 +140,6 @@ class ProductRepository extends ServiceEntityRepository
             ->setParameter("description", "%".$filter["description"]."%")
             ->andWhere("p.price LIKE :price")
             ->setParameter("price", "%".$filter["price"]."%")
-            ->andWhere("p.pcs LIKE :pcs")
-            ->setParameter("pcs", "%".$filter["pcs"]."%")
             ->andWhere("p.size LIKE :size")
             ->setParameter("size", "%".$filter["size"]."%")
             ->andWhere("p.img LIKE :image")

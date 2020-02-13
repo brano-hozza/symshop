@@ -3,19 +3,18 @@
 {% block body %}
     <article style="background-color: #E2E2E2;">
         <div class="admin-products admin-tables">
-            <h1>Produkty</h1>
+            <h1>{% trans %}ADMIN_PRODUCTS{% endtrans %}</h1>
             <table class="admin-product-table">
                 <tr>
                     <th class="table_id no">ID</th>
-                    <th class="table_name"><label for="name">Name</label></th>
-                    <th class="table_brand"><label for="brand">Brand</label></th>
-                    <th class="table_name"><label for="description">Description</label></th>
-                    <th class="table_name"><label for="price">Price</label></th>
-                    <th class="table_pcs"><label for="pcs">Pieces</label></th>
-                    <th class="table_size"><label for="size">Size</label></th>
-                    <th class="table_brand"><label for="image">Image</label></th>
-                    <th class="table_brand"><label for="reserved">Reserved</label></th>
-                    <th class="table_size"><label for="submit">Submit</label></th>
+                    <th class="table_name"><label for="name">{% trans %}NAME{% endtrans %}</label></th>
+                    <th class="table_brand"><label for="brand">{% trans %}BRAND{% endtrans %}</label></th>
+                    <th class="table_name"><label for="description">{% trans %}DESCRIPTION{% endtrans %}</label></th>
+                    <th class="table_name"><label for="price">{% trans %}PRICE{% endtrans %}</label></th>
+                    <th class="table_size"><label for="size">{% trans %}SIZE{% endtrans %}</label></th>
+                    <th class="table_brand"><label for="image">{% trans %}IMAGE{% endtrans %}</label></th>
+                    <th class="table_brand"><label for="reserved">{% trans %}RESERVED{% endtrans %}</label></th>
+                    <th class="table_size"><label for="submit">{% trans %}SUBMIT{% endtrans %}</label></th>
                 </tr>
                 <tr>
                     <form action="{{ path('admin_product') }}" id="filtre">
@@ -34,10 +33,6 @@
                         </td>
                         <td>
                             <input type="number" name="price" value="{{ price }}"
-                                   onchange="document.getElementById('filtre').submit();">
-                        </td>
-                        <td>
-                            <input type="number" name="pcs" value="{{ pcs }}"
                                    onchange="document.getElementById('filtre').submit();">
                         </td>
                         <td>
@@ -74,8 +69,6 @@
                             </td>
                             <td class="table_pcs"><input type="number" value="{{ product.getPrice() }}" name="price"
                                                          id="price"></td>
-                            <td class="table_pcs"><input type="number" value="{{ product.getPcs() }}" name="pcs"
-                                                         id="pcs"></td>
                             <td class="table_size"><input type="number" value="{{ product.getSize() }}" name="size"
                                                           id="size"></td>
                             <td class="table_brand"><input type="file" id="image" accept="image/jpg" name="image"
@@ -85,7 +78,7 @@
                             {% else %}
                                 <td class="table_brand"><input type="checkbox" name="reserved" id="reserved"></td>
                             {% endif %}
-                            <td class="table_size"><input type="submit" value="Edit" name="submit" id="submit"></td>
+                            <td class="table_size"><input type="submit" value="{% trans %}SUBMIT{% endtrans %}" name="submit" id="submit"></td>
                         </form>
                     </tr>
 

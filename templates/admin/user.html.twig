@@ -3,22 +3,22 @@
 {% block body %}
     <article style="background-color: #E2E2E2;">
         <div class="admin-users admin-tables">
-            <h1>Uzivatelia</h1>
+            <h1>{% trans %}ADMIN_USER{% endtrans %}</h1>
             <table class="admin-product-table">
                 <tr>
                     <th class="table_id">ID</th>
-                    <th class="table_name"><label for="username">Username</label></th>
-                    <th class="table_pcs"><label for="firstName">First name</label></th>
-                    <th class="table_size"><label for="lastName">Last name</label></th>
-                    <th class="table_brand"><label for="email">Email</label></th>
-                    <th class="table_brand"><label for="city">City</label></th>
-                    <th class="table_brand"><label for="country">Country</label></th>
-                    <th class="table_brand"><label for="street">Street</label></th>
-                    <th class="table_brand"><label for="postal">Postal</label></th>
-                    <th class="table_brand"><label for="phone_number">Phone</label></th>
-                    <th class="table_brand"><label for="isAdmin">Is admin</label></th>
-                    <th class="table_brand"><label for="banned">Banned</label></th>
-                    <th class="table_brand">Submit</th>
+                    <th class="table_name"><label for="username">{% trans %}USERNAME{% endtrans %}</label></th>
+                    <th class="table_pcs"><label for="firstName">{% trans %}FIRST_NAME{% endtrans %}</label></th>
+                    <th class="table_size"><label for="lastName">{% trans %}LAST_NAME{% endtrans %}</label></th>
+                    <th class="table_brand"><label for="email">{% trans %}EMAIL{% endtrans %}</label></th>
+                    <th class="table_brand"><label for="country">{% trans %}COUNTRY{% endtrans %}</label></th>
+                    <th class="table_brand"><label for="city">{% trans %}CITY{% endtrans %}</label></th>
+                    <th class="table_brand"><label for="street">{% trans %}ADDRESS{% endtrans %}</label></th>
+                    <th class="table_brand"><label for="postal">{% trans %}POSTAL_CODE{% endtrans %}</label></th>
+                    <th class="table_brand"><label for="phone_number">{% trans %}PHONE_NUMBER{% endtrans %}</label></th>
+                    <th class="table_brand"><label for="isAdmin">{% trans %}IS_ADMIN{% endtrans %}</label></th>
+                    <th class="table_brand"><label for="banned">{% trans %}BANNED{% endtrans %}</label></th>
+                    <th class="table_brand">{% trans %}SUBMIT{% endtrans %}</th>
                 </tr>
                 <tr>
                     <form action="{{ path('admin_user') }}" id="filtre">
@@ -40,24 +40,24 @@
                                    onchange="document.getElementById('filtre').submit();">
                         </td>
                         <td>
+                            <input type="text" name="country" value="{{ country }}"
+                                   onchange="document.getElementById('filtre').submit();">
+                        </td>
+                        <td>
                             <input type="text" name="city" value="{{ city }}"
                                    onchange="document.getElementById('filtre').submit();">
                         </td>
                         <td>
-                            <input type="text" name="country" value="{{ country }}"
-                                   onchange="document.getElementById('image').submit();">
-                        </td>
-                        <td>
                             <input type="text" name="street" value="{{ street }}"
-                                   onchange="document.getElementById('image').submit();">
+                                   onchange="document.getElementById('filtre').submit();">
                         </td>
                         <td>
                             <input type="text" name="postal" value="{{ postal }}"
-                                   onchange="document.getElementById('image').submit();">
+                                   onchange="document.getElementById('filtre').submit();">
                         </td>
                         <td>
                             <input type="text" name="phone_number" value="{{ phone_number }}"
-                                   onchange="document.getElementById('image').submit();">
+                                   onchange="document.getElementById('filtre').submit();">
                         </td>
                         <td>
                             {% if is_admin == "true" %}
@@ -102,7 +102,7 @@
                             {% else %}
                                 <td class="table_brand"><input type="checkbox" checked id="banned" name="banned"></td>
                             {% endif %}
-                            <td><input type="submit" name="submit" id="submit"></td>
+                            <td><input type="submit" name="submit" id="submit" value="{% trans %}SUBMIT{% endtrans %}"></td>
                         </form>
                     </tr>
 

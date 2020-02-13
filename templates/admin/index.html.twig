@@ -8,16 +8,16 @@
         <div class="admin-index">
             <a class="admin-link-products" href="{{ path('admin_product') }}">
                     <img class="admin-img-products" src="{{ asset("images/products.png" ) }}">
-                    <p>Správa produktov</p>
+                    <p>{% trans %}ADMIN_PRODUCTS{% endtrans %}</p>
             </a>
             <a class="admin-link-users" href="{{ path('admin_user') }}">
                     <img class="admin-img-users" src="{{ asset("images/users.png") }}">
-                    <p>Správa používateľov</p>
+                    <p>{% trans %}ADMIN_USER{% endtrans %}</p>
 
             </a>
             <a class="admin-link-orders" href="{{ path('admin_order') }}">
                     <img class="admin-img-orders" src="{{ asset("images/shipping.png") }}">
-                    <p>Správa objednávok</p>
+                    <p>{% trans %}ADMIN_ORDERS{% endtrans %}</p>
             </a>
         </div>
     </article>

@@ -1,6 +1,5 @@
 let arr = {
     brand: false,
-    type: false,
     size: false,
     price: false
 };
@@ -17,7 +16,7 @@ openFilter = (id) => { //id = brand => size
                     document.getElementById(id_str).setAttribute("style", "display: none;");
                     arr[i] = false;
                 }
-            }//{"brand":true, "type":false, "price":false, "size":false}
+            }
         }
     } else {
         let id_str = id + "_sub";
