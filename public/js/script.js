@@ -45,7 +45,7 @@ $(document).ready(function () {
                 console.log(data.length);
                 if (data.length < 20) {
                     $("#next").css("visibility", "hidden")
-                }else{
+                } else {
                     $("#next").css("visibility", "visible")
 
                 }
@@ -81,22 +81,21 @@ openPopup = () => {
 };
 
 
-
 productPopup = () => {
     let content = document.getElementById("productPopup");
     let element = document.getElementById('title');
     if (content.style.height) {
-        content.style.height=null;
+        content.style.height = null;
         element.classList.remove("shake");
     } else {
-        content.style.height="auto";
+        content.style.height = "auto";
         element.classList.add("shake");
     }
 };
 
-popupClose=()=>{
+popupClose = () => {
     let content = document.getElementById("productPopup");
-    content.style.height=null;
+    content.style.height = null;
 };
 
 
