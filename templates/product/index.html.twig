@@ -10,7 +10,7 @@
                     <span class="filter-opener" id="size" onclick="openFilter('size');">{% trans %}SIZE{% endtrans %}</span>
                     <span class="filter-opener" id="price" onclick="openFilter('price');">{% trans %}PRICE{% endtrans %}</span>
                 </div>
-                <div class='filter-items' id='brand_sub'>
+                <div class='filter-items' id='brand_sub' style="z-index: 200;">
                     {% for brand in brands %}
                         <div class='filter-items-border'>
                             <label for='{{ brand.brand }}'>{{ brand.brand }}</label>

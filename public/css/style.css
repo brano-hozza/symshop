@@ -110,6 +110,75 @@ nav {
     font-size: 1.5rem !important;
 }
 
+.user-edit{
+
+}
+.user-edit-flex{
+    display: flex;
+    margin: 0 auto;
+    justify-content: center;
+    width: fit-content;
+    flex-wrap: wrap;
+    background-color: #0c0c0c;
+    padding-bottom: 3rem;
+    padding-top: 3rem;
+}
+
+.user-edit-flex button{
+    margin-top: 5rem;
+}
+
+.user-edit-flex div{
+    margin-left: 5rem;
+    margin-right: 5rem;
+    flex-basis: 30%;
+}
+
+
+.user-edit input{
+    width: 20rem;
+    margin-top: 4rem;
+    background-color: #242424;
+    color: white;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    padding-left: 1rem;
+    border: 1px solid #242424;
+}
+
+.user-edit h1{
+    color: white;
+    text-align: center;
+    font-size: 5rem;
+}
+
+.user-edit label{
+    position: absolute;
+    color: white;
+    margin-top: 2rem;
+    font-size: 1.3rem;
+}
+
+.user-edit select{
+    margin-top: 4rem;
+    width: 20rem;
+    border: none;
+    background-color: #242424;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    color: white;
+}
+
+.user-edit input:focus{
+    border: 1px solid #727272;
+
+}
+
+.user-edit input:hover{
+    border: 1px solid white;
+    transition-duration: 0.2s;
+}
+
 .user:hover{
     color: #c3c3c3 !important;
 }
@@ -224,6 +293,7 @@ article {
 }
 
  */
+
 
 @keyframes beforeBorders {
     0% {
@@ -520,6 +590,18 @@ button:focus {
 
 /*Products*/
 
+@keyframes productanim{
+    0%{
+        opacity: 0;
+        margin-top: 6rem;
+        z-index: 0;
+    }
+    100%{
+        opacity: 1;
+        margin-top: 1.5rem;
+        z-index: 0;
+    }
+}
 
 .product-container {
     width: 30rem;
@@ -527,6 +609,14 @@ button:focus {
     font-family: 'Roboto', sans-serif;
     margin: 1.5rem;
     text-align: center;
+    animation: productanim 0.5s cubic-bezier(.36, .07, .19, .97);
+
+}
+
+
+
+.product-container-anim{
+
 }
 
 .product-img {
@@ -1520,6 +1610,14 @@ button:focus {
 
     .user-p a{
         text-decoration: none;
+    }
+
+    .user-edit h1{
+        background-color:#0c0c0c;
+        margin: 0;
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+        font-size: 3rem;
     }
 
     .phone-popup{

@@ -67,6 +67,8 @@ for (i = 0; i < coll.length; i++) {
     })
 }
 
+
+
 openPopup = () => {
     let content = document.getElementById("popup");
     if (content.style.height) {
@@ -96,10 +98,6 @@ popupClose=()=>{
     let content = document.getElementById("productPopup");
     content.style.height=null;
 };
-
-
-
-
 
 
 let mymap = L.map('mapid').setView([48.9469267, 20.5665167], 20);
