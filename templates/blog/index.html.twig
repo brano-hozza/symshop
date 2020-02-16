@@ -19,14 +19,17 @@
             <div id="blogs">
             {% for blog in blogs %}
                 <div class="blog-container">
-                    <p class="blog-user">u/{{ blog.user.username }}</p>
+                    <div class="blog-remove">
+                        <p class="blog-user">u/{{ blog.user.username }}</p>
+                        <form  action="{{ path('blog_remove', {blog: blog.id}) }}" id="delete">
+                            <button type="submit"><img src="{{ asset("images/close.svg") }}"></button>
+                        </form>
+                    </div>
                     <h2 class="blog-title">{{blog.title}}</h2>
                     <p class="blog-text">{{ blog.text }}</p>
                     <p class="blog-date">{% trans %}CREATED_ON{% endtrans %}: {{ blog.getCreatedAt()|date("d/m/Y") }}</p>
                     {% if is_granted('ROLE_ADMIN') %}
-                    <form action="{{ path('blog_remove', {blog: blog.id}) }}" id="delete">
-                        <input type="submit" value="{% trans %}DELETE{% endtrans %}">
-                    </form>
+
                     {% endif %}
                 </div>
 

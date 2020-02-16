@@ -1334,6 +1334,18 @@ button:focus {
     outline: none;
 }
 
+.blog-remove{
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.blog-remove button{
+    margin-top: 1rem;
+    border: none;
+    background-color: transparent;
+}
+
 .btn{
     background-color: #2c783e;
     border-style: none;
@@ -1347,20 +1359,24 @@ button:focus {
 }
 
 .btn-off{
-
     background-color: #575554;
     border-style: none;
     border-radius: 0.4rem;
     padding: 1rem 2.5rem;
     color: white;
     font-size: 1.5rem;
-
     margin-bottom: 2rem;
     cursor: pointer;
+    display: flex;
+    justify-content: center;
 }
 
 .btn-off:hover{
     cursor: no-drop;
+}
+
+.btn-off p{
+    margin: 0;
 }
 
 /* BLOG */
