@@ -6,7 +6,7 @@
                 <div class="product-photo">
                     <h2 style="margin-left: 3rem;">{% trans %}PRODUCTS{% endtrans %}
                         > {{ product.brand }} {{ product.name }}</h2>
-                    <img src={{ asset("images/#{product.img}") }} alt="{{ product.img }}" alt="img">
+                    <img data-aos="fade-up"  data-aos-duration="750" data-aos-once="true" src={{ asset("images/#{product.img}") }} alt="{{ product.img }}" alt="img">
                 </div>
                 <div class="product-order">
                     <h1>{{ product.brand }} {{ product.name }}</h1>
@@ -143,4 +143,30 @@
 
         </section>
     </article>
+
+    <footer class="page-footer">
+        <div class="developers">
+            <p>Stránku vytvorili</p>
+            <p>Peter Janoš</p>
+            <p>Branislav Hozza</p>
+        </div>
+        <div class="footer-contact">
+            <h1>SOCIÁLNE SIETE</h1>
+            <a href="https://www.instagram.com/slovakstore/?hl=sk"><img style="width: 4rem; height: auto;" src="{{ asset('/images/ig.png') }}"></a>
+            <h1>KONTAKT</h1>
+            <p>hsdfghsfgh@asdfgasdf.com</p>
+            <p>696969696969</p>
+        </div>
+        <div class="footer-nav">
+            <a href="{{ path('index') }}">{% trans %}HOME{% endtrans %}</a>
+            <a href="{{ path('products') }}">{% trans %}PRODUCTS{% endtrans %}</a>
+            <a href="{{ path('blog') }}">{% trans %}BLOG{% endtrans %}</a>
+            <a href="{{ path('contact') }}">{% trans %}CONTACT{% endtrans %}</a>
+            {% if is_granted('ROLE_USER') %}
+                <a href="{{ path('user_profile') }}">{% trans %}PROFILE{% endtrans %}</a>
+            {% else %}
+                <a href="{{ path('user_login') }}">{% trans %}LOG_IN{% endtrans %}</a>
+            {% endif %}
+        </div>
+    </footer>
 {% endblock %}

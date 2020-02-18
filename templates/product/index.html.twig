@@ -116,7 +116,7 @@
                 </div>
                 <div class='product-list'>
                     {% for product in products %}
-                        <div class='product-container'>
+                        <div class='product-container' data-aos="fade-up"  data-aos-duration="500" data-aos-once="true" style="z-index: 0;">
                             <div style="height: 240px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.46); background-color: white; border-radius: 1rem;">
                                 <a href="{{ path('products_detail',{product: product.getId()}) }}">
                                     <img class='product-img'
@@ -149,5 +149,30 @@
                 </div>
             </section>
         </form>
+        <footer class="page-footer">
+            <div class="developers">
+                <p>Stránku vytvorili</p>
+                <p>Peter Janoš</p>
+                <p>Branislav Hozza</p>
+            </div>
+            <div class="footer-contact">
+                <h1>SOCIÁLNE SIETE</h1>
+                <a href="https://www.instagram.com/slovakstore/?hl=sk"><img style="width: 4rem; height: auto;" src="{{ asset('/images/ig.png') }}"></a>
+                <h1>KONTAKT</h1>
+                <p>hsdfghsfgh@asdfgasdf.com</p>
+                <p>696969696969</p>
+            </div>
+            <div class="footer-nav">
+                <a href="{{ path('index') }}">{% trans %}HOME{% endtrans %}</a>
+                <a href="{{ path('products') }}">{% trans %}PRODUCTS{% endtrans %}</a>
+                <a href="{{ path('blog') }}">{% trans %}BLOG{% endtrans %}</a>
+                <a href="{{ path('contact') }}">{% trans %}CONTACT{% endtrans %}</a>
+                {% if is_granted('ROLE_USER') %}
+                    <a href="{{ path('user_profile') }}">{% trans %}PROFILE{% endtrans %}</a>
+                {% else %}
+                    <a href="{{ path('user_login') }}">{% trans %}LOG_IN{% endtrans %}</a>
+                {% endif %}
+            </div>
+        </footer>
     </article>
 {% endblock %}
