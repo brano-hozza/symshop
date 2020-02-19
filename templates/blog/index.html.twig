@@ -18,7 +18,7 @@
         </form>
             <div id="blogs">
             {% for blog in blogs %}
-                <div class="blog-container">
+                <div class="blog-container" data-aos="fade-up"  data-aos-duration="500" data-aos-once="true">
                     <div class="blog-remove">
                         <p class="blog-user">u/{{ blog.user.username }}</p>
                         <form  action="{{ path('blog_remove', {blog: blog.id}) }}" id="delete">
