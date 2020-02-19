@@ -110,6 +110,75 @@ nav {
     font-size: 1.5rem !important;
 }
 
+.user-edit{
+
+}
+.user-edit-flex{
+    display: flex;
+    margin: 0 auto;
+    justify-content: center;
+    width: fit-content;
+    flex-wrap: wrap;
+    background-color: #0c0c0c;
+    padding-bottom: 3rem;
+    padding-top: 3rem;
+}
+
+.user-edit-flex button{
+    margin-top: 5rem;
+}
+
+.user-edit-flex div{
+    margin-left: 5rem;
+    margin-right: 5rem;
+    flex-basis: 30%;
+}
+
+
+.user-edit input{
+    width: 20rem;
+    margin-top: 4rem;
+    background-color: #242424;
+    color: white;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    padding-left: 1rem;
+    border: 1px solid #242424;
+}
+
+.user-edit h1{
+    color: white;
+    text-align: center;
+    font-size: 5rem;
+}
+
+.user-edit label{
+    position: absolute;
+    color: white;
+    margin-top: 2rem;
+    font-size: 1.3rem;
+}
+
+.user-edit select{
+    margin-top: 4rem;
+    width: 20rem;
+    border: none;
+    background-color: #242424;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    color: white;
+}
+
+.user-edit input:focus{
+    border: 1px solid #727272;
+
+}
+
+.user-edit input:hover{
+    border: 1px solid white;
+    transition-duration: 0.2s;
+}
+
 .user:hover{
     color: #c3c3c3 !important;
 }
@@ -138,7 +207,17 @@ nav {
 
 .index-article {
     max-width: 100%;
+    height: 100% !important;
+}
+
+.index-article section{
+    height: 100% !important;
+    overflow: auto;
+}
+
+#home1{
     height: 100%;
+    min-height: 100%;
 }
 
 @keyframes heading {
@@ -201,6 +280,8 @@ article {
     animation: 0.2s ease-out 0s 1 bg-clr;
     z-index: 1;
     border: solid var(--border-width) transparent;
+    text-decoration: none;
+    color: white;
 }
 
 .heading-container::before {
@@ -224,6 +305,7 @@ article {
 }
 
  */
+
 
 @keyframes beforeBorders {
     0% {
@@ -527,6 +609,13 @@ button:focus {
     font-family: 'Roboto', sans-serif;
     margin: 1.5rem;
     text-align: center;
+
+}
+
+
+
+.product-container-anim{
+
 }
 
 .product-img {
@@ -648,6 +737,7 @@ button:focus {
     box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
     font-size: 1.4rem;
     margin: 0 auto;
+    z-index: 5;
 }
 
 .filter-items label{
@@ -1244,6 +1334,25 @@ button:focus {
     outline: none;
 }
 
+.blog-remove{
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.blog-remove button{
+    margin-top: 1rem;
+    border: none;
+    background-color: transparent;
+    padding: 0.3rem;
+}
+
+.blog-remove button:hover{
+    cursor: pointer;
+    transition-duration: 0.2s;
+    background-color: #cccccc;
+}
+
 .btn{
     background-color: #2c783e;
     border-style: none;
@@ -1257,20 +1366,24 @@ button:focus {
 }
 
 .btn-off{
-
     background-color: #575554;
     border-style: none;
     border-radius: 0.4rem;
     padding: 1rem 2.5rem;
     color: white;
     font-size: 1.5rem;
-
     margin-bottom: 2rem;
     cursor: pointer;
+    display: flex;
+    justify-content: center;
 }
 
 .btn-off:hover{
     cursor: no-drop;
+}
+
+.btn-off p{
+    margin: 0;
 }
 
 /* BLOG */
@@ -1406,6 +1519,7 @@ button:focus {
 
     .blog-container{
         width: 80%;
+
     }
 
     .create-blog{
@@ -1522,6 +1636,14 @@ button:focus {
         text-decoration: none;
     }
 
+    .user-edit h1{
+        background-color:#0c0c0c;
+        margin: 0;
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+        font-size: 3rem;
+    }
+
     .phone-popup{
         display: block;
         position: absolute;
@@ -1553,6 +1675,23 @@ button:focus {
         margin-left: 0!important;
         margin-right: 0!important;
     }
+
+    .developers{
+        margin-bottom: 3rem;
+    }
+
+    .footer-nav{
+        margin-bottom:10rem;
+        margin-top: 3rem;
+    }
+
+    .page-footer div{
+        display: block;
+        width: 100%;
+        text-align: center;
+
+    }
+
 }
 
 .errors{
@@ -1790,4 +1929,51 @@ button:focus {
     color: #3e7ce4;
     transition-duration: 0.2s;
     background-color: #e6e6e6;
+}
+
+/*FOOTER*/
+.page-footer{
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #0e0e0e;
+    justify-content: space-evenly;
+    padding-bottom: 3rem;
+    padding-top: 3rem;
+}
+
+.page-footer div{
+    color: white;
+}
+
+.developers{
+    margin-top: 5rem;
+}
+.developers p{
+    font-size: 1.5rem;
+    margin: 0.1rem;
+    color: grey;
+}
+
+.footer-contact h1{
+    font-size: 1.8rem;
+}
+
+.footer-contact p{
+    font-size: 1.5rem;
+    color: grey;
+    margin: 0.1rem;
+}
+
+
+
+.footer-nav a{
+    display: block;
+    font-size: 1.5rem;
+    text-decoration: none;
+    color: grey;
+    margin: 1rem;
+}
+
+.footer-nav a:hover{
+    color: #bfbfbf;
 }

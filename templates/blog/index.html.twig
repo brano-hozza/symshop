@@ -4,7 +4,7 @@
 {% block body %}
     <article class="article-blog">
         <h1>{% trans %}BLOGS{% endtrans %}</h1>
-        {% if is_granted('ROLE_USER') %}
+        {% if is_granted('ROLE_ADMIN') %}
             <a class="create-blog" href="{{ path('blog_create') }}">{% trans %}CREATE_POST{% endtrans %}</a>
             <a class="create-blog-phone" href="{{ path('blog_create') }}"><img src="{{ asset("images/add.png") }}"></a>
         {% endif %}
@@ -19,14 +19,17 @@
             <div id="blogs">
             {% for blog in blogs %}
                 <div class="blog-container">
-                    <p class="blog-user">u/{{ blog.user.username }}</p>
+                    <div class="blog-remove">
+                        <p class="blog-user">u/{{ blog.user.username }}</p>
+                        <form  action="{{ path('blog_remove', {blog: blog.id}) }}" id="delete">
+                            <button type="submit"><img src="{{ asset("images/close.svg") }}"></button>
+                        </form>
+                    </div>
                     <h2 class="blog-title">{{blog.title}}</h2>
                     <p class="blog-text">{{ blog.text }}</p>
                     <p class="blog-date">{% trans %}CREATED_ON{% endtrans %}: {{ blog.getCreatedAt()|date("d/m/Y") }}</p>
                     {% if is_granted('ROLE_ADMIN') %}
-                    <form action="{{ path('blog_remove', {blog: blog.id}) }}" id="delete">
-                        <input type="submit" value="{% trans %}DELETE{% endtrans %}">
-                    </form>
+
                     {% endif %}
                 </div>
 
@@ -43,6 +46,30 @@
                 {% endif %}
 
             </div>
-
     </article>
+    <footer class="page-footer">
+        <div class="developers">
+            <p>Stránku vytvorili</p>
+            <p>Peter Janoš</p>
+            <p>Branislav Hozza</p>
+        </div>
+        <div class="footer-contact">
+            <h1>SOCIÁLNE SIETE</h1>
+            <a href="https://www.instagram.com/slovakstore/?hl=sk"><img style="width: 4rem; height: auto;" src="{{ asset('/images/ig.png') }}"></a>
+            <h1>KONTAKT</h1>
+            <p>hsdfghsfgh@asdfgasdf.com</p>
+            <p>696969696969</p>
+        </div>
+        <div class="footer-nav">
+            <a href="{{ path('index') }}">{% trans %}HOME{% endtrans %}</a>
+            <a href="{{ path('products') }}">{% trans %}PRODUCTS{% endtrans %}</a>
+            <a href="{{ path('blog') }}">{% trans %}BLOG{% endtrans %}</a>
+            <a href="{{ path('contact') }}">{% trans %}CONTACT{% endtrans %}</a>
+            {% if is_granted('ROLE_USER') %}
+                <a href="{{ path('user_profile') }}">{% trans %}PROFILE{% endtrans %}</a>
+            {% else %}
+                <a href="{{ path('user_login') }}">{% trans %}LOG_IN{% endtrans %}</a>
+            {% endif %}
+        </div>
+    </footer>
 {% endblock %}

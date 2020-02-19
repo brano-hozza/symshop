@@ -3,8 +3,42 @@
 
 {% block body %}
     <section>
-        {{ form_start(form, {'attr': {'class':'form'}}) }}
-        <h1>Edit</h1>
+        {{ form_start(form, {'attr': {'class':'user-edit'}}) }}
+        <h1>{% trans %}PROFILE_EDIT{% endtrans %}</h1>
+        <div class="user-edit-flex">
+            <div class="edit-left">
+                {{ form_label(form.first_name) }}
+                {{ form_widget(form.first_name) }}
+                <br>
+                {{ form_label(form.last_name) }}
+                {{ form_widget(form.last_name) }}
+                <br>
+                {{ form_label(form.email) }}
+                {{ form_widget(form.email) }}
+                <br>
+                {{ form_label(form.country) }}
+                {{ form_widget(form.country) }}
+            </div>
+            <div class="edit-right">
+
+                {{ form_label(form.city) }}
+                {{ form_widget(form.city) }}
+                <br>
+                {{ form_label(form.street) }}
+                {{ form_widget(form.street) }}
+                <br>
+                {{ form_label(form.postal) }}
+                {{ form_widget(form.postal) }}
+                <br>
+                {{ form_label(form.phone_number) }}
+                {{ form_widget(form.phone_number) }}
+
+            </div>
+            {{ form_widget(form.submit)}}
+        </div>
+
+
+
         {{ form_end(form) }}
     </section>
 {% endblock %}

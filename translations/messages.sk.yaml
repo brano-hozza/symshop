@@ -46,7 +46,7 @@ SIZE_PRODUCT_DESC: Veľkosť od najvyššej
 FROM: Od...
 TO: Do...
 
-CANT_SHOP: Nie je možné kúpiť
+CANT_SHOP: Nie je možné kúpiť (?)
 
 CONTACT_US: Kontaktujte nás
 ANY_QUESTIONS: Ak máte akékoľvek otázky
@@ -71,6 +71,7 @@ CITY: Mesto
 POSTAL_CODE: PSČ
 ADDRESS: Adresa
 EDIT: Upraviť
+PROFILE_EDIT: Úprava profilu
 
 ITEM_NAME: Názov produktu
 ORDER_DATE: Dátum objednania

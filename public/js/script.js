@@ -67,6 +67,8 @@ for (i = 0; i < coll.length; i++) {
     })
 }
 
+
+
 openPopup = () => {
     let content = document.getElementById("popup");
     if (content.style.height) {
@@ -111,4 +113,3 @@ let CartoDB_DarkMatter = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all
 let marker = L.marker([48.9469267, 20.5665167]
 ).addTo(mymap);
 marker.bindPopup("Hello it's me!").openPopup();
-

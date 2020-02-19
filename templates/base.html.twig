@@ -8,11 +8,13 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset("css/leaflet.css") }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script
             src="https://code.jquery.com/jquery-3.4.1.min.js"
             integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
             crossorigin="anonymous"></script>
     <script src="{{ asset('js/leaflet.js') }}"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <title>{{ title }}</title>
 </head>
 <body>
@@ -104,8 +106,11 @@
     </div>
 </nav>
 {% block body %}{% endblock %}
-<footer class="page-footer">
-</footer>
+
+
+<script>
+    AOS.init();
+</script>
 <script src="{{ asset("js/script.js") }}"></script>
 </body>
 </html>
