@@ -58,6 +58,7 @@ class BlogController extends AbstractController
         }
         $title = "Bshop";
         $announce = "Welcome to bshop";
+        dump($phrase);
         if ($request->isXmlHttpRequest()) {
             $jsonResp = array();
             if ($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
@@ -102,7 +103,7 @@ class BlogController extends AbstractController
             'announce' => $announce,
             'page' => $page,
             'blogs' => $response,
-            'phrase' => $request->get("search_phrase", "")
+            'phrase' => $phrase
         ]);
     }
 

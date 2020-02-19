@@ -29,6 +29,7 @@ openFilter = (id) => { //id = brand => size
 $(document).ready(function () {
     $("#searchbar").on("keyup", function () {
         var value = $(this).val();
+        $("#hidden_phrase").val(value);
         $.post(
             '/blog',
             {
