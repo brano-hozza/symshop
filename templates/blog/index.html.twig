@@ -15,29 +15,30 @@
                        placeholder="{% trans %}SEARCH_HERE{% endtrans %}" name="search_phrase" autocomplete="off"
                        value="{{ phrase }}"><br>
             </div>
-            </form>
-            <div id="blogs">
-                {% for blog in blogs %}
-                    <div class="blog-container">
-                        <div class="blog-remove">
-                            <p class="blog-user">u/{{ blog.user.username }}</p>
-                            {% if is_granted('ROLE_ADMIN') %}
-                                <form action="{{ path('blog_remove', {blog: blog.id}) }}" id="delete">
-                                    <button type="submit"><img src="{{ asset("images/close.svg") }}"></button>
-                                </form>
+        </form>
+        <div id="blogs">
+            {% for blog in blogs %}
+                <div class="blog-container" data-aos="fade-up" data-aos-duration="500" data-aos-once="true">
+                    <div class="blog-remove">
+                        <p class="blog-user">u/{{ blog.user.username }}</p>
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <form action="{{ path('blog_remove', {blog: blog.id}) }}" id="delete">
+                                <button type="submit"><img src="{{ asset("images/close.svg") }}"></button>
+                            </form>
 
-                            {% endif %}
-                        </div>
-                        <h2 class="blog-title">{{ blog.title }}</h2>
-                        <p class="blog-text">{{ blog.text }}</p>
-                        <p class="blog-date">{% trans %}CREATED_ON{% endtrans %}
-                            : {{ blog.getCreatedAt()|date("d/m/Y") }}</p>
+                        {% endif %}
                     </div>
+                    <h2 class="blog-title">{{ blog.title }}</h2>
+                    <p class="blog-text">{{ blog.text }}</p>
+                    <p class="blog-date">{% trans %}CREATED_ON{% endtrans %}
+                        : {{ blog.getCreatedAt()|date("d/m/Y") }}</p>
 
-                {% endfor %}
-            </div>
+                </div>
+
+            {% endfor %}
+        </div>
         <form action="{{ path("blog") }}"
-              method="post" >
+              method="post">
             <input type="hidden" id="hidden_phrase" value="{{ phrase }}" name="search_phrase">
             <div class="paging">
 

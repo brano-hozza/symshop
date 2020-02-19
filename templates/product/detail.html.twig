@@ -6,7 +6,8 @@
                 <div class="product-photo">
                     <h2 style="margin-left: 3rem;">{% trans %}PRODUCTS{% endtrans %}
                         > {{ product.brand }} {{ product.name }}</h2>
-                    <img data-aos="fade-up"  data-aos-duration="750" data-aos-once="true" src={{ asset("images/#{product.img}") }} alt="{{ product.img }}" alt="img">
+                    <img data-aos="fade-up" data-aos-duration="750" data-aos-once="true"
+                         src={{ asset("images/#{product.img}") }} alt="{{ product.img }}" alt="img">
                 </div>
                 <div class="product-order">
                     <h1>{{ product.brand }} {{ product.name }}</h1>
@@ -18,7 +19,7 @@
                     {% if can_shop %}
                     <form action="{{ path("order_create") }}">
                         <input type="hidden" name="id" value="{{ product.getId() }}">
-                        <input type="submit" class="btn">
+                        <input type="submit" class="btn" value="{% trans %}ORDER{% endtrans %}">
                     </form>
                     {% else %}
                     <div class="popup" id="productPopup">
@@ -41,7 +42,7 @@
                     </div>
 
 
-                        <div class="btn-off" onclick="productPopup();"><p>{% trans %}CANT_SHOP{% endtrans %}</p></div>
+                    <div class="btn-off" onclick="productPopup();"><p>{% trans %}CANT_SHOP{% endtrans %}</p></div>
 
                 </div>
                 {% endif %}
@@ -152,7 +153,8 @@
         </div>
         <div class="footer-contact">
             <h1>SOCIÁLNE SIETE</h1>
-            <a href="https://www.instagram.com/slovakstore/?hl=sk"><img style="width: 4rem; height: auto;" src="{{ asset('/images/ig.png') }}"></a>
+            <a href="https://www.instagram.com/slovakstore/?hl=sk"><img style="width: 4rem; height: auto;"
+                                                                        src="{{ asset('/images/ig.png') }}"></a>
             <h1>KONTAKT</h1>
             <p>hsdfghsfgh@asdfgasdf.com</p>
             <p>696969696969</p>
