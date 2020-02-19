@@ -248,19 +248,21 @@ class AdminController extends AbstractController
         $is_reserved = $request->get("reserved") == "on";
         $product->setName($request->get("name"));
         $product->setBrand($request->get("brand"));
+        $product->setReserved($is_reserved);
         $product->setDescription($request->get("description"));
         $product->setPcs($request->get("pcs"));
         $product->setPrice($request->get("price"));
         $product->setSize($request->get("size"));
         $file = $request->files->get("image");
-        $newFileName = $product->getName() . '-' . uniqid() . '.' . $file->guessExtension();
-        dump($newFileName);
-        try {
-            $file->move($this->getParameter('img_directory'), $newFileName);
-        } catch (FileException $e) {
-            throw $e;
+        if ($file) {
+            $newFileName = $product->getName() . '-' . uniqid() . '.' . $file->guessExtension();
+            try {
+                $file->move($this->getParameter('img_directory'), $newFileName);
+            } catch (FileException $e) {
+                throw $e;
+            }
+            $product->setImg($newFileName);
         }
-        $product->setImg($newFileName);
 
         $em = $this->getDoctrine()->getManager();
         $em->persist($product);

@@ -15,13 +15,13 @@
             crossorigin="anonymous"></script>
     <script src="{{ asset('js/leaflet.js') }}"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <title>{{ title }}</title>
+    <title>B-SHOP</title>
 </head>
 <body>
-<div class="announcement" id="announcement">{{ announce }}</div>
+<div class="announcement" id="announcement">Welcome!</div>
 <nav>
     <ul class="nav">
-        <li class="nav-item-left"><a href="{{ path("index") }}">{{ title }}</a></li>
+        <li class="nav-item-left"><a href="{{ path("index") }}">B-SHOP</a></li>
         <li class="nav-item"><a href="{{ path('index') }}">{% trans %}HOME{% endtrans %}</a></li>
         <li class="nav-item"><a href="{{ path('products') }}">{% trans %}PRODUCTS{% endtrans %}</a></li>
         <li class="nav-item"><a href="{{ path('blog') }}">{% trans %}BLOG{% endtrans %}</a></li>
@@ -54,10 +54,10 @@
 {% if admin is defined %}
     {% if admin %}
         <ul class="admin-nav-phone">
-            <li class="nav-item"><a href="{{ path('admin_product') }}"><img src="{{ asset("images/products.png" ) }}"></a>
+            <li class="nav-item"><a href="{{ path('admin_product') }}"><img alt="products" src="{{ asset("images/products.png" ) }}"></a>
             </li>
-            <li class="nav-item"><a href="{{ path('admin_user') }}"><img src="{{ asset("images/users.png" ) }}"></a></li>
-            <li class="nav-item"><a href="{{ path('admin_order') }}"><img  src="{{ asset("images/orders.png" ) }}"></a></li>
+            <li class="nav-item"><a href="{{ path('admin_user') }}"><img alt="users" src="{{ asset("images/users.png" ) }}"></a></li>
+            <li class="nav-item"><a href="{{ path('admin_order') }}"><img alt="orders"  src="{{ asset("images/orders.png" ) }}"></a></li>
         </ul>
     {% endif %}
 {% endif %}

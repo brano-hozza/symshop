@@ -22,7 +22,6 @@ class BlogRepository extends ServiceEntityRepository
     /**
      * @param $phrase string
      * @param $page
-     * @param $is_ajax
      * @return mixed
      */
     public function getBySearch($phrase, $page){
@@ -39,34 +38,4 @@ class BlogRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
-
-
-    // /**
-    //  * @return Blog[] Returns an array of Blog objects
-    //  */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('b')
-            ->andWhere('b.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('b.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
-
-    /*
-    public function findOneBySomeField($value): ?Blog
-    {
-        return $this->createQueryBuilder('b')
-            ->andWhere('b.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }
