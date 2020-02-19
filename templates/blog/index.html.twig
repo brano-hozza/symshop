@@ -11,41 +11,44 @@
         <form action="{{ path("blog") }}"
               method="post" id="form">
             <div class="blog-search">
-                <input id="searchbar" class="blog-search-input" type="text" placeholder="{% trans %}SEARCH_HERE{% endtrans %}" name="search_phrase" autocomplete="off" value="{{ phrase }}"><br>
+                <input id="searchbar" class="blog-search-input" type="text"
+                       placeholder="{% trans %}SEARCH_HERE{% endtrans %}" name="search_phrase" autocomplete="off"
+                       value="{{ phrase }}"><br>
                 <!--<input type="submit" style="visibility: hidden">-->
             </div>
 
         </form>
-            <div id="blogs">
+        <div id="blogs">
             {% for blog in blogs %}
                 <div class="blog-container">
                     <div class="blog-remove">
                         <p class="blog-user">u/{{ blog.user.username }}</p>
-                        <form  action="{{ path('blog_remove', {blog: blog.id}) }}" id="delete">
-                            <button type="submit"><img src="{{ asset("images/close.svg") }}"></button>
-                        </form>
-                    </div>
-                    <h2 class="blog-title">{{blog.title}}</h2>
-                    <p class="blog-text">{{ blog.text }}</p>
-                    <p class="blog-date">{% trans %}CREATED_ON{% endtrans %}: {{ blog.getCreatedAt()|date("d/m/Y") }}</p>
-                    {% if is_granted('ROLE_ADMIN') %}
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <form action="{{ path('blog_remove', {blog: blog.id}) }}" id="delete">
+                                <button type="submit"><img src="{{ asset("images/close.svg") }}"></button>
+                            </form>
 
-                    {% endif %}
+                        {% endif %}
+                    </div>
+                    <h2 class="blog-title">{{ blog.title }}</h2>
+                    <p class="blog-text">{{ blog.text }}</p>
+                    <p class="blog-date">{% trans %}CREATED_ON{% endtrans %}
+                        : {{ blog.getCreatedAt()|date("d/m/Y") }}</p>
                 </div>
 
             {% endfor %}
-            </div>
-            <div class="paging">
+        </div>
+        <div class="paging">
 
-                {% if page > 1 %}
-                    <input type="submit"  name="next_page" value="{{ page-1 }}" class="page-button">
-                {% endif %}
-                <p>{{ page }}</p>
-                {% if blogs|length > 19 %}
-                    <input type="submit" id="next" name="next_page" value="{{ page+1 }}" class="page-button">
-                {% endif %}
+            {% if page > 1 %}
+                <input type="submit" name="next_page" value="{{ page-1 }}" class="page-button">
+            {% endif %}
+            <p>{{ page }}</p>
+            {% if blogs|length > 19 %}
+                <input type="submit" id="next" name="next_page" value="{{ page+1 }}" class="page-button">
+            {% endif %}
 
-            </div>
+        </div>
     </article>
     <footer class="page-footer">
         <div class="developers">
@@ -55,7 +58,8 @@
         </div>
         <div class="footer-contact">
             <h1>SOCIÁLNE SIETE</h1>
-            <a href="https://www.instagram.com/slovakstore/?hl=sk"><img style="width: 4rem; height: auto;" src="{{ asset('/images/ig.png') }}"></a>
+            <a href="https://www.instagram.com/slovakstore/?hl=sk"><img style="width: 4rem; height: auto;"
+                                                                        src="{{ asset('/images/ig.png') }}"></a>
             <h1>KONTAKT</h1>
             <p>hsdfghsfgh@asdfgasdf.com</p>
             <p>696969696969</p>
