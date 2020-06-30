@@ -4,6 +4,7 @@
 namespace App\Controller;
 
 
+use App\Repository\ProductRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -14,13 +15,17 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class MainController extends AbstractController
 {
+
     /**
      * @Route("/", name="index")
+     * @param ProductRepository $repository
+     * @return Response
      */
-    public function show(){
+    public function index(ProductRepository $repository){
         $title = "Bshop";
         $announce = "Welcome to bshop";
-        return $this->render('/pages/index.html.twig',[
+        return $this->render('main/index.html.twig',[
+            'products' => $repository->findInRange(0,2),
             'title' => $title,
             'announce' => $announce
         ]);
@@ -32,7 +37,7 @@ class MainController extends AbstractController
     public function contact(){
         $title = "Bshop";
         $announce = "Welcome to bshop";
-        return $this->render('/pages/index.html.twig',[
+        return $this->render('main/contact.html.twig',[
             'title' => $title,
             'announce' => $announce
         ]);

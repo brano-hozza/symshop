@@ -5,6 +5,8 @@ namespace App\Repository;
 use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\ORM\OptimisticLockException;
+use Doctrine\ORM\ORMException;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Symfony\Component\Security\Core\User\PasswordUpgraderInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -24,6 +26,10 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
 
     /**
      * Used to upgrade (rehash) the user's password automatically over time.
+     * @param UserInterface $user
+     * @param string $newEncodedPassword
+     * @throws ORMException
+     * @throws OptimisticLockException
      */
     public function upgradePassword(UserInterface $user, string $newEncodedPassword): void
     {
@@ -36,32 +42,43 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         $this->_em->flush();
     }
 
-    // /**
-    //  * @return User[] Returns an array of User objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    public function findByFilter(array $filter)
     {
-        return $this->createQueryBuilder('u')
-            ->andWhere('u.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('u.id', 'ASC')
-            ->setMaxResults(10)
+        $role = "[";
+        if ($filter["admin"] == "true"){
+            $role= "ROLE_ADMIN";
+        }
+        $qb = $this->createQueryBuilder("u");
+        return $qb
+            ->andWhere("u.username LIKE :username")
+            ->setParameter("username", "%".$filter["username"]."%")
+            ->andWhere("u.first_name LIKE :firstName")
+            ->setParameter("firstName", "%".$filter["firstName"]."%")
+            ->andWhere("u.last_name LIKE :lastName")
+            ->setParameter("lastName", "%".$filter["lastName"]."%")
+            ->andWhere("u.email LIKE :email")
+            ->setParameter("email", "%".$filter["email"]."%")
+            ->andWhere("u.city LIKE :city")
+            ->setParameter("city", "%".$filter["city"]."%")
+            ->orWhere("u.city IS NULL")
+            ->andWhere("u.country LIKE :country")
+            ->setParameter("country", "%".$filter["country"]."%")
+            ->orWhere("u.country IS NULL")
+            ->andWhere("u.street LIKE :street")
+            ->setParameter("street", "%".$filter["street"]."%")
+            ->orWhere("u.street IS NULL")
+            ->andWhere("u.postal LIKE :postal")
+            ->setParameter("postal", "%".$filter["postal"]."%")
+            ->orWhere("u.postal IS NULL")
+            ->andWhere("u.phone_number LIKE :phone_number")
+            ->setParameter("phone_number", "%".$filter["phone_number"]."%")
+            ->orWhere("u.phone_number IS NULL")
+            ->andWhere("u.roles LIKE :role")
+            ->setParameter("role", "%".$role."%")
+            ->andWhere("u.active = ". ($filter["active"]==true?"true":"false"))
+            ->orderBy("u.id")
             ->getQuery()
-            ->getResult()
-        ;
+            ->getResult();
     }
-    */
 
-    /*
-    public function findOneBySomeField($value): ?User
-    {
-        return $this->createQueryBuilder('u')
-            ->andWhere('u.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }

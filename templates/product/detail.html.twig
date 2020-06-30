@@ -1,0 +1,174 @@
+{% extends('base.html.twig') %}
+{% block body %}
+    <article style="background-color: #ffffff;">
+        <section style="">
+            <div class="product-detail">
+                <div class="product-photo">
+                    <h2 style="margin-left: 3rem;">{% trans %}PRODUCTS{% endtrans %}
+                        > {{ product.brand }} {{ product.name }}</h2>
+                    <img data-aos="fade-up" data-aos-duration="750" data-aos-once="true"
+                         src={{ asset("images/#{product.img}") }} alt="{{ product.img }}" alt="img">
+                </div>
+                <div class="product-order">
+                    <h1>{{ product.brand }} {{ product.name }}</h1>
+                    <p>{{ product.description }}</p>
+                    <div class="detail-sizes">
+                        <p>EUR {{ product.size }}</p>
+                        <p>${{ product.price }}</p>
+                    </div>
+                    {% if can_shop %}
+                    <form action="{{ path("order_create") }}">
+                        <input type="hidden" name="id" value="{{ product.getId() }}">
+                        <input type="submit" class="btn" value="{% trans %}ORDER{% endtrans %}">
+                    </form>
+                    {% else %}
+                    <div class="popup" id="productPopup">
+                        <h1 id="title">Oh oh!</h1>
+                        <p>{% trans %}Pre vytvorenie objednávky je potrebné vytvorenie profilu a vyplnenie všetkých údajov{% endtrans %}</p>
+                        <div class="popup-buttons">
+                            {% if is_granted('ROLE_USER') %}
+                                <button class="popup-button"
+                                        onclick="popupClose();"
+                                        style="border-right: 1px #dbdbdb solid">{% trans %}CANCEL{% endtrans %}</button>
+                                <a class="popup-button" href="{{ path('user_edit') }}">{% trans %}EDIT{% endtrans %}</a>
+                            {% else %}
+                                <button class="popup-button"
+                                        onclick="popupClose();"
+                                        style="border-right: 1px #dbdbdb solid">{% trans %}CANCEL{% endtrans %}</button>
+                                <a class="popup-button"
+                                   href="{{ path('user_login') }}">{% trans %}LOG_IN{% endtrans %}</a>
+                            {% endif %}
+                        </div>
+                    </div>
+
+
+                    <div class="btn-off" onclick="productPopup();"><p>{% trans %}CANT_SHOP{% endtrans %}</p></div>
+
+                </div>
+                {% endif %}
+            </div>
+            </div>
+            <div class="shipping">
+                <div class="shipipng-img">
+                    <img src="{{ asset("images/shipping.png") }}">
+                </div>
+                <div class="shipping-info">
+                    <h1>Doručenie</h1>
+                    <p>Všetky objednávky posielame Slovenskou poštou na dobierku, alebo cez osobný odber v
+                        mestách Košice, Spišská Nová Ves, Spišské Podhradie, Poprad, Prešov, atď.</p>
+                    <p>Ak máte otázky, kontaktujte nás pre bližšie ifnormácie.</p>
+                </div>
+            </div>
+
+            <div style="padding-bottom: 5rem; margin-top: 20rem;">
+                <h1 style="font-size: 4rem; margin-top: 6rem; text-align: center;">Veľkostná tabuľka (Muži)</h1>
+
+                <table class="size-chart">
+                    <tr>
+                        <th>EU</th>
+                        <th>UK</th>
+                        <th>US</th>
+                        <th>CM</th>
+                    </tr>
+                    <tr class="size-chart-dark">
+                        <td>35</td>
+                        <td>2.5</td>
+                        <td>3.5</td>
+                        <td>22.6</td>
+                    </tr>
+                    <tr>
+                        <td>36</td>
+                        <td>3.5</td>
+                        <td>4.5</td>
+                        <td>23.3</td>
+                    </tr>
+                    <tr class="size-chart-dark">
+                        <td>37</td>
+                        <td>4</td>
+                        <td>5</td>
+                        <td>24</td>
+                    </tr>
+                    <tr>
+                        <td>38</td>
+                        <td>5</td>
+                        <td>6</td>
+                        <td>24.6</td>
+                    </tr>
+                    <tr class="size-chart-dark">
+                        <td>39</td>
+                        <td>5.5</td>
+                        <td>6.5</td>
+                        <td>25.3</td>
+                    </tr>
+                    <tr>
+                        <td>40</td>
+                        <td>6.5</td>
+                        <td>7.5</td>
+                        <td>26</td>
+                    </tr>
+                    <tr class="size-chart-dark">
+                        <td>41</td>
+                        <td>7</td>
+                        <td>8</td>
+                        <td>26.6</td>
+                    </tr>
+                    <tr>
+                        <td>42</td>
+                        <td>8</td>
+                        <td>9</td>
+                        <td>27.3</td>
+                    </tr>
+                    <tr class="size-chart-dark">
+                        <td>43</td>
+                        <td>9</td>
+                        <td>10</td>
+                        <td>28</td>
+                    </tr>
+                    <tr>
+                        <td>44</td>
+                        <td>9.5</td>
+                        <td>10.5</td>
+                        <td>28.6</td>
+                    </tr>
+                    <tr class="size-chart-dark">
+                        <td>45</td>
+                        <td>10.5</td>
+                        <td>11.5</td>
+                        <td>29.3</td>
+                    </tr>
+
+                </table>
+
+            </div>
+
+
+        </section>
+    </article>
+
+    <footer class="page-footer">
+        <div class="developers">
+            <p>Stránku vytvorili</p>
+            <p>Peter Janoš</p>
+            <p>Branislav Hozza</p>
+        </div>
+        <div class="footer-contact">
+            <h1>SOCIÁLNE SIETE</h1>
+            <a href="https://www.instagram.com/slovakstore/?hl=sk"><img style="width: 4rem; height: auto;"
+                                                                        src="{{ asset('/images/ig.png') }}"></a>
+            <h1>KONTAKT</h1>
+            <p>hsdfghsfgh@asdfgasdf.com</p>
+            <p>696969696969</p>
+        </div>
+        <div class="footer-nav">
+            <a href="{{ path('index') }}">{% trans %}HOME{% endtrans %}</a>
+            <a href="{{ path('products') }}">{% trans %}PRODUCTS{% endtrans %}</a>
+            <a href="{{ path('blog') }}">{% trans %}BLOG{% endtrans %}</a>
+            <a href="{{ path('contact') }}">{% trans %}CONTACT{% endtrans %}</a>
+            {% if is_granted('ROLE_USER') %}
+                <a href="{{ path('user_profile') }}">{% trans %}PROFILE{% endtrans %}</a>
+            {% else %}
+                <a href="{{ path('user_login') }}">{% trans %}LOG_IN{% endtrans %}</a>
+            {% endif %}
+        </div>
+    </footer>
+{% endblock %}

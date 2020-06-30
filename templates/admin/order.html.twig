@@ -1,0 +1,88 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <article style="background-color: #E2E2E2;">
+
+        <div class="admin-orders admin-tables">
+            <h1 style="margin: 0;">{% trans %}ADMIN_ORDERS{% endtrans %}</h1>
+            <table class="admin-product-table">
+                <tr>
+                    <th class="table_id">ID</th>
+                    <th class="table_name">{% trans %}PRODUCT{% endtrans %}</th>
+                    <th class="table_pcs">{% trans %}USER{% endtrans %}</th>
+                    <th class="table_size">{% trans %}PRICE{% endtrans %}</th>
+                    <th class="table_brand">{% trans %}DATE{% endtrans %}</th>
+                    <th class="table_brand"><label for="isComplete">{% trans %}IS_COMPLETE{% endtrans %}</label></th>
+                    <th>{% trans %}SUBMIT{% endtrans %}</th>
+                    <th>{% trans %}REMOVE{% endtrans %}</th>
+                </tr>
+                <tr>
+                    <form action="{{ path('admin_order') }}" id="filtre">
+                        <th>Filter: </th>
+                        <td><input type="text" name="product" value="{{ product }}"
+                                   onchange="document.getElementById('filtre').submit();"></td>
+                        <td><input type="text" name="user" value="{{ user }}"
+                                   onchange="document.getElementById('filtre').submit();"></td>
+                        <td><input type="number" name="price" value="{{price}}"
+                                   onchange="document.getElementById('filtre').submit();">
+                        </td>
+                        <td>
+                            <select name="created_at" id="sort"
+                                    onchange="document.getElementById('filtre').submit();">
+                                {% if date == "ASC" %}
+                                    <option value="ASC" selected>Od najstarsieho</option>
+                                    <option value="DESC">Od najnovsieho</option>
+                                {% else %}
+                                    <option value="ASC">Od najstarsieho</option>
+                                    <option value="DESC" selected>Od najnovsieho</option>
+                                {% endif %}
+                            </select>
+                        </td>
+                        <td>
+                            {% if complete == "on" %}
+                                <input type="checkbox" checked name="complete"
+                                       onchange="document.getElementById('filtre').submit();">
+                            {% else %}
+                                <input type="checkbox" name="complete"
+                                       onchange="document.getElementById('filtre').submit();">
+                            {% endif %}
+                        </td>
+                        <td></td>
+                        <td></td>
+                    </form>
+                </tr>
+                {% for order in orders %}
+                    {% for product in order.getProducts() %}
+                        <tr>
+                            <form action="{{ path('admin_order_edit', {order: order.getId()}) }}">
+                                <td class="table_id">{{ order.getId() }}</td>
+                                <td class="table_name"
+
+                                >{{ product.getBrand() }} {{ product.getName() }}</td>
+                                <td class="table_name">{{ order.user.getUsername() }}</td>
+                                <td class="table_pcs">${{ product.getPrice() }}</td>
+                                <td class="table_brand">{{ order.getCreatedAt()|date("Y/m/d") }}</td>
+                                <td class="table_name">
+                                    {% if order.getIsComplete() %}
+                                        <input type="checkbox" checked name="isComplete" id="isComplete">
+                                    {% else %}
+                                        <input type="checkbox" name="isComplete" id="isComplete">
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    <input type="submit" value="{% trans %}SUBMIT{% endtrans %}" name="submit">
+                                </td>
+                                <td>
+                                    <input type="submit" value="X" name="delete">
+                                </td>
+                            </form>
+                        </tr>
+                    {% endfor %}
+                {% endfor %}
+
+            </table>
+        </div>
+    </article>
+
+{% endblock %}
+

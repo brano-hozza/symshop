@@ -5,10 +5,12 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
+ * @UniqueEntity(fields={"username"}, message="There is already an account with this username")
  */
 class User implements UserInterface
 {
@@ -55,9 +57,46 @@ class User implements UserInterface
      */
     private $email;
 
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $city;
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $country;
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $street;
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $postal;
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $phone_number;
+
+    /**
+     * @ORM\OneToMany(targetEntity="ProductOrder", mappedBy="user", orphanRemoval=true)
+     */
+    private $orders;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $active = true;
+
+
+    /**
+     * User constructor.
+     */
+
     public function __construct()
     {
         $this->blogs = new ArrayCollection();
+        $this->orders = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -72,7 +111,7 @@ class User implements UserInterface
      */
     public function getUsername(): string
     {
-        return (string) $this->username;
+        return (string)$this->username;
     }
 
     public function setUsername(string $username): self
@@ -106,7 +145,7 @@ class User implements UserInterface
      */
     public function getPassword(): string
     {
-        return (string) $this->password;
+        return (string)$this->password;
     }
 
     public function setPassword(string $password): self
@@ -199,4 +238,144 @@ class User implements UserInterface
 
         return $this;
     }
+
+
+    /**
+     * @return mixed
+     */
+    public function getCity()
+    {
+        return $this->city;
+    }
+
+    /**
+     * @param mixed $city
+     * @return User
+     */
+    public function setCity($city): self
+    {
+        $this->city = $city;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCountry()
+    {
+        return $this->country;
+    }
+
+    /**
+     * @param mixed $country
+     * @return User
+     */
+    public function setCountry($country): self
+    {
+        $this->country = $country;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getStreet()
+    {
+        return $this->street;
+    }
+
+    /**
+     * @param mixed $street
+     * @return User
+     */
+    public function setStreet($street): self
+    {
+        $this->street = $street;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPostal()
+    {
+        return $this->postal;
+    }
+
+    /**
+     * @param mixed $postal
+     * @return User
+     */
+    public function setPostal($postal): self
+    {
+        $this->postal = $postal;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPhoneNumber()
+    {
+        return $this->phone_number;
+    }
+
+    /**
+     * @param mixed $phone_number
+     * @return User
+     */
+    public function setPhoneNumber($phone_number): self
+    {
+        $this->phone_number = $phone_number;
+        return $this;
+    }
+
+    /**
+     * @return Collection|ProductOrder[]
+     */
+    public function getOrders(): Collection
+    {
+        return $this->orders;
+    }
+
+    public function addOrder(ProductOrder $order): self
+    {
+        if (!$this->orders->contains($order)) {
+            $this->orders[] = $order;
+            $order->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOrder(ProductOrder $order): self
+    {
+        if ($this->orders->contains($order)) {
+            $this->orders->removeElement($order);
+            // set the owning side to null (unless already changed)
+            if ($order->getUser() === $this) {
+                $order->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isActive(): bool
+    {
+        return $this->active;
+    }
+
+    /**
+     * @param bool $active
+     */
+    public function setActive(bool $active): void
+    {
+        $this->active = $active;
+    }
+
+
 }

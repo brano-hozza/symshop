@@ -23,15 +23,15 @@ class ProductRepository extends ServiceEntityRepository
     }
 
     public function getFilterOf($filter){
-        return $this->createQueryBuilder("p")->distinct("p.".$filter)
+        return $this->createQueryBuilder("p")
             ->select("p.".$filter)
-            ->orderBy("p.".$filter)
+            ->groupBy("p.".$filter)
             ->getQuery()
             ->getResult();
 
     }
 
-    public function getByFilter($arr_type, $arr_brand, $arr_size, $arr_price){
+    public function getByFilter($arr_type, $arr_brand, $arr_size, $arr_price, $sort_by, $page){
         $qb = $this->createQueryBuilder("p");
         if($arr_type == null){
             $qb_type = "1=1";
@@ -50,17 +50,37 @@ class ProductRepository extends ServiceEntityRepository
         }
         if($arr_price[0] == null){
             $qb_price1 = "1=1";
-            $qb_price2 = "1=1";
         }else{
             $qb_price1 = $qb->expr()->gte("p.price", $arr_price[0]);
-            $qb_price2 = $qb->expr()->gte("p.price", $arr_price[1]);
         }
-        return $qb->where($qb_type)
+        if($arr_price[1] == null){
+            $qb_price2 = "1=1";
+        }else{
+            $qb_price2 = $qb->expr()->lte("p.price", $arr_price[1]);
+        }
+        $sort = explode("_", $sort_by);
+
+
+        if (empty($sort[1])){
+            $sort[1] = 'ASC';
+        }
+        if ($sort[0] == null){
+            $sort[0] = 'name';
+        }
+        if($page == null){
+            $page = 1;
+        }
+        dump($sort);
+        return $qb
+            ->andWhere($qb_type)
             ->andWhere($qb_brand)
             ->andWhere($qb_size)
             ->andWhere($qb_price1)
             ->andWhere($qb_price2)
+            ->andWhere("p.reserved = FALSE")
+            ->setFirstResult(($page-1)*20)
             ->setMaxResults(20)
+            ->orderBy("p.".$sort[0], $sort[1])
             ->getQuery()
             ->getResult();
     }
@@ -108,4 +128,25 @@ class ProductRepository extends ServiceEntityRepository
         ;
     }
     */
+    public function findByFilter(array $filter)
+    {
+        $qb = $this->createQueryBuilder("p");
+        return $qb
+            ->andWhere("p.name LIKE :name")
+            ->setParameter("name", "%".$filter["name"]."%")
+            ->andWhere("p.brand LIKE :brand")
+            ->setParameter("brand", "%".$filter["brand"]."%")
+            ->andWhere("p.description LIKE :description")
+            ->setParameter("description", "%".$filter["description"]."%")
+            ->andWhere("p.price LIKE :price")
+            ->setParameter("price", "%".$filter["price"]."%")
+            ->andWhere("p.size LIKE :size")
+            ->setParameter("size", "%".$filter["size"]."%")
+            ->andWhere("p.img LIKE :image")
+            ->setParameter("image", "%".$filter["image"]."%")
+            ->andWhere("p.reserved = ".$filter["reserved"])
+            ->orderBy("p.id")
+            ->getQuery()
+            ->getResult();
+    }
 }

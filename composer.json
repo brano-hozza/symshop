@@ -2,6 +2,8 @@
     "type": "project",
     "license": "proprietary",
     "require": {
+        "apigen/apigen": "dev-master",
+        "roave/better-reflection": "dev-master#c87d856",
         "php": "^7.2.5",
         "ext-ctype": "*",
         "ext-iconv": "*",
@@ -29,7 +31,9 @@
         "symfony/validator": "5.0.*",
         "symfony/web-link": "5.0.*",
         "symfony/yaml": "5.0.*",
-      "ext-json": "*"
+      "ext-json": "*",
+      "ext-http": "*",
+      "ext-intl": "*"
     },
     "require-dev": {
         "doctrine/doctrine-fixtures-bundle": "^3.3",

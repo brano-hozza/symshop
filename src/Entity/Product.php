@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Entity;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping AS ORM;
 
 /**
@@ -48,6 +50,22 @@ class Product
      * @ORM\Column(type="string", length=255)
      */
     private $img;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $reserved = false;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="ProductOrder", inversedBy="products")
+     * @ORM\JoinColumn(name="order_id", referencedColumnName="id", nullable=true)
+     */
+    private $order = null;
+
+
+    public function __construct()
+    {
+    }
 
     /**
      * @return mixed
@@ -179,6 +197,41 @@ class Product
         $this->img = $img;
 
         return $this;
+    }
+
+
+    /**
+     * @return bool
+     */
+    public function isReserved(): bool
+    {
+        return $this->reserved;
+    }
+
+    /**
+     * @param bool $reserved
+     * @return Product
+     */
+    public function setReserved(bool $reserved): self
+    {
+        $this->reserved = $reserved;
+        return $this;
+    }
+
+    /**
+     * @return null
+     */
+    public function getOrder()
+    {
+        return $this->order;
+    }
+
+    /**
+     * @param null $order
+     */
+    public function setOrder($order): void
+    {
+        $this->order = $order;
     }
 
 

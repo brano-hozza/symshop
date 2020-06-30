@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+
+
+    {{ form_start(form) }}
+    <div class="form">
+
+        <h1>{% trans %}SIGN_UP{% endtrans %}</h1>
+        <h3>{% trans %}TO_CREATE{% endtrans %}</h3>
+
+        <div class="errors">
+            {{ form_errors(form.username) }}
+            {{ form_errors(form.first_name) }}
+            {{ form_errors(form.last_name) }}
+            {{ form_errors(form.email) }}
+            {{ form_errors(form.plainPassword) }}
+            {{ form_errors(form.agreeTerms) }}
+            {{ form_errors(form.agreeGDPR) }}
+        </div>
+
+        {{ form_label(form.username) }}
+        {{ form_widget(form.username) }}
+
+        {{ form_label(form.first_name) }}
+        {{ form_widget(form.first_name) }}
+
+        {{ form_label(form.last_name) }}
+        {{ form_widget(form.last_name) }}
+
+        {{ form_label(form.email) }}
+        {{ form_widget(form.email) }}
+
+        {{ form_label(form.plainPassword) }}
+        {{ form_widget(form.plainPassword) }}
+
+        {{ form_label(form.agreeTerms) }}
+        {{ form_widget(form.agreeTerms) }}
+        <br>
+        {{ form_label(form.agreeGDPR) }}
+        {{ form_widget(form.agreeGDPR) }}
+        {{ form_widget(form.submit) }}
+    </div>
+    {{ form_end(form) }}
+{% endblock %}

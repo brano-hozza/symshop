@@ -1,0 +1,111 @@
+{# templates/blog/layout.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <section class="profile-section" style="">
+        <div class="profile">
+
+            <h1>{% trans %}ACCOUNT_INFORMATIONS{% endtrans %}</h1>
+            <div class="account-information">
+
+                <img src="{{ asset("images/acc.png") }}" alt="acc">
+
+                <div>
+                    <p>{{ user.getUsername() }}</p>
+                    <p>{{ user.getEmail() }}</p>
+                </div>
+            </div>
+            <br>
+
+            <h1>{% trans %}PERSONAL_INFORMATIONS{% endtrans %}</h1>
+            <div class="personal-information">
+                <div class="personal-info-elements">
+                    <p>{% trans %}FIRST_NAME{% endtrans %}</p>
+                    <p>{% trans %}LAST_NAME{% endtrans %}</p>
+                    <p>{% trans %}PHONE_NUMBER{% endtrans %}</p>
+                    <br>
+                    <p>{% trans %}COUNTRY{% endtrans %}</p>
+                    <p>{% trans %}CITY{% endtrans %}</p>
+                    <p>{% trans %}POSTAL_CODE{% endtrans %}</p>
+                    <p>{% trans %}ADDRESS{% endtrans %}</p>
+
+                </div>
+                <div style="margin-left: 20px;" class="personal-info-details">
+                    <p>{{ user.getFirstName() }}</p>
+                    <p>{{ user.getLastName() }}</p>
+                    <p>{{ user.getPhoneNumber() ? user.getPhoneNumber() : "Neuvedené" }}</p>
+                    <br>
+                    <p>{{ user.getCountry() ? user.getCountry() : "Neuvedené" }}</p>
+                    <p>{{ user.getCity() ? user.getCity() : "Neuvedené" }}</p>
+                    <p>{{ user.getPostal() ? user.getPostal() : "Neuvedené" }}</p>
+                    <p>{{ user.getStreet() ? user.getStreet() : "Neuvedené" }}</p>
+
+                </div>
+            </div>
+            <form action="{{ path('user_edit') }}">
+                <div class="profile-button">
+                    <input type="submit" value="{% trans %}EDIT{% endtrans %}" class="edit_button">
+                </div>
+            </form>
+        </div>
+
+
+        <div class="orders">
+            <table class="orders-table">
+                <tr>
+                    <th>{% trans %}ITEM_NAME{% endtrans %}</th>
+                    <th>{% trans %}PRICE{% endtrans %}</th>
+                    <th>{% trans %}ORDER_DATE{% endtrans %}</th>
+                    <th>{% trans %}ORDER_NUMBER{% endtrans %}</th>
+                </tr>
+                {% for order in orders %}
+                    {% for product in order.getProducts() %}
+
+                        <tr>
+                            <td
+                                    {% if order.getIsComplete() %}
+                                        class="td-first-inactive"
+                                    {% else %}
+                                        class="td-first"
+                                    {% endif %}
+
+
+                            >{{ product.getBrand() }} {{ product.getName() }}</td>
+                            <td>${{ product.getPrice() }}</td>
+                            <td>{{ order.getCreatedAt()|date("Y/m/d") }}</td>
+                            <td>{{ order.getId() }}</td>
+                        </tr>
+                    {% endfor %}
+                {% endfor %}
+
+            </table>
+        </div>
+
+        <div class="orders-phone">
+            {% for order in orders %}
+            {% for product in order.getProducts() %}
+            <div class="orders-dokopy">
+                <div class="order-item-phone">
+                    <p>{{ product.getBrand() }} {{ product.getName() }}</p>
+                    <img src="{{ asset("images/arrow-down.png") }}" class="arrow-down" id="arrow-down" alt="arrow-down">
+                </div>
+                <div class="order-item-phone-details" id="opendetails">
+
+                    <div class="order-item-phone-tags">
+                        <p>{% trans %}PRICE{% endtrans %}</p>
+                        <p>{% trans %}ORDER_DATE{% endtrans %}</p>
+                        <p>{% trans %}ORDER_NUMBER{% endtrans %}</p>
+                    </div>
+                    <div class="order-item-phone-info">
+                        <p>${{ product.getPrice() }}</p>
+                        <p>{{ order.getCreatedAt()|date("Y/m/d") }}</p>
+                        <p>{{ order.getId() }}</p>
+                    </div>
+                </div>
+                {% endfor %}
+                {% endfor %}
+            </div>
+
+        </div>
+    </section>
+{% endblock %}

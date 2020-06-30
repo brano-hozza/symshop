@@ -1,0 +1,116 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <article style="background-color: #E2E2E2;">
+        <div class="admin-users admin-tables">
+            <h1>{% trans %}ADMIN_USER{% endtrans %}</h1>
+            <table class="admin-product-table">
+                <tr>
+                    <th class="table_id">ID</th>
+                    <th class="table_name"><label for="username">{% trans %}USERNAME{% endtrans %}</label></th>
+                    <th class="table_pcs"><label for="firstName">{% trans %}FIRST_NAME{% endtrans %}</label></th>
+                    <th class="table_size"><label for="lastName">{% trans %}LAST_NAME{% endtrans %}</label></th>
+                    <th class="table_brand"><label for="email">{% trans %}EMAIL{% endtrans %}</label></th>
+                    <th class="table_brand"><label for="country">{% trans %}COUNTRY{% endtrans %}</label></th>
+                    <th class="table_brand"><label for="city">{% trans %}CITY{% endtrans %}</label></th>
+                    <th class="table_brand"><label for="street">{% trans %}ADDRESS{% endtrans %}</label></th>
+                    <th class="table_brand"><label for="postal">{% trans %}POSTAL_CODE{% endtrans %}</label></th>
+                    <th class="table_brand"><label for="phone_number">{% trans %}PHONE_NUMBER{% endtrans %}</label></th>
+                    <th class="table_brand"><label for="isAdmin">{% trans %}IS_ADMIN{% endtrans %}</label></th>
+                    <th class="table_brand"><label for="banned">{% trans %}BANNED{% endtrans %}</label></th>
+                    <th class="table_brand">{% trans %}SUBMIT{% endtrans %}</th>
+                </tr>
+                <tr>
+                    <form action="{{ path('admin_user') }}" id="filtre">
+                        <th>Filter: </th>
+                        <td>
+                            <input type="text" name="username" value="{{ username }}"
+                                   onchange="document.getElementById('filtre').submit();">
+                        </td>
+                        <td>
+                            <input type="text" name="firstName" value="{{ firstName }}"
+                                   onchange="document.getElementById('filtre').submit();">
+                        </td>
+                        <td>
+                            <input type="text" name="lastName" value="{{lastName}}"
+                                   onchange="document.getElementById('filtre').submit();">
+                        </td>
+                        <td>
+                            <input type="email" name="email" value="{{ email }}"
+                                   onchange="document.getElementById('filtre').submit();">
+                        </td>
+                        <td>
+                            <input type="text" name="country" value="{{ country }}"
+                                   onchange="document.getElementById('filtre').submit();">
+                        </td>
+                        <td>
+                            <input type="text" name="city" value="{{ city }}"
+                                   onchange="document.getElementById('filtre').submit();">
+                        </td>
+                        <td>
+                            <input type="text" name="street" value="{{ street }}"
+                                   onchange="document.getElementById('filtre').submit();">
+                        </td>
+                        <td>
+                            <input type="text" name="postal" value="{{ postal }}"
+                                   onchange="document.getElementById('filtre').submit();">
+                        </td>
+                        <td>
+                            <input type="text" name="phone_number" value="{{ phone_number }}"
+                                   onchange="document.getElementById('filtre').submit();">
+                        </td>
+                        <td>
+                            {% if is_admin == "true" %}
+                                <input type="checkbox" checked name="admin"
+                                       onchange="document.getElementById('filtre').submit();">
+                            {% else %}
+                                <input type="checkbox" name="admin"
+                                       onchange="document.getElementById('filtre').submit();">
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if banned == "true" %}
+                                <input type="checkbox" checked name="banned"
+                                       onchange="document.getElementById('filtre').submit();">
+                            {% else %}
+                                <input type="checkbox" name="banned"
+                                       onchange="document.getElementById('filtre').submit();">
+                            {% endif %}
+                        </td>
+                    </form>
+                </tr>
+                {% for user in users %}
+                    <tr>
+                        <form action="{{ path('admin_user_edit', {user: user.getId()}) }}">
+                            <td class="table_id">{{ user.getId() }}</td>
+                            <td class="table_name"><input type="text" value="{{ user.username }}" id="username" name="username"></td>
+                            <td class="table_pcs"><input type="text" value="{{ user.firstName }}" id="firstName" name="firstName"> </td>
+                            <td class="table_size"><input type="text" value="{{ user.lastName }}" id="lastName" name="lastName"></td>
+                            <td class="table_brand"><input type="email" value="{{ user.email }}" name="email" id="email"></td>
+                            <td class="table_brand"><input type="text" value="{{ user.country }}" name="country" id="country"></td>
+                            <td class="table_brand"><input type="text" value="{{ user.city }}" name="city" id="city"></td>
+                            <td class="table_brand"><input type="text" value="{{ user.street}}" name="street" id="street"></td>
+                            <td class="table_brand"><input type="text" value="{{ user.postal}}" name="postal" id="postal"></td>
+                            <td class="table_brand"><input type="tel" value="{{ user.phoneNumber }}" name="phone_number" id="phone_number"></td>
+                            {% if 'ROLE_ADMIN' in user.getRoles() %}
+                                <td class="table_brand"><input type="checkbox" checked id="isAdmin" name="isAdmin"></td>
+                            {% else %}
+                                <td class="table_brand"><input type="checkbox" id="isAdmin" name="isAdmin"></td>
+                            {% endif %}
+                            {% if user.active %}
+                                <td class="table_brand"><input type="checkbox" id="banned" name="banned"></td>
+                            {% else %}
+                                <td class="table_brand"><input type="checkbox" checked id="banned" name="banned"></td>
+                            {% endif %}
+                            <td><input type="submit" name="submit" id="submit" value="{% trans %}SUBMIT{% endtrans %}"></td>
+                        </form>
+                    </tr>
+
+                {% endfor %}
+
+            </table>
+        </div>
+    </article>
+
+{% endblock %}
+

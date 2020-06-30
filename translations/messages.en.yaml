@@ -1,0 +1,102 @@
+USERNAME: Username
+PASSWORD: Password
+EMAIL: Email
+LOG_IN: Log In
+LOG_IN_DESCRIPTION: to your account
+SIGN_IN: Log In
+NOT_SIGNED: Don't have an account?
+CLICK_HERE: Click here!
+LOGGED_IN_AS: Logged In As
+NOT_LOGGED_IN: Not Logged In
+LOG_OUT: Log Out
+PROFILE: Profile
+CANCEL: Cancel
+
+HOME: Home
+PRODUCTS: Products
+BLOG: Blog
+CONTACT: Contact
+ORDERS: Orders
+ADMIN: Admin
+ORDER: Order
+
+ADMIN_PRODUCTS: All products
+ADMIN_USER: All users
+ADMIN_ORDERS: All orders
+
+BRAND: Brand
+TYPE: Type
+SIZE: Size
+PRICE: Price
+
+NAME_PRODUCT: Name A-Z
+NAME_PRODUCT_DESC: Name Z-A
+
+PRICE_PRODUCT: Price ascending
+PRICE_PRODUCT_DESC: Price descending
+
+TYPE_PRODUCT: Type A-Z
+TYPE_PRODUCT_DESC: Type Z-A
+
+BRAND_PRODUCT: Brand A-Z
+BRAND_PRODUCT_DESC: Brand Z-A
+
+SIZE_PRODUCT: Size ascending
+SIZE_PRODUCT_DESC: Size descending
+
+FROM: From...
+TO: To...
+
+CANT_SHOP: Can't order (?)
+
+CONTACT_US: Contact Us
+ANY_QUESTIONS: If you have any questions
+FIND_US_HERE: Find Us Here
+
+BLOGS: Blogs
+SEARCH_HERE: Search here
+CREATED_ON: Created on
+CREATE_POST: New Post
+
+SUBMIT: Submit
+BODY: Body
+TITLE: Title
+
+ACCOUNT_INFORMATIONS: Account Information
+PERSONAL_INFORMATIONS: Personal Information
+FIRST_NAME: First Name
+LAST_NAME: Last Name
+PHONE_NUMBER: Phone Number
+COUNTRY: Country
+CITY: City
+POSTAL_CODE: Postal Code
+ADDRESS: Address
+EDIT: Edit
+PROFILE_EDIT: Edit Profile
+
+ITEM_NAME: Product name
+ORDER_DATE: Order date
+ORDER_NUMBER: Order number
+
+SIGN_UP: Sign Up
+TO_CREATE: to create an account
+AGREE_TERMS: Agree to terms and conditions
+AGREE_GDPR: Agree to GDPR
+
+IS_ADMIN: Admin
+BANNED: Ban
+
+PRODUCT: Products
+USER: User
+DATE: Created on
+IS_COMPLETE: Completed
+REMOVE: Remove
+
+NAME: Name
+DESCRIPTION: Description
+IMAGE: Image
+RESERVED: Reserved
+
+DELETE: Delete
+
+POPUP_MSG: You have to create an account and fill out all required information to create an order.
